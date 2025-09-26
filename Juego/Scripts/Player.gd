@@ -19,14 +19,17 @@ extends CharacterBody2D
 @onready var collision_shape_player: CollisionShape2D = $CollisionShapePlayer
 @onready var enemy: Enemy = $"../Enemy"
 @onready var vida_jugador: Label = $Puntuacion/Vida_Jugador
+@onready var enemy_2: Enemy = $"../Enemy2"
 
 func _ready() -> void:
 	Engine.time_scale = 1
 	enemy.muerte.connect(_on_body_contact)
-
+	enemy_2.muerte.connect(_on_body_contact)
 
 func _on_body_contact():
 	Run = true
+	Count += 1
+	Debug.log(Count)
 		
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
@@ -35,16 +38,14 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("bajar"):
 		velocity.y = +jump_speed/4
 		
-	if is_on_floor() and Run == true and Input.is_action_just_pressed("Especial") and Count == 0:
-		Count = 1
+	if is_on_floor() and Run == true and Count != 0 and Input.is_action_just_pressed("Especial"):
 		max_speed = 400
-		Debug.log(Count)
-		
-	if is_on_floor() and Run == true and Input.is_action_just_pressed("Especial") and Count == 1:
-		Count = 0
+		await get_tree().create_timer(2).timeout
+		if Count == 0:
+			Run = false
 		max_speed = 150
-	
-	
+		Count -= 1
+		Debug.log(Count)
 		
 	if is_on_floor() and Input.is_action_just_pressed("saltar"):
 		velocity.y = -jump_speed

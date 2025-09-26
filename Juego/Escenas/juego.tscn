@@ -16,7 +16,7 @@ scale = Vector2(1.5, 1.5)
 [node name="Mapa" type="Node2D" parent="."]
 
 [node name="Player" parent="." instance=ExtResource("1_d3d2o")]
-position = Vector2(97.00001, 331)
+position = Vector2(97, 331)
 scale = Vector2(1.5, 1.5)
 
 [node name="PauseMenu" parent="." instance=ExtResource("3_spkme")]
@@ -28,6 +28,9 @@ position = Vector2(0, 401)
 shape = SubResource("WorldBoundaryShape2D_spkme")
 
 [node name="GoblinIdleAnimStrip4" type="Sprite2D" parent="."]
-position = Vector2(922.99994, 268)
-scale = Vector2(27.34375, 2.625)
+position = Vector2(923, 268)
+scale = Vector2(27.3438, 2.625)
 texture = ExtResource("4_aoscc")
+
+[node name="Enemy2" parent="." instance=ExtResource("4_n77xa")]
+position = Vector2(213, 327)

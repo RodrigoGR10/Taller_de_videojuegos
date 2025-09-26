@@ -63,9 +63,9 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_f02rb")
 theme_override_font_sizes/font_size = 36
-theme_override_styles/normal = ExtResource("3_gplya")
-theme_override_styles/pressed = ExtResource("3_gplya")
 theme_override_styles/hover = ExtResource("3_gplya")
+theme_override_styles/pressed = ExtResource("3_gplya")
+theme_override_styles/normal = ExtResource("3_gplya")
 text = "Start"
 expand_icon = true
 
@@ -75,9 +75,9 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_f02rb")
 theme_override_font_sizes/font_size = 36
-theme_override_styles/normal = ExtResource("3_gplya")
-theme_override_styles/pressed = ExtResource("3_gplya")
 theme_override_styles/hover = ExtResource("3_gplya")
+theme_override_styles/pressed = ExtResource("3_gplya")
+theme_override_styles/normal = ExtResource("3_gplya")
 text = "Credits"
 
 [node name="QuitButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
@@ -86,7 +86,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_f02rb")
 theme_override_font_sizes/font_size = 36
-theme_override_styles/normal = ExtResource("3_gplya")
-theme_override_styles/pressed = ExtResource("3_gplya")
 theme_override_styles/hover = ExtResource("3_gplya")
+theme_override_styles/pressed = ExtResource("3_gplya")
+theme_override_styles/normal = ExtResource("3_gplya")
 text = "Quit"

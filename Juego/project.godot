@@ -12,7 +12,7 @@ config_version=5
 
 config/name="Juego"
 run/main_scene="uid://er8vijr0f56b"
-config/features=PackedStringArray("4.5", "Forward Plus")
+config/features=PackedStringArray("4.4", "Forward Plus")
 boot_splash/bg_color=Color(0.107387, 0.393351, 0.480494, 1)
 config/icon="uid://cy6am2rm4cwhb"
 
@@ -26,8 +26,8 @@ Debug="*res://Componentes/Debug.gd"
 
 [display]
 
-window/size/viewport_width=600
-window/size/viewport_height=400
+window/size/viewport_width=900
+window/size/viewport_height=700
 window/stretch/mode="canvas_items"
 
 [input]

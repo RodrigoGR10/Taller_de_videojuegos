@@ -1,0 +1,5 @@
+res://Escenas/UI/main_menu.tscn
+res://Escenas/Player.tscn
+res://Recursos/movement.tres
+res://Scripts/Player.gd
+res://Escenas/juego.tscn
