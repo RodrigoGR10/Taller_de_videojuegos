@@ -1,0 +1,92 @@
+[gd_scene load_steps=4 format=3 uid="uid://er8vijr0f56b"]
+
+[ext_resource type="Script" uid="uid://c7er4cqs0rsm7" path="res://Escenas/UI/main_menu.gd" id="1_p8ccj"]
+[ext_resource type="FontFile" uid="uid://qv1kfvhhvv01" path="res://Recursos/Crosterian.ttf" id="2_f02rb"]
+[ext_resource type="StyleBox" uid="uid://bapimv1vjh0n5" path="res://Recursos/Botones.tres" id="3_gplya"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_p8ccj")
+
+[node name="Fondo" type="Node2D" parent="."]
+position = Vector2(-288, -180)
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -154.0
+offset_top = -140.0
+offset_right = 154.0
+offset_bottom = 140.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(982.5, -944)
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("2_f02rb")
+theme_override_font_sizes/font_size = 40
+text = "EnemyFormer"
+horizontal_alignment = 1
+
+[node name="StartButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_f02rb")
+theme_override_font_sizes/font_size = 36
+theme_override_styles/normal = ExtResource("3_gplya")
+theme_override_styles/pressed = ExtResource("3_gplya")
+theme_override_styles/hover = ExtResource("3_gplya")
+text = "Start"
+expand_icon = true
+
+[node name="CreditsButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_f02rb")
+theme_override_font_sizes/font_size = 36
+theme_override_styles/normal = ExtResource("3_gplya")
+theme_override_styles/pressed = ExtResource("3_gplya")
+theme_override_styles/hover = ExtResource("3_gplya")
+text = "Credits"
+
+[node name="QuitButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_f02rb")
+theme_override_font_sizes/font_size = 36
+theme_override_styles/normal = ExtResource("3_gplya")
+theme_override_styles/pressed = ExtResource("3_gplya")
+theme_override_styles/hover = ExtResource("3_gplya")
+text = "Quit"
