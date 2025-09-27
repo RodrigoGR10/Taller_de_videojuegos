@@ -5,9 +5,13 @@ extends CharacterBody2D
 @export var jump_speed = 400
 @export var gravity = 600
 @export var acceleration = 300
+
 @export var heal = 3
-@export var Run = false
-@export var Count = 0
+@export var run = false
+@export var run_count = 0
+@export var extra_jump = false
+@export var jump_count = 0
+
 @onready var mage: Sprite2D = $Mage
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var animation_tree: AnimationTree = $AnimationTree
@@ -24,28 +28,46 @@ extends CharacterBody2D
 func _ready() -> void:
 	Engine.time_scale = 1
 	enemy.muerte.connect(_on_body_contact)
-	enemy_2.muerte.connect(_on_body_contact)
+	enemy_2.muerte.connect(_on_jump_enemy_contact)
 
 func _on_body_contact():
-	Run = true
-	Count += 1
-	Debug.log(Count)
+	run = true
+	run_count += 1
+	Debug.log("Run:" + str(run))
+	Debug.log("Extra runs:" + str(run_count))
+	
+func _on_jump_enemy_contact():
+	extra_jump = true
+	jump_count += 1
+	Debug.log("Double jump:" + str(extra_jump))
+	Debug.log("Extra jump:" + str(jump_count))
+	
 		
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity.y += gravity * delta
+		if jump_count != 0 and extra_jump == true and Input.is_action_just_pressed("saltar"):
+			velocity.y = 0
+			await get_tree().create_timer(0.01).timeout
+			velocity.y = -jump_speed
+			jump_count -= 1
+			if jump_count == 0:
+				extra_jump = false
+				Debug.log("No more jumps")
+			Debug.log(jump_count)
 		
 	if Input.is_action_just_pressed("bajar"):
 		velocity.y = +jump_speed/4
 		
-	if is_on_floor() and Run == true and Count != 0 and Input.is_action_just_pressed("Especial"):
+	if is_on_floor() and run == true and run_count != 0 and Input.is_action_just_pressed("Especial"):
 		max_speed = 400
 		await get_tree().create_timer(2).timeout
-		if Count == 0:
-			Run = false
+		run_count -= 1
+		if run_count == 0:
+			run = false
+			Debug.log("No more runs")
 		max_speed = 150
-		Count -= 1
-		Debug.log(Count)
+		Debug.log(run_count)
 		
 	if is_on_floor() and Input.is_action_just_pressed("saltar"):
 		velocity.y = -jump_speed
