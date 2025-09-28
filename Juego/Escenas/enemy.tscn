@@ -110,23 +110,23 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kg5b2"]
-size = Vector2(13, 13)
+size = Vector2(12.218183, 1.8424225)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lpifq"]
-size = Vector2(13, 13)
+size = Vector2(13, 15.563637)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_18e16"]
-size = Vector2(11, 13)
+size = Vector2(20, 27)
 
 [node name="Enemy" type="CharacterBody2D"]
 script = ExtResource("1_40vke")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(1.7187499, 1.7187499)
 sprite_frames = SubResource("SpriteFrames_d0v5c")
-animation = &"Death_Enemy"
+animation = &"Run_Enemy"
 autoplay = "Run_Enemy"
-frame = 6
-frame_progress = 1.0
+frame_progress = 0.2601041
 
 [node name="Hurtbox" type="Area2D" parent="AnimatedSprite2D"]
 collision_layer = 16
@@ -135,7 +135,8 @@ script = ExtResource("3_18e16")
 metadata/_custom_type_script = "uid://uotkkabbnbwq"
 
 [node name="hurt" type="CollisionShape2D" parent="AnimatedSprite2D/Hurtbox"]
-position = Vector2(0.5, 1.5)
+position = Vector2(0.2909092, -7.321212)
+scale = Vector2(0.99999994, 0.99999994)
 shape = SubResource("RectangleShape2D_kg5b2")
 
 [node name="Hitbox" type="Area2D" parent="AnimatedSprite2D"]
@@ -145,9 +146,10 @@ script = ExtResource("4_tljeb")
 metadata/_custom_type_script = "uid://djlmfx8oq45aq"
 
 [node name="hit" type="CollisionShape2D" parent="AnimatedSprite2D/Hitbox"]
-position = Vector2(0.5, 1.5)
+position = Vector2(0.4999999, 0.21818182)
+scale = Vector2(0.99999994, 0.99999994)
 shape = SubResource("RectangleShape2D_lpifq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0.5, 1.5)
+position = Vector2(1, 0.5)
 shape = SubResource("RectangleShape2D_18e16")

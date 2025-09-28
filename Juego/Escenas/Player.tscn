@@ -196,7 +196,6 @@ animation = &"Attack"
 [sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_kwdw2"]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_j2dk4"]
-graph_offset = Vector2(-576.726, 259.308)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_5hhfp")
 nodes/Animation/position = Vector2(-162.415, 514.399)
 nodes/Attack/node = SubResource("AnimationNodeOneShot_kwdw2")
@@ -206,7 +205,7 @@ nodes/movement/position = Vector2(-293.333, 133.333)
 node_connections = [&"output", 0, &"Attack", &"Attack", 0, &"movement", &"Attack", 1, &"Animation"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hhy33"]
-size = Vector2(13, 21)
+size = Vector2(20, 4)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kwdw2"]
 size = Vector2(22, 24)
@@ -269,7 +268,7 @@ script = ExtResource("4_hhy33")
 metadata/_custom_type_script = "uid://djlmfx8oq45aq"
 
 [node name="hit" type="CollisionShape2D" parent="Pivot/Mage/Hitbox"]
-position = Vector2(-6.5, 8.5)
+position = Vector2(-25, 18)
 shape = SubResource("RectangleShape2D_hhy33")
 
 [node name="Hurtbox" type="Area2D" parent="Pivot/Mage"]
@@ -285,7 +284,7 @@ shape = SubResource("RectangleShape2D_kwdw2")
 script = SubResource("GDScript_j2dk4")
 
 [node name="Heart" type="Sprite2D" parent="Puntuacion"]
-position = Vector2(528, 33)
+position = Vector2(803.475, 38)
 scale = Vector2(2.0475, 2.0475)
 texture = ExtResource("11_qoh2p")
 hframes = 5
@@ -293,20 +292,20 @@ vframes = 5
 frame = 12
 
 [node name="Vida_Jugador" type="Label" parent="Puntuacion"]
-offset_left = 570.0
-offset_top = 9.0
-offset_right = 610.0
-offset_bottom = 53.0
+offset_left = 845.475
+offset_top = 14.0
+offset_right = 885.475
+offset_bottom = 58.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("7_3tm5s")
 theme_override_font_sizes/font_size = 30
 text = "3"
 
 [node name="X" type="Label" parent="Puntuacion"]
-offset_left = 549.0
-offset_top = 15.0
-offset_right = 589.0
-offset_bottom = 59.0
+offset_left = 824.475
+offset_top = 20.0
+offset_right = 864.475
+offset_bottom = 64.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("7_3tm5s")
 theme_override_font_sizes/font_size = 20

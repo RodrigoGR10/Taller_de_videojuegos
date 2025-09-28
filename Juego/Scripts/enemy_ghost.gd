@@ -32,6 +32,7 @@ func _physics_process(delta):
 	move_and_slide()
 
 func take_damage(damage):
+	Debug.log("Auch %d" % damage)
 	animated_sprite_2d.play("Death_Enemy")
 	muerte_ghost.emit()
 	hit.queue_free()
@@ -42,4 +43,5 @@ func take_damage(damage):
 	set_collision_mask_value(5, true)
 	await animated_sprite_2d.animation_finished
 	queue_free()
+	
 	

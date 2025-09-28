@@ -13,7 +13,7 @@ func _on_start_pressed():
 	get_tree().change_scene_to_file("res://Escenas/juego.tscn")
 
 func _on_credits_pressed():
-	pass
+	get_tree().change_scene_to_file("res://Escenas/creditos.tscn")
 
 func _on_quit_pressed():
 	get_tree().quit()

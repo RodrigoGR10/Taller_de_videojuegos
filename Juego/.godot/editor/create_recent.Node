@@ -1,2 +1,9 @@
+Label
+ColorRect
+MarginContainer
+PanelContainer
+Container
+BoxContainer
+TileMapLayer
 CharacterBody2D
 Enemy

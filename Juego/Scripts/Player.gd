@@ -25,40 +25,61 @@ extends CharacterBody2D
 @onready var collision_shape_player: CollisionShape2D = $CollisionShapePlayer
 @onready var enemy: Enemy = $"../Enemy"
 @onready var vida_jugador: Label = $Puntuacion/Vida_Jugador
-@onready var enemy_2: Enemy = $"../Enemy2"
 @onready var enemy_ghost: Enemy_Ghost = $"../Enemy_Ghost"
 @onready var hit: CollisionShape2D = $Pivot/Mage/Hitbox/hit
 @onready var hurt: CollisionShape2D = $Pivot/Mage/Hurtbox/hurt
 @onready var static_body_2d: StaticBody2D = $"../StaticBody2D"
+@onready var enemy_jump: Enemy_Jump = $"../Enemy_Jump"
+@onready var enemy_jump_2: Enemy_Jump = $"../Enemy_Jump2"
+@onready var enemy_ghost_2: Enemy_Ghost = $"../Enemy_Ghost2"
 
 func _ready() -> void:
 	Debug.log(static_body_2d.collision_layer)
 	Engine.time_scale = 1
 	enemy.muerte.connect(_on_body_contact)
-	enemy_2.muerte.connect(_on_jump_enemy_contact)
+	enemy_jump.muerte_jump.connect(_on_jump_enemy_contact)
+	enemy_jump_2.muerte_jump.connect(_on_jump_enemy_contact)
 	enemy_ghost.muerte_ghost.connect(_on_body_ghost_contact)
+	enemy_ghost_2.muerte_ghost.connect(_on_body_ghost_contact)
 	
 func _on_body_ghost_contact():
+	velocity.y = -jump_speed/3
 	Visible = true
 	run = false
 	extra_jump = false
 	count_visible += 1
+	Debug.log("Visible:" + str(visible))
+	Debug.log("Visible:" + str(count_visible))
+	if run_count != 0:
+		run_count = 0
+	if jump_count != 0:
+		jump_count = 0
 	
 func _on_body_contact():
+	velocity.y = -jump_speed/3
 	run = true
 	Visible = false
 	extra_jump = false
 	run_count += 1
 	Debug.log("Run:" + str(run))
 	Debug.log("Extra runs:" + str(run_count))
+	if jump_count != 0:
+		jump_count = 0
+	if count_visible != 0:
+		count_visible = 0
 	
 func _on_jump_enemy_contact():
+	velocity.y = -jump_speed/3
 	extra_jump = true
-	run = true
-	Visible = true
+	run = false
+	Visible = false
 	jump_count += 1
 	Debug.log("Double jump:" + str(extra_jump))
 	Debug.log("Extra jump:" + str(jump_count))
+	if count_visible != 0:
+		count_visible = 0
+	if run_count != 0:
+		run_count = 0
 	
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
@@ -109,9 +130,6 @@ func _physics_process(delta: float) -> void:
 	if is_on_floor() and Input.is_action_just_pressed("saltar"):
 		velocity.y = -jump_speed
 		
-	if Input.is_action_just_pressed("Attack") and not animation_tree["parameters/Attack/active"]:
-		animation_tree["parameters/Attack/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
-		
 	var move_input = Input.get_axis("mover_izquierda","mover_derecha")
 	velocity.x = move_toward(velocity.x, move_input * max_speed, acceleration * delta)
 	move_and_slide()
@@ -142,4 +160,3 @@ func take_damage(damage):
 		Engine.time_scale = 0.5
 		await get_tree().create_timer(0.2).timeout
 		get_tree().reload_current_scene()
-		
