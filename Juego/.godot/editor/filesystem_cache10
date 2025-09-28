@@ -1,43 +1,47 @@
-ea4bc82a6ad023ab7ee23ee620429895
-::res://::1758894522
-icon.svg::CompressedTexture2D::6521392199577903207::1758894376::1758894524::1::::<><><>0<>0<>acb120a455cfde319755d100a3e18694<>res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex::
-::res://Componentes/::1758894375
-Debug.gd::GDScript::2734880229290756514::1758894375::0::1::::<>Node<><>0<>0<><>::
-hitbox.gd::GDScript::7814408591673225072::1758894375::0::1::::Hitbox<>Area2D<><>0<>0<><>::
-hurtbox.gd::GDScript::1433850167399882392::1758894375::0::1::::Hurtbox<>Area2D<><>0<>0<><>::
-::res://Escenas/::1758894376
-enemy.tscn::PackedScene::1803395981000506736::1758894375::0::1::::<><><>0<>0<><>::uid://b7lhmmhwnpngv::::res://Scripts/enemy.gd<>uid://0o8ruywsitpj::::res://Recursos/Wizard/platformer_metroidvania asset pack v1.01/enemies sprites/goblin/goblin_spritesheet.png<>uid://uotkkabbnbwq::::res://Componentes/hurtbox.gd<>uid://djlmfx8oq45aq::::res://Componentes/hitbox.gd
-juego.tscn::PackedScene::4010436935227158441::1758894376::0::1::::<><><>0<>0<><>::uid://c6udf44lm8e5m::::res://Escenas/Player.tscn<>uid://0svh7x0kblg3::::res://Escenas/pause_menu.tscn<>uid://by84w1scgwdbj::::res://Recursos/Wizard/platformer_metroidvania asset pack v1.01/enemies sprites/goblin/goblin_idle_anim_strip_4.png<>uid://0xtwyt7jfgkm::::res://Escenas/enemy.tscn
-pause_menu.tscn::PackedScene::1793169165356322972::1758894376::0::1::::<><><>0<>0<><>::uid://t8eqld7bxdtw::::res://Scripts/pause_menu.gd<>uid://qv1kfvhhvv01::::res://Recursos/Crosterian.ttf<>uid://bapimv1vjh0n5::::res://Recursos/Botones.tres
-Player.tscn::PackedScene::6990175723687836032::1758894375::0::1::::<><><>0<>0<><>::uid://ck2trwi2t6fh6::::res://Recursos/Wizard/MAGE.png<>uid://xx4wdvbq56tc::::res://Scripts/Player.gd<>uid://5ckilif0ve4v::::res://Recursos/movement.tres<>uid://djlmfx8oq45aq::::res://Componentes/hitbox.gd<>uid://uotkkabbnbwq::::res://Componentes/hurtbox.gd<>uid://qv1kfvhhvv01::::res://Recursos/Crosterian.ttf<>uid://njhs51us1xjd::::res://Recursos/Heart.png
-::res://Escenas/UI/::1758894375
-main_menu.gd::GDScript::7028225982335255768::1758894375::0::1::::<>Control<><>0<>0<><>::
-main_menu.tscn::PackedScene::317891393700525615::1758894375::0::1::::<><><>0<>0<><>::uid://c7er4cqs0rsm7::::res://Escenas/UI/main_menu.gd<>uid://qv1kfvhhvv01::::res://Recursos/Crosterian.ttf<>uid://bapimv1vjh0n5::::res://Recursos/Botones.tres
-::res://Recursos/::1758894376
-Botones.tres::StyleBoxFlat::2417894659594731428::1758894376::0::1::::<><><>0<>0<><>::
-Crosterian.ttf::FontFile::1167970226180646776::1758894376::1758894524::1::::<><><>0<>0<>7073b2845371c07eb42c630d7b9ee223<>res://.godot/imported/Crosterian.ttf-21581cb2c468d90b3cf7a6c9022efc82.fontdata::
-FantasyRPGtext (size 8).ttf::FontFile::3370954975951469975::1758894376::1758894524::1::::<><><>0<>0<>97a61a91fe3be38b4512a5ce91e027d5<>res://.godot/imported/FantasyRPGtext (size 8).ttf-c8b6292f823aed60101fec099829bf90.fontdata::
-Heart.png::CompressedTexture2D::931493147119842817::1758894376::1758894524::1::::<><><>0<>0<>8517a9a8851cff46a0eabfaf9211e3fd<>res://.godot/imported/Heart.png-6fa3df297812ef27cc1eb564ef399fc0.ctex::
-main_menu.tres::StyleBoxFlat::4690188153846554426::1758894376::0::1::::<><><>0<>0<><>::
-movement.tres::AnimationNodeStateMachine::2110416111304698327::1758894376::0::1::::<><><>0<>0<><>::
-::res://Recursos/Wizard/::1758894376
-MAGE.png::CompressedTexture2D::5531653153610595753::1758894376::1758894524::1::::<><><>0<>0<>3486868c56c8778f968ba003a6e5b28a<>res://.godot/imported/MAGE.png-dd9f187ce8358239d9e3ebb262f0e9af.ctex::
-::res://Recursos/Wizard/Other Characters/::1758894376
-::res://Recursos/Wizard/platformer_metroidvania asset pack v1.01/::1758894376
-README.txt::TextFile::-1::1758894376::0::1::::<><><>0<>0<><>::
-::res://Recursos/Wizard/platformer_metroidvania asset pack v1.01/enemies sprites/::1758894376
-::res://Recursos/Wizard/platformer_metroidvania asset pack v1.01/enemies sprites/goblin/::1758894376
-goblin_attack_anim_strip_4.png::CompressedTexture2D::8170184717849128497::1758894376::1758894524::1::::<><><>0<>0<>b61abb6d78109187ec4d59fda89a71f0<>res://.godot/imported/goblin_attack_anim_strip_4.png-b5d7afbae5bc916f97ff39f48076657f.ctex::
-goblin_death_anim_strip_6.png::CompressedTexture2D::321045835691209467::1758894376::1758894524::1::::<><><>0<>0<>0fc01b4f4d2a1bfb30ca9bb95016f74f<>res://.godot/imported/goblin_death_anim_strip_6.png-bb708189e2882ad42a3512870ee85d6a.ctex::
-goblin_hit_anim_strip_3.png::CompressedTexture2D::1184119054731126248::1758894376::1758894524::1::::<><><>0<>0<>9c9d96220cd17ded9da080d7b476186a<>res://.godot/imported/goblin_hit_anim_strip_3.png-c6a8a8e8cd43873da4ee0a64964be8bf.ctex::
-goblin_idle_anim_strip_4.png::CompressedTexture2D::4140878870659326343::1758894376::1758894524::1::::<><><>0<>0<>4251cf667906031aedcecff9d6aa415a<>res://.godot/imported/goblin_idle_anim_strip_4.png-fde58e436ef3c554f1eeb3558df6b132.ctex::
-goblin_run_anim_strip_6.png::CompressedTexture2D::3399280421109219142::1758894376::1758894524::1::::<><><>0<>0<>5b8ac489ef787f236f290ef457e5c5af<>res://.godot/imported/goblin_run_anim_strip_6.png-1aa605faa63ea1815b36daf6afdd1a16.ctex::
-goblin_spritesheet.png::CompressedTexture2D::1785657487331602163::1758894376::1758894524::1::::<><><>0<>0<>bc52297b4478e586218cb6107e81e0f2<>res://.godot/imported/goblin_spritesheet.png-6d8c8a5977b480972ff9307c1d1dc0c8.ctex::
-::res://Recursos/Wizard/platformer_metroidvania asset pack v1.01/hud elements/::1758894376
-fonts.png::CompressedTexture2D::7170066563415805687::1758894376::1758894524::1::::<><><>0<>0<>c1dbede8adf2927d12397d2aff9fbb7a<>res://.godot/imported/fonts.png-51b206040a844c8a3f8503301daa63a7.ctex::
-hearts_hud.png::CompressedTexture2D::7457002766413117038::1758894376::1758894524::1::::<><><>0<>0<>6cac9a78c9fa2903e0209fc54363528e<>res://.godot/imported/hearts_hud.png-bf08f7243c183ceb9ac2cf1cb429de64.ctex::
-::res://Scripts/::1758894376
-creditos.gd::GDScript::1988534414527336345::1758894376::0::1::::<>Control<><>0<>0<><>::
-enemy.gd::GDScript::4655618925992408029::1758894376::0::1::::Enemy<>CharacterBody2D<><>0<>0<><>::
-pause_menu.gd::GDScript::1401984519527574960::1758894376::0::1::::<>CanvasLayer<><>0<>0<><>::
-Player.gd::GDScript::1663624362353230420::1758894376::0::1::::Player<>CharacterBody2D<><>0<>0<><>::
+63f7b34db8d8cdea90c76aacccf841ec
+::res://::1759015154
+icon.svg::CompressedTexture2D::6521392199577903207::1759013684::1759013888::1::::<><><>0<>0<>14e81c78448b76caade0805c3a1eb7c8<>res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex::
+::res://Componentes/::1759013683
+Debug.gd::GDScript::2734880229290756514::1759013683::0::1::::<>Node<><>0<>0<><>::
+hitbox.gd::GDScript::7814408591673225072::1759013683::0::1::::Hitbox<>Area2D<><>0<>0<><>::
+hurtbox.gd::GDScript::1433850167399882392::1759013683::0::1::::Hurtbox<>Area2D<><>0<>0<><>::
+::res://Escenas/::1759013683
+enemy.tscn::PackedScene::1803395981000506736::1759013683::0::1::::<><><>0<>0<><>::uid://b7lhmmhwnpngv::::res://Scripts/enemy.gd<>uid://0o8ruywsitpj::::res://Recursos/Wizard/platformer_metroidvania asset pack v1.01/enemies sprites/goblin/goblin_spritesheet.png<>uid://uotkkabbnbwq::::res://Componentes/hurtbox.gd<>uid://djlmfx8oq45aq::::res://Componentes/hitbox.gd
+juego.tscn::PackedScene::4010436935227158441::1759013683::0::1::::<><><>0<>0<><>::uid://c6udf44lm8e5m::::res://Escenas/Player.tscn<>uid://0svh7x0kblg3::::res://Escenas/pause_menu.tscn<>uid://by84w1scgwdbj::::res://Recursos/Wizard/platformer_metroidvania asset pack v1.01/enemies sprites/goblin/goblin_idle_anim_strip_4.png<>uid://0xtwyt7jfgkm::::res://Escenas/enemy.tscn
+pause_menu.tscn::PackedScene::1793169165356322972::1759013683::0::1::::<><><>0<>0<><>::uid://t8eqld7bxdtw::::res://Scripts/pause_menu.gd<>uid://qv1kfvhhvv01::::res://Recursos/Crosterian.ttf<>uid://bapimv1vjh0n5::::res://Recursos/Botones.tres
+Player.tscn::PackedScene::6990175723687836032::1759013683::0::1::::<><><>0<>0<><>::uid://ck2trwi2t6fh6::::res://Recursos/Wizard/MAGE.png<>uid://xx4wdvbq56tc::::res://Scripts/Player.gd<>uid://5ckilif0ve4v::::res://Recursos/movement.tres<>uid://djlmfx8oq45aq::::res://Componentes/hitbox.gd<>uid://uotkkabbnbwq::::res://Componentes/hurtbox.gd<>uid://qv1kfvhhvv01::::res://Recursos/Crosterian.ttf<>uid://njhs51us1xjd::::res://Recursos/Heart.png
+::res://Escenas/UI/::1759013683
+main_menu.gd::GDScript::7028225982335255768::1759013683::0::1::::<>Control<><>0<>0<><>::
+main_menu.tscn::PackedScene::317891393700525615::1759013683::0::1::::<><><>0<>0<><>::uid://c7er4cqs0rsm7::::res://Escenas/UI/main_menu.gd<>uid://qv1kfvhhvv01::::res://Recursos/Crosterian.ttf<>uid://bapimv1vjh0n5::::res://Recursos/Botones.tres
+::res://Recursos/::1759015154
+Botones.tres::StyleBoxFlat::2417894659594731428::1759013683::0::1::::<><><>0<>0<><>::
+Crosterian.ttf::FontFile::1167970226180646776::1759013683::1759013888::1::::<><><>0<>0<>e5bc594e137bee1cb01507d24bab447e<>res://.godot/imported/Crosterian.ttf-21581cb2c468d90b3cf7a6c9022efc82.fontdata::
+Derrick Death 2 Sheet-export.png::CompressedTexture2D::6812654357405668689::1759015144::1759015154::1::::<><><>0<>0<>2107ad3eb1f637a3ac16bd1b0370c255<>res://.godot/imported/Derrick Death 2 Sheet-export.png-c31f5467645338df58bc99d9d8ba339b.ctex::
+Derrick Death 3 Sheet-export.png::CompressedTexture2D::7676702918469138294::1759015144::1759015154::1::::<><><>0<>0<>c2a6898a32e3657b7e497768237e6dfd<>res://.godot/imported/Derrick Death 3 Sheet-export.png-5d68846515d5b1ec0f2aa4c90c2e18ea.ctex::
+FantasyRPGtext (size 8).ttf::FontFile::3370954975951469975::1759013683::1759013888::1::::<><><>0<>0<>a7b6d03c46335c0f8c254978a1c98222<>res://.godot/imported/FantasyRPGtext (size 8).ttf-c8b6292f823aed60101fec099829bf90.fontdata::
+Heart.png::CompressedTexture2D::931493147119842817::1759013683::1759013888::1::::<><><>0<>0<>4321500e9cd14354153eaa6bd4347d33<>res://.godot/imported/Heart.png-6fa3df297812ef27cc1eb564ef399fc0.ctex::
+hosa.png::CompressedTexture2D::6730513053275267799::1759014216::1759014216::1::::<><><>0<>0<>0ab0781267e57b9b98165f794f6a0440<>res://.godot/imported/hosa.png-b7195eec8e0ffc10a519e917f7e1c395.ctex::
+main_menu.tres::StyleBoxFlat::4690188153846554426::1759013684::0::1::::<><><>0<>0<><>::
+movement.tres::AnimationNodeStateMachine::2110416111304698327::1759015597::0::1::::<><><>0<>0<><>::
+enemy_ghost.tscn::PackedScene::7623576479918570299::1759015597::0::1::::<><><>0<>0<><>::uid://dhmwf74lnuupy::::res://Recursos/Derrick Death 3 Sheet-export.png<>uid://c4cdol0l37lnl::::res://Recursos/Derrick Death 2 Sheet-export.png<>uid://uotkkabbnbwq::::res://Componentes/hurtbox.gd<>uid://djlmfx8oq45aq::::res://Componentes/hitbox.gd
+::res://Recursos/Wizard/::1759013888
+MAGE.png::CompressedTexture2D::5531653153610595753::1759013683::1759013888::1::::<><><>0<>0<>74950b306ab8d6ea04e97649cda94013<>res://.godot/imported/MAGE.png-dd9f187ce8358239d9e3ebb262f0e9af.ctex::
+::res://Recursos/Wizard/Other Characters/::1759013683
+::res://Recursos/Wizard/platformer_metroidvania asset pack v1.01/::1759013684
+README.txt::TextFile::-1::1759013683::0::1::::<><><>0<>0<><>::
+::res://Recursos/Wizard/platformer_metroidvania asset pack v1.01/enemies sprites/::1759013683
+::res://Recursos/Wizard/platformer_metroidvania asset pack v1.01/enemies sprites/goblin/::1759013888
+goblin_attack_anim_strip_4.png::CompressedTexture2D::8170184717849128497::1759013684::1759013888::1::::<><><>0<>0<>efdab75bb3be2332a99a13c7b9c7dbcd<>res://.godot/imported/goblin_attack_anim_strip_4.png-b5d7afbae5bc916f97ff39f48076657f.ctex::
+goblin_death_anim_strip_6.png::CompressedTexture2D::321045835691209467::1759013684::1759013888::1::::<><><>0<>0<>c164e7bc0c70d9a488d4359a7d04e5de<>res://.godot/imported/goblin_death_anim_strip_6.png-bb708189e2882ad42a3512870ee85d6a.ctex::
+goblin_hit_anim_strip_3.png::CompressedTexture2D::1184119054731126248::1759013684::1759013888::1::::<><><>0<>0<>53c17135a90e69d88a0794a6e29bcec1<>res://.godot/imported/goblin_hit_anim_strip_3.png-c6a8a8e8cd43873da4ee0a64964be8bf.ctex::
+goblin_idle_anim_strip_4.png::CompressedTexture2D::4140878870659326343::1759013684::1759013888::1::::<><><>0<>0<>3143a31957aa9eb99c798ecf23cb0d02<>res://.godot/imported/goblin_idle_anim_strip_4.png-fde58e436ef3c554f1eeb3558df6b132.ctex::
+goblin_run_anim_strip_6.png::CompressedTexture2D::3399280421109219142::1759013684::1759013888::1::::<><><>0<>0<>0bda2510fd37d91c1afcbbab3ba53180<>res://.godot/imported/goblin_run_anim_strip_6.png-1aa605faa63ea1815b36daf6afdd1a16.ctex::
+goblin_spritesheet.png::CompressedTexture2D::1785657487331602163::1759013684::1759013888::1::::<><><>0<>0<>709f46400626f77385b60f66765f554b<>res://.godot/imported/goblin_spritesheet.png-6d8c8a5977b480972ff9307c1d1dc0c8.ctex::
+::res://Recursos/Wizard/platformer_metroidvania asset pack v1.01/hud elements/::1759013888
+fonts.png::CompressedTexture2D::7170066563415805687::1759013684::1759013888::1::::<><><>0<>0<>6fa1c91455c6507dafa763d410fd6e9c<>res://.godot/imported/fonts.png-51b206040a844c8a3f8503301daa63a7.ctex::
+hearts_hud.png::CompressedTexture2D::7457002766413117038::1759013684::1759013888::1::::<><><>0<>0<>91ce972ff5353b42d6d482f9e98e31a5<>res://.godot/imported/hearts_hud.png-bf08f7243c183ceb9ac2cf1cb429de64.ctex::
+::res://Scripts/::1759013881
+creditos.gd::GDScript::1988534414527336345::1759013684::0::1::::<>Control<><>0<>0<><>::
+enemy.gd::GDScript::4655618925992408029::1759013684::0::1::::Enemy<>CharacterBody2D<><>0<>0<><>::
+pause_menu.gd::GDScript::1401984519527574960::1759013684::0::1::::<>CanvasLayer<><>0<>0<><>::
+Player.gd::GDScript::1663624362353230420::1759015598::0::1::::Player<>CharacterBody2D<><>0<>0<><>::

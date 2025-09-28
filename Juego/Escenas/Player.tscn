@@ -203,7 +203,7 @@ nodes/Attack/node = SubResource("AnimationNodeOneShot_kwdw2")
 nodes/Attack/position = Vector2(26.6667, 160)
 nodes/movement/node = ExtResource("2_c1rio")
 nodes/movement/position = Vector2(-293.333, 133.333)
-node_connections = [&"Attack", 0, &"movement", &"Attack", 1, &"Animation", &"output", 0, &"Attack"]
+node_connections = [&"output", 0, &"Attack", &"Attack", 0, &"movement", &"Attack", 1, &"Animation"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hhy33"]
 size = Vector2(13, 21)
@@ -263,22 +263,22 @@ frame = 24
 
 [node name="Hitbox" type="Area2D" parent="Pivot/Mage"]
 position = Vector2(25, -7)
-collision_layer = 12
-collision_mask = 0
+collision_layer = 8
+collision_mask = 16
 script = ExtResource("4_hhy33")
 metadata/_custom_type_script = "uid://djlmfx8oq45aq"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Pivot/Mage/Hitbox"]
+[node name="hit" type="CollisionShape2D" parent="Pivot/Mage/Hitbox"]
 position = Vector2(-6.5, 8.5)
 shape = SubResource("RectangleShape2D_hhy33")
 
 [node name="Hurtbox" type="Area2D" parent="Pivot/Mage"]
-collision_layer = 0
+collision_layer = 2
 collision_mask = 4
 script = ExtResource("5_5hhfp")
 metadata/_custom_type_script = "uid://uotkkabbnbwq"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Pivot/Mage/Hurtbox"]
+[node name="hurt" type="CollisionShape2D" parent="Pivot/Mage/Hurtbox"]
 shape = SubResource("RectangleShape2D_kwdw2")
 
 [node name="Puntuacion" type="CanvasLayer" parent="."]

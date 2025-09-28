@@ -11,8 +11,10 @@ extends CharacterBody2D
 @export var run_count = 0
 @export var extra_jump = false
 @export var jump_count = 0
+@export var count_visible = 0
+@export var Visible = false
 
-@onready var mage: Sprite2D = $Mage
+@onready var mage: Sprite2D = $Pivot/Mage
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var playback: AnimationNodeStateMachinePlayback = animation_tree["parameters/movement/playback"]
@@ -24,25 +26,40 @@ extends CharacterBody2D
 @onready var enemy: Enemy = $"../Enemy"
 @onready var vida_jugador: Label = $Puntuacion/Vida_Jugador
 @onready var enemy_2: Enemy = $"../Enemy2"
+@onready var enemy_ghost: Enemy_Ghost = $"../Enemy_Ghost"
+@onready var hit: CollisionShape2D = $Pivot/Mage/Hitbox/hit
+@onready var hurt: CollisionShape2D = $Pivot/Mage/Hurtbox/hurt
+@onready var static_body_2d: StaticBody2D = $"../StaticBody2D"
 
 func _ready() -> void:
+	Debug.log(static_body_2d.collision_layer)
 	Engine.time_scale = 1
 	enemy.muerte.connect(_on_body_contact)
 	enemy_2.muerte.connect(_on_jump_enemy_contact)
-
+	enemy_ghost.muerte_ghost.connect(_on_body_ghost_contact)
+	
+func _on_body_ghost_contact():
+	Visible = true
+	run = false
+	extra_jump = false
+	count_visible += 1
+	
 func _on_body_contact():
 	run = true
+	Visible = false
+	extra_jump = false
 	run_count += 1
 	Debug.log("Run:" + str(run))
 	Debug.log("Extra runs:" + str(run_count))
 	
 func _on_jump_enemy_contact():
 	extra_jump = true
+	run = true
+	Visible = true
 	jump_count += 1
 	Debug.log("Double jump:" + str(extra_jump))
 	Debug.log("Extra jump:" + str(jump_count))
 	
-		
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity.y += gravity * delta
@@ -58,6 +75,26 @@ func _physics_process(delta: float) -> void:
 		
 	if Input.is_action_just_pressed("bajar"):
 		velocity.y = +jump_speed/4
+		
+	if Visible == true and Input.is_action_just_pressed("Especial") and mage.visible == true and count_visible != 0:
+		mage.visible = false
+		collision_layer = 0
+		collision_mask  = 0
+		set_collision_layer_value(4, true)
+		set_collision_mask_value(4, true)
+		hit.disabled = true
+		hurt.disabled = true
+		await get_tree().create_timer(2).timeout
+		count_visible -= 1
+		mage.visible = true
+		hit.disabled = false
+		hurt.disabled = false
+		collision_layer = 0
+		collision_mask  = 0
+		set_collision_layer_value(1, true)
+		set_collision_mask_value(1, true)
+		if count_visible == 0:
+			Visible = false
 		
 	if is_on_floor() and run == true and run_count != 0 and Input.is_action_just_pressed("Especial"):
 		max_speed = 400
@@ -105,3 +142,4 @@ func take_damage(damage):
 		Engine.time_scale = 0.5
 		await get_tree().create_timer(0.2).timeout
 		get_tree().reload_current_scene()
+		
