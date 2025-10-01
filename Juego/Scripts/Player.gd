@@ -13,6 +13,7 @@ extends CharacterBody2D
 @export var jump_count = 0
 @export var count_visible = 0
 @export var Visible = false
+@export var was_on_floor = true
 
 @onready var mage: Sprite2D = $Pivot/Mage
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
@@ -32,6 +33,7 @@ extends CharacterBody2D
 @onready var enemy_jump: Enemy_Jump = $"../Enemy_Jump"
 @onready var enemy_jump_2: Enemy_Jump = $"../Enemy_Jump2"
 @onready var enemy_ghost_2: Enemy_Ghost = $"../Enemy_Ghost2"
+@onready var enemy_jump_3: Enemy_Jump = $"../Enemy_Jump3"
 
 func _ready() -> void:
 	Debug.log(static_body_2d.collision_layer)
@@ -39,6 +41,7 @@ func _ready() -> void:
 	enemy.muerte.connect(_on_body_contact)
 	enemy_jump.muerte_jump.connect(_on_jump_enemy_contact)
 	enemy_jump_2.muerte_jump.connect(_on_jump_enemy_contact)
+	enemy_jump_3.muerte_jump.connect(_on_jump_enemy_contact)
 	enemy_ghost.muerte_ghost.connect(_on_body_ghost_contact)
 	enemy_ghost_2.muerte_ghost.connect(_on_body_ghost_contact)
 	
@@ -84,7 +87,8 @@ func _on_jump_enemy_contact():
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity.y += gravity * delta
-		if jump_count != 0 and extra_jump == true and Input.is_action_just_pressed("saltar"):
+		if was_on_floor == true and jump_count != 0 and extra_jump == true and Input.is_action_just_pressed("saltar"):
+			was_on_floor = false
 			velocity.y = 0
 			await get_tree().create_timer(0.01).timeout
 			velocity.y = -jump_speed
@@ -93,6 +97,8 @@ func _physics_process(delta: float) -> void:
 				extra_jump = false
 				Debug.log("No more jumps")
 			Debug.log(jump_count)
+	else:
+		was_on_floor = true
 		
 	if Input.is_action_just_pressed("bajar"):
 		velocity.y = +jump_speed/4
