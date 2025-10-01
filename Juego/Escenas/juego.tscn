@@ -10,7 +10,7 @@
 [node name="Juego" type="Node2D"]
 
 [node name="Enemy" parent="." instance=ExtResource("4_n77xa")]
-position = Vector2(295, 325)
+position = Vector2(299, 324)
 scale = Vector2(1.5, 1.5)
 
 [node name="Mapa" type="Node2D" parent="."]
@@ -34,3 +34,6 @@ texture = ExtResource("4_aoscc")
 
 [node name="Enemy2" parent="." instance=ExtResource("4_n77xa")]
 position = Vector2(213, 327)
+
+[node name="Enemy3" parent="." instance=ExtResource("4_n77xa")]
+position = Vector2(32, 334)
