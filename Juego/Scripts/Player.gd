@@ -26,6 +26,9 @@ extends CharacterBody2D
 @onready var collision_shape_player: CollisionShape2D = $CollisionShapePlayer
 @onready var enemy: Enemy = $"../Enemy"
 @onready var vida_jugador: Label = $Puntuacion/Vida_Jugador
+@onready var heart: Sprite2D = $Puntuacion/Heart
+@onready var heart_2: Sprite2D = $Puntuacion/Heart2
+@onready var heart_3: Sprite2D = $Puntuacion/Heart3
 @onready var enemy_ghost: Enemy_Ghost = $"../Enemy_Ghost"
 @onready var hit: CollisionShape2D = $Pivot/Mage/Hitbox/hit
 @onready var hurt: CollisionShape2D = $Pivot/Mage/Hurtbox/hurt
@@ -35,9 +38,17 @@ extends CharacterBody2D
 @onready var enemy_ghost_2: Enemy_Ghost = $"../Enemy_Ghost2"
 @onready var enemy_jump_3: Enemy_Jump = $"../Enemy_Jump3"
 
+@onready var jump_hud: Sprite2D = $Puntuacion/MarginContainer/PanelContainer/Jump_hud
+@onready var invisibility_hub: Sprite2D = $Puntuacion/MarginContainer/PanelContainer/invisibility_hub
+@onready var run_hud: Sprite2D = $Puntuacion/MarginContainer/PanelContainer/run_hud
+
 func _ready() -> void:
 	Debug.log(static_body_2d.collision_layer)
 	Engine.time_scale = 1
+	jump_hud.visible = false
+	invisibility_hub.visible = false
+	run_hud.visible = false
+	
 	enemy.muerte.connect(_on_body_contact)
 	enemy_jump.muerte_jump.connect(_on_jump_enemy_contact)
 	enemy_jump_2.muerte_jump.connect(_on_jump_enemy_contact)
@@ -48,8 +59,13 @@ func _ready() -> void:
 func _on_body_ghost_contact():
 	velocity.y = -jump_speed/3
 	Visible = true
+	invisibility_hub.visible = true
+	
 	run = false
+	run_hud.visible = false
+	
 	extra_jump = false
+	jump_hud.visible = false
 	count_visible += 1
 	Debug.log("Visible:" + str(visible))
 	Debug.log("Visible:" + str(count_visible))
@@ -61,8 +77,13 @@ func _on_body_ghost_contact():
 func _on_body_contact():
 	velocity.y = -jump_speed/3
 	run = true
+	run_hud.visible = true
+	
 	Visible = false
+	invisibility_hub.visible = false
+	
 	extra_jump = false
+	jump_hud.visible = false
 	run_count += 1
 	Debug.log("Run:" + str(run))
 	Debug.log("Extra runs:" + str(run_count))
@@ -74,8 +95,13 @@ func _on_body_contact():
 func _on_jump_enemy_contact():
 	velocity.y = -jump_speed/3
 	extra_jump = true
+	jump_hud.visible = true
+	
 	run = false
+	run_hud.visible = false
+	
 	Visible = false
+	invisibility_hub.visible = false
 	jump_count += 1
 	Debug.log("Double jump:" + str(extra_jump))
 	Debug.log("Extra jump:" + str(jump_count))
@@ -95,6 +121,7 @@ func _physics_process(delta: float) -> void:
 			jump_count -= 1
 			if jump_count == 0:
 				extra_jump = false
+				jump_hud.visible = false
 				Debug.log("No more jumps")
 			Debug.log(jump_count)
 	else:
@@ -122,6 +149,7 @@ func _physics_process(delta: float) -> void:
 		set_collision_mask_value(1, true)
 		if count_visible == 0:
 			Visible = false
+			invisibility_hub.visible = false
 		
 	if is_on_floor() and run == true and run_count != 0 and Input.is_action_just_pressed("Especial"):
 		max_speed = 400
@@ -129,6 +157,7 @@ func _physics_process(delta: float) -> void:
 		run_count -= 1
 		if run_count == 0:
 			run = false
+			run_hud.visible = false
 			Debug.log("No more runs")
 		max_speed = 150
 		Debug.log(run_count)
@@ -162,7 +191,12 @@ func take_damage(damage):
 	velocity.y = -jump_speed/3
 	heal -= damage
 	vida_jugador.text = str(heal)
+	if(heal == 2):
+		heart_3.visible = false
+	elif (heal == 1):
+		heart_2.visible = false
 	if heal <= 0:
+		heart.visible = false
 		Engine.time_scale = 0.5
 		await get_tree().create_timer(0.2).timeout
 		get_tree().reload_current_scene()
