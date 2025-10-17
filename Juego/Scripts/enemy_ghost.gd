@@ -1,21 +1,29 @@
 class_name Enemy_Ghost
 extends CharacterBody2D
-
 signal muerte_ghost
 
 @export var EnemyRun = 70
 @export var Gravedad = 98
+@export var count = 1
 
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 @onready var hit: CollisionShape2D = $AnimatedSprite2D/Hitbox/hit
 @onready var hurt: CollisionShape2D = $AnimatedSprite2D/Hurtbox/hurt
+@onready var timer: Timer = $Timer
+@onready var timer_h: Timer = $Timer_H
+
+var dead := false
 
 func _ready():
 	velocity.x = EnemyRun
 	animated_sprite_2d.play("Run_Enemy")
+	timer.timeout.connect(_on_timer_timeout)
+	timer.start()
 
 func _physics_process(delta):
+	if dead:
+		return
 	velocity.y += Gravedad
 	
 	if is_on_wall():
@@ -31,17 +39,52 @@ func _physics_process(delta):
 		
 	move_and_slide()
 
+func _on_timer_timeout():
+	if dead:
+		return
+	if count % 2 == 0:
+		count += 1
+		animated_sprite_2d.modulate.a = 0.4
+		collision_layer = 0
+		collision_mask = 0
+		hit.disabled = true
+		hurt.disabled = true
+		set_collision_layer_value(6, true)
+		set_collision_mask_value(6, true)
+		timer.start()
+	else:
+		animated_sprite_2d.modulate.a = 1
+		count += 1
+		collision_layer = 0
+		collision_mask = 0
+		if hit != null and is_instance_valid(hit):
+			hit.disabled = false
+		if hurt != null and is_instance_valid(hurt):
+			hurt.disabled = false
+		set_collision_layer_value(1, true)
+		set_collision_mask_value(1, true)
+		timer.start()
+
 func take_damage(damage):
+	if dead:
+		return
+	dead = true
 	Debug.log("Auch %d" % damage)
+	if timer != null:
+		timer.stop()
+		if timer.timeout.is_connected(_on_timer_timeout):
+			timer.timeout.disconnect(_on_timer_timeout)
 	animated_sprite_2d.play("Death_Enemy")
 	muerte_ghost.emit()
-	hit.queue_free()
-	hurt.queue_free()
+	if hit != null and is_instance_valid(hit):
+		hit.queue_free()
+		hit = null
+	if hurt != null and is_instance_valid(hurt):
+		hurt.queue_free()
+		hurt = null
 	collision_layer = 0
 	collision_mask  = 0
 	set_collision_layer_value(5, true)
 	set_collision_mask_value(5, true)
 	await animated_sprite_2d.animation_finished
 	queue_free()
-	
-	

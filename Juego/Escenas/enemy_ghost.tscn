@@ -120,6 +120,8 @@ size = Vector2(68.391365, 77.66463)
 size = Vector2(13, 21)
 
 [node name="Enemy_Ghost" type="CharacterBody2D"]
+collision_layer = 33
+collision_mask = 33
 script = ExtResource("1_4ufbt")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -159,3 +161,6 @@ shape = SubResource("RectangleShape2D_5a4xh")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1.5, -1.5)
 shape = SubResource("RectangleShape2D_7kldh")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0

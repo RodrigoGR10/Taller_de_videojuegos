@@ -37,17 +37,20 @@ extends CharacterBody2D
 @onready var enemy_jump_2: Enemy_Jump = $"../Enemy_Jump2"
 @onready var enemy_ghost_2: Enemy_Ghost = $"../Enemy_Ghost2"
 @onready var enemy_jump_3: Enemy_Jump = $"../Enemy_Jump3"
-
 @onready var jump_hud: Sprite2D = $Puntuacion/MarginContainer/PanelContainer/Jump_hud
 @onready var invisibility_hub: Sprite2D = $Puntuacion/MarginContainer/PanelContainer/invisibility_hub
 @onready var run_hud: Sprite2D = $Puntuacion/MarginContainer/PanelContainer/run_hud
+@onready var timer: Timer = $Timer
+@onready var progress_bar: ProgressBar = $Puntuacion/ProgressBar
 
 func _ready() -> void:
+	progress_bar.visible = false
 	Debug.log(static_body_2d.collision_layer)
 	Engine.time_scale = 1
 	jump_hud.visible = false
 	invisibility_hub.visible = false
 	run_hud.visible = false
+	timer.timeout.connect(_on_timer_timeout)
 	
 	enemy.muerte.connect(_on_body_contact)
 	enemy_jump.muerte_jump.connect(_on_jump_enemy_contact)
@@ -60,6 +63,7 @@ func _on_body_ghost_contact():
 	velocity.y = -jump_speed/3
 	Visible = true
 	invisibility_hub.visible = true
+	
 	
 	run = false
 	run_hud.visible = false
@@ -111,6 +115,9 @@ func _on_jump_enemy_contact():
 		run_count = 0
 	
 func _physics_process(delta: float) -> void:
+	
+	if Input.is_action_just_pressed("Retry"):
+		get_tree().reload_current_scene()
 	if not is_on_floor():
 		velocity.y += gravity * delta
 		if was_on_floor == true and jump_count != 0 and extra_jump == true and Input.is_action_just_pressed("saltar"):
@@ -130,17 +137,21 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("bajar"):
 		velocity.y = +jump_speed/4
 		
-	if Visible == true and Input.is_action_just_pressed("Especial") and mage.visible == true and count_visible != 0:
-		mage.visible = false
+	if Visible == true and Input.is_action_just_pressed("Especial") and count_visible != 0:
+		mage.modulate.a = 0.4
 		collision_layer = 0
 		collision_mask  = 0
 		set_collision_layer_value(4, true)
 		set_collision_mask_value(4, true)
 		hit.disabled = true
 		hurt.disabled = true
+		progress_bar.value = 100
+		progress_bar.visible = true
+		timer.start()
 		await get_tree().create_timer(2).timeout
+		progress_bar.visible = false
 		count_visible -= 1
-		mage.visible = true
+		mage.modulate.a = 1
 		hit.disabled = false
 		hurt.disabled = false
 		collision_layer = 0
@@ -153,7 +164,11 @@ func _physics_process(delta: float) -> void:
 		
 	if is_on_floor() and run == true and run_count != 0 and Input.is_action_just_pressed("Especial"):
 		max_speed = 400
+		progress_bar.value = 100
+		progress_bar.visible = true
+		timer.start()
 		await get_tree().create_timer(2).timeout
+		progress_bar.visible = false
 		run_count -= 1
 		if run_count == 0:
 			run = false
@@ -190,7 +205,6 @@ func take_damage(damage):
 	velocity.x = -max_speed/2
 	velocity.y = -jump_speed/3
 	heal -= damage
-	vida_jugador.text = str(heal)
 	if(heal == 2):
 		heart_3.visible = false
 	elif (heal == 1):
@@ -200,3 +214,6 @@ func take_damage(damage):
 		Engine.time_scale = 0.5
 		await get_tree().create_timer(0.2).timeout
 		get_tree().reload_current_scene()
+		
+func _on_timer_timeout():
+	progress_bar.value -= 10

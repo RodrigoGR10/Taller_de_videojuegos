@@ -153,3 +153,6 @@ shape = SubResource("RectangleShape2D_lpifq")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1, 0.5)
 shape = SubResource("RectangleShape2D_18e16")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0

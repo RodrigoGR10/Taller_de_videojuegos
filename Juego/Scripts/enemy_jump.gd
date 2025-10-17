@@ -6,14 +6,18 @@ signal muerte_jump
 const EnemyRun = 70
 const Gravedad = 98
 
+@export var count = 0
+
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 @onready var hit: CollisionShape2D = $AnimatedSprite2D/Hitbox/hit
 @onready var hurt: CollisionShape2D = $AnimatedSprite2D/Hurtbox/hurt
+@onready var timer: Timer = $Timer
 
 func _ready():
-	velocity.x = EnemyRun
-	animated_sprite_2d.play("Run_Enemy")
+	animated_sprite_2d.play("Idle_Enemy")
+	timer.timeout.connect(_on_timer_timeout)
+	timer.start()
 
 func _physics_process(delta):
 	velocity.y += Gravedad
@@ -27,9 +31,24 @@ func _physics_process(delta):
 		if velocity.x < 0:
 			animated_sprite_2d.flip_h = true
 		elif velocity.x > 0:
-			animated_sprite_2d.flip_h = false 
+			animated_sprite_2d.flip_h = false
 			
 	move_and_slide()
+
+func _on_timer_timeout():
+	if count % 2 == 0:
+		count += 1
+		if animated_sprite_2d.flip_h == true:
+			velocity.x = -EnemyRun
+		elif animated_sprite_2d.flip_h == false:
+			velocity.x = EnemyRun
+		animated_sprite_2d.play("Run_Enemy")
+		timer.start()
+	else:
+		count += 1
+		velocity.x = 0
+		animated_sprite_2d.play("Idle_Enemy")
+		timer.start()
 
 func take_damage(damage):
 	Debug.log("Auch %d" % damage)

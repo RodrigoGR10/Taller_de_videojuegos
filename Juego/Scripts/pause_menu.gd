@@ -7,7 +7,6 @@ extends CanvasLayer
 
 
 func _ready() -> void:
-	retry_button.pressed.connect(_on_retry_pressed)
 	continue_button.pressed.connect(_on_continue_pressed)
 	main_menu_button.pressed.connect(_on_MainMenu_pressed)
 	quit_button.pressed.connect(_on_quit_pressed)
@@ -22,10 +21,6 @@ func _on_continue_pressed():
 	visible = false
 	get_tree().paused = false
 	
-func _on_retry_pressed():
-	visible = false
-	get_tree().paused = false
-	get_tree().reload_current_scene()
 
 func _on_MainMenu_pressed():
 	visible = false
