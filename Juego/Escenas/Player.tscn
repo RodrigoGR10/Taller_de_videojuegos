@@ -1,11 +1,10 @@
-[gd_scene load_steps=28 format=3 uid="uid://c6udf44lm8e5m"]
+[gd_scene load_steps=29 format=3 uid="uid://c6udf44lm8e5m"]
 
 [ext_resource type="Texture2D" uid="uid://ck2trwi2t6fh6" path="res://Recursos/Wizard/MAGE.png" id="1_3ndfa"]
 [ext_resource type="Script" uid="uid://xx4wdvbq56tc" path="res://Scripts/Player.gd" id="1_e6cd0"]
 [ext_resource type="AnimationNodeStateMachine" uid="uid://5ckilif0ve4v" path="res://Recursos/movement.tres" id="2_c1rio"]
 [ext_resource type="Script" uid="uid://djlmfx8oq45aq" path="res://Componentes/hitbox.gd" id="4_hhy33"]
 [ext_resource type="Script" uid="uid://uotkkabbnbwq" path="res://Componentes/hurtbox.gd" id="5_5hhfp"]
-[ext_resource type="FontFile" uid="uid://qv1kfvhhvv01" path="res://Recursos/Crosterian.ttf" id="7_3tm5s"]
 [ext_resource type="Texture2D" uid="uid://bxsagwil2qxqo" path="res://Recursos/Frogger/frogger_move.png" id="8_urfe6"]
 [ext_resource type="Texture2D" uid="uid://dhmwf74lnuupy" path="res://Recursos/Derrick Death 3 Sheet-export.png" id="9_t27sq"]
 [ext_resource type="Texture2D" uid="uid://boovwfucg25ru" path="res://Recursos/Wizard/platformer_metroidvania asset pack v1.01/enemies sprites/goblin/goblin_run_anim_strip_6.png" id="10_3tm5s"]
@@ -218,21 +217,12 @@ script/source = "extends CanvasLayer
 
 @export var vida = 0
 
-@onready var vida_jugador: Label = $Vida_Jugador
-@onready var progress_bar: ProgressBar = $GameManager/ProgressBar
 @onready var hurtbox: Hurtbox = $\"../Pivot/Mage/Hurtbox\"
-@onready var frasco_morado: Sprite2D = $Frasco_morado
-@onready var frasco_gris: Sprite2D = $Frasco_gris
-@onready var frasco_amarillo: Sprite2D = $Frasco_amarillo
-@onready var frasco_celeste: Sprite2D = $Frasco_celeste
-@onready var frasco_cafe: Sprite2D = $Frasco_cafe
-@onready var frasco_amarillo_tuto: Sprite2D = $Frasco_amarillo_tuto
 @onready var heart: Sprite2D = $Heart
 @onready var heart_2: Sprite2D = $Heart2
 @onready var heart_3: Sprite2D = $Heart3
-
-func _ready() -> void:
-	vida_jugador.visible = false
+@onready var progress_bar: ProgressBar = $ProgressBar
+@onready var timer: Timer = $Timer
 
 func incrementa_una_vida():
 	vida += 1
@@ -240,8 +230,26 @@ func incrementa_una_vida():
 		heart_2.visible = true
 	elif (vida == 3):
 		heart_3.visible = true
-	vida_jugador.text = str(vida)
 "
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t27sq"]
+bg_color = Color(0, 1, 0, 0)
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 80
+corner_radius_top_right = 80
+corner_radius_bottom_right = 80
+corner_radius_bottom_left = 80
+shadow_size = 2
+anti_aliasing_size = 0.01
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3tm5s"]
+bg_color = Color(0, 1, 0, 1)
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 80
+corner_radius_top_right = 80
+corner_radius_bottom_right = 80
+corner_radius_bottom_left = 80
+shadow_size = 2
 
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 9
@@ -296,15 +304,14 @@ shape = SubResource("RectangleShape2D_kwdw2")
 [node name="Puntuacion" type="CanvasLayer" parent="."]
 script = SubResource("GDScript_j2dk4")
 
-[node name="Vida_Jugador" type="Label" parent="Puntuacion"]
-offset_left = 860.0
-offset_top = 19.0
-offset_right = 884.0
-offset_bottom = 52.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("7_3tm5s")
-theme_override_font_sizes/font_size = 30
-text = "3"
+[node name="ProgressBar" type="ProgressBar" parent="Puntuacion"]
+offset_left = 801.0
+offset_top = 586.0
+offset_right = 879.0
+offset_bottom = 597.0
+theme_override_styles/background = SubResource("StyleBoxFlat_t27sq")
+theme_override_styles/fill = SubResource("StyleBoxFlat_3tm5s")
+show_percentage = false
 
 [node name="Heart" type="Sprite2D" parent="Puntuacion"]
 position = Vector2(740, 40)
@@ -371,3 +378,6 @@ frame = 2
 [node name="Camera2D" type="Camera2D" parent="."]
 process_callback = 0
 position_smoothing_enabled = true
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.2
