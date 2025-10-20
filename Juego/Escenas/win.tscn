@@ -1,0 +1,85 @@
+[gd_scene load_steps=5 format=3 uid="uid://g41cy52pmxgw"]
+
+[ext_resource type="Script" uid="uid://o18ydpaooqjc" path="res://Scripts/win.gd" id="1_cfr4o"]
+[ext_resource type="FontFile" uid="uid://qv1kfvhhvv01" path="res://Recursos/Crosterian.ttf" id="2_w06en"]
+[ext_resource type="StyleBox" uid="uid://bapimv1vjh0n5" path="res://Recursos/Botones.tres" id="3_20acf"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cfr4o"]
+bg_color = Color(0.6, 0.6, 0.6, 0.05490196)
+corner_radius_top_left = 1000
+corner_radius_top_right = 1000
+corner_radius_bottom_right = 1000
+corner_radius_bottom_left = 1000
+
+[node name="Win" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_cfr4o")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -154.0
+offset_top = -140.0
+offset_right = 154.0
+offset_bottom = 140.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_cfr4o")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 4
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_w06en")
+theme_override_font_sizes/font_size = 40
+text = "YOU WIN"
+horizontal_alignment = 1
+
+[node name="Menu" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_w06en")
+theme_override_font_sizes/font_size = 36
+theme_override_styles/normal = ExtResource("3_20acf")
+theme_override_styles/pressed = ExtResource("3_20acf")
+theme_override_styles/hover = ExtResource("3_20acf")
+text = "Main Menu"
+
+[node name="Quit" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_w06en")
+theme_override_font_sizes/font_size = 36
+theme_override_styles/normal = ExtResource("3_20acf")
+theme_override_styles/pressed = ExtResource("3_20acf")
+theme_override_styles/hover = ExtResource("3_20acf")
+text = "Quit"

@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://c6udf44lm8e5m"]
+[gd_scene load_steps=33 format=3 uid="uid://c6udf44lm8e5m"]
 
 [ext_resource type="Texture2D" uid="uid://ck2trwi2t6fh6" path="res://Recursos/Wizard/MAGE.png" id="1_3ndfa"]
 [ext_resource type="Script" uid="uid://xx4wdvbq56tc" path="res://Scripts/Player.gd" id="1_e6cd0"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://bxsagwil2qxqo" path="res://Recursos/Frogger/frogger_move.png" id="8_urfe6"]
 [ext_resource type="Texture2D" uid="uid://dhmwf74lnuupy" path="res://Recursos/Derrick Death 3 Sheet-export.png" id="9_t27sq"]
 [ext_resource type="Texture2D" uid="uid://boovwfucg25ru" path="res://Recursos/Wizard/platformer_metroidvania asset pack v1.01/enemies sprites/goblin/goblin_run_anim_strip_6.png" id="10_3tm5s"]
+[ext_resource type="Script" uid="uid://771bdihks0j7" path="res://Scripts/camera_2d.gd" id="10_t27sq"]
 [ext_resource type="Texture2D" uid="uid://njhs51us1xjd" path="res://Recursos/Heart.png" id="11_qoh2p"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e6cd0"]
@@ -251,6 +252,44 @@ corner_radius_bottom_right = 80
 corner_radius_bottom_left = 80
 shadow_size = 2
 
+[sub_resource type="Animation" id="Animation_ottec"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_fqh67"]
+resource_name = "Retry"
+length = 0.6
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dmmkh"]
+_data = {
+&"RESET": SubResource("Animation_ottec"),
+&"Retry": SubResource("Animation_fqh67")
+}
+
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 9
 collision_mask = 9
@@ -375,9 +414,24 @@ texture = ExtResource("10_3tm5s")
 hframes = 6
 frame = 2
 
+[node name="Retry_Anim" type="Node2D" parent="Puntuacion"]
+z_index = 1
+
+[node name="ColorRect" type="ColorRect" parent="Puntuacion/Retry_Anim"]
+offset_right = 900.0
+offset_bottom = 700.0
+size_flags_stretch_ratio = 0.0
+color = Color(0, 0, 0, 1)
+
+[node name="Animation_R" type="AnimationPlayer" parent="Puntuacion/Retry_Anim"]
+libraries = {
+&"": SubResource("AnimationLibrary_dmmkh")
+}
+
 [node name="Camera2D" type="Camera2D" parent="."]
 process_callback = 0
 position_smoothing_enabled = true
+script = ExtResource("10_t27sq")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.2

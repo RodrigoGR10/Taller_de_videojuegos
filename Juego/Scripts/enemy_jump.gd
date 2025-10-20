@@ -52,13 +52,13 @@ func _on_timer_timeout():
 
 func take_damage(damage):
 	Debug.log("Auch %d" % damage)
-	animated_sprite_2d.play("Death_Enemy")
-	muerte_jump.emit()
 	hit.queue_free()
 	hurt.queue_free()
 	collision_layer = 0
-	collision_mask  = 0
+	collision_mask = 0
 	set_collision_layer_value(5, true)
 	set_collision_mask_value(5, true)
-	await animated_sprite_2d.animation_finished
+	animated_sprite_2d.play("Death_Enemy")
+	muerte_jump.emit()
+	await get_tree().create_timer(0.2).timeout
 	queue_free()

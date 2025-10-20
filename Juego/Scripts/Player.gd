@@ -42,8 +42,13 @@ extends CharacterBody2D
 @onready var run_hud: Sprite2D = $Puntuacion/MarginContainer/PanelContainer/run_hud
 @onready var timer: Timer = $Timer
 @onready var progress_bar: ProgressBar = $Puntuacion/ProgressBar
+@onready var retry_anim: Node2D = $Camera2D/Retry_Anim
+@onready var color_rect: ColorRect = $Puntuacion/Retry_Anim/ColorRect
+@onready var animation_r: AnimationPlayer = $Puntuacion/Retry_Anim/Animation_R
+@onready var camera_2d: Camera2D = $Camera2D
 
 func _ready() -> void:
+	animation_r.play("Retry")
 	progress_bar.visible = false
 	Debug.log(static_body_2d.collision_layer)
 	Engine.time_scale = 1
@@ -115,9 +120,10 @@ func _on_jump_enemy_contact():
 		run_count = 0
 	
 func _physics_process(delta: float) -> void:
-	
 	if Input.is_action_just_pressed("Retry"):
-		get_tree().reload_current_scene()
+		animation_r.play_backwards("Retry")
+		await animation_r.animation_finished
+		get_tree().change_scene_to_file("res://Escenas/juego.tscn")
 	if not is_on_floor():
 		velocity.y += gravity * delta
 		if was_on_floor == true and jump_count != 0 and extra_jump == true and Input.is_action_just_pressed("saltar"):
@@ -202,6 +208,7 @@ func _physics_process(delta: float) -> void:
 		playback.travel("muerte_animation")
 		
 func take_damage(damage):
+	camera_2d.apply_shake()
 	velocity.x = -max_speed/2
 	velocity.y = -jump_speed/3
 	heal -= damage
@@ -212,8 +219,23 @@ func take_damage(damage):
 	if heal <= 0:
 		heart.visible = false
 		Engine.time_scale = 0.5
-		await get_tree().create_timer(0.2).timeout
-		get_tree().reload_current_scene()
+		animation_r.play_backwards("Retry")
+		await animation_r.animation_finished
+		get_tree().change_scene_to_file("res://Escenas/game_over.tscn")
+		
 		
 func _on_timer_timeout():
 	progress_bar.value -= 10
+
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	if body is Player:
+		animation_r.play_backwards("Retry")
+		await animation_r.animation_finished
+		get_tree().reload_current_scene()
+
+func _on_win_body_entered(body: Node2D) -> void:
+	if body is Player:
+		animation_r.play_backwards("Retry")
+		await animation_r.animation_finished
+		get_tree().change_scene_to_file("res://Escenas/win.tscn")
