@@ -6,26 +6,16 @@
 [ext_resource type="AudioStream" uid="uid://cngbicpkum1xd" path="res://Recursos/FreeSFX - kronbits/GameSFX/Events/Retro Event UI 01.wav" id="4_hvfi7"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_inj7e"]
-bg_color = Color(0.6, 0.6, 0.6, 0.05490196)
-corner_radius_top_left = 1000
-corner_radius_top_right = 1000
-corner_radius_bottom_right = 1000
-corner_radius_bottom_left = 1000
+bg_color = Color(0.6, 0.6, 0.6, 0.5921569)
 
 [node name="PauseMenu" type="CanvasLayer"]
 process_mode = 3
 script = ExtResource("1_cr0pj")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -154.0
-offset_top = -140.0
-offset_right = 154.0
-offset_bottom = 140.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_inj7e")
@@ -46,7 +36,7 @@ theme_override_constants/separation = 4
 [node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_8i4rq")
-theme_override_font_sizes/font_size = 40
+theme_override_font_sizes/font_size = 60
 text = "Pause"
 horizontal_alignment = 1
 
@@ -55,7 +45,7 @@ unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_8i4rq")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 40
 theme_override_styles/normal = ExtResource("3_inj7e")
 theme_override_styles/normal_mirrored = ExtResource("3_inj7e")
 theme_override_styles/pressed = ExtResource("3_inj7e")
@@ -74,7 +64,7 @@ unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_8i4rq")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 40
 theme_override_styles/normal = ExtResource("3_inj7e")
 theme_override_styles/normal_mirrored = ExtResource("3_inj7e")
 theme_override_styles/pressed = ExtResource("3_inj7e")
@@ -94,7 +84,7 @@ unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_8i4rq")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 40
 theme_override_styles/normal = ExtResource("3_inj7e")
 theme_override_styles/normal_mirrored = ExtResource("3_inj7e")
 theme_override_styles/pressed = ExtResource("3_inj7e")

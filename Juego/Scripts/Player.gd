@@ -46,9 +46,14 @@ extends CharacterBody2D
 @onready var animation_r: AnimationPlayer = $Puntuacion/Retry_Anim/Animation_R
 @onready var camera_2d: Camera2D = $Camera2D
 @onready var enemy: Enemy = $"../Enemy"
+@onready var jump: AudioStreamPlayer = $Jump
+@onready var daño: AudioStreamPlayer = $Daño
+@onready var agua: AudioStreamPlayer = $Agua
+@onready var c_f: CollisionShape2D = $Colision_Fantasma/C_F
 
 func _ready() -> void:
 	animation_r.play("Retry")
+	c_f.disabled = true
 	progress_bar.visible = false
 	Debug.log(static_body_2d.collision_layer)
 	Engine.time_scale = 1
@@ -135,6 +140,7 @@ func _physics_process(delta: float) -> void:
 			await get_tree().create_timer(0.01).timeout
 			velocity.y = -jump_speed
 			jump_count -= 1
+			jump.play()
 			if jump_count == 0:
 				extra_jump = false
 				jump_hud.visible = false
@@ -154,10 +160,14 @@ func _physics_process(delta: float) -> void:
 		set_collision_mask_value(4, true)
 		hit.disabled = true
 		hurt.disabled = true
+		c_f.disabled = true
 		progress_bar.value = 100
 		progress_bar.visible = true
 		timer.start()
 		await get_tree().create_timer(2).timeout
+		c_f.disabled = false
+		await get_tree().create_timer(0.2).timeout
+		c_f.disabled = true
 		progress_bar.visible = false
 		count_visible -= 1
 		mage.modulate.a = 1
@@ -188,6 +198,7 @@ func _physics_process(delta: float) -> void:
 		
 	if is_on_floor() and Input.is_action_just_pressed("saltar"):
 		velocity.y = -jump_speed
+		jump.play()
 		
 	var move_input = Input.get_axis("mover_izquierda","mover_derecha")
 	velocity.x = move_toward(velocity.x, move_input * max_speed, acceleration * delta)
@@ -212,6 +223,7 @@ func _physics_process(delta: float) -> void:
 		
 func take_damage(damage):
 	camera_2d.apply_shake()
+	daño.play()
 	velocity.x = -max_speed/2
 	velocity.y = -jump_speed/3
 	heal -= damage
@@ -235,6 +247,7 @@ func _on_timer_timeout():
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body is Player:
 		velocity.y -= 100
+		agua.play()
 		animation_r.play_backwards("Retry")
 		await animation_r.animation_finished
 		get_tree().reload_current_scene()
@@ -248,3 +261,8 @@ func _on_win_body_entered(body: Node2D) -> void:
 func _empuje():
 	position.x -= 60
 	take_damage(1)
+
+func _on_colision_fantasma_body_entered(body: Node2D) -> void:
+	if body is Enemy or body is Enemy_Ghost or body is Enemy_Jump or body is Paredes_invisibles:
+		position.x -= 60
+		take_damage(1)

@@ -1,15 +1,18 @@
-[gd_scene load_steps=33 format=3 uid="uid://c6udf44lm8e5m"]
+[gd_scene load_steps=37 format=3 uid="uid://c6udf44lm8e5m"]
 
-[ext_resource type="Texture2D" uid="uid://ck2trwi2t6fh6" path="res://Recursos/Wizard/MAGE.png" id="1_3ndfa"]
+[ext_resource type="Texture2D" uid="uid://ck2trwi2t6fh6" path="res://Recursos/Wizard - Eli Cuaycong/MAGE.png" id="1_3ndfa"]
 [ext_resource type="Script" uid="uid://xx4wdvbq56tc" path="res://Scripts/Player.gd" id="1_e6cd0"]
 [ext_resource type="AnimationNodeStateMachine" uid="uid://5ckilif0ve4v" path="res://Recursos/movement.tres" id="2_c1rio"]
 [ext_resource type="Script" uid="uid://djlmfx8oq45aq" path="res://Componentes/hitbox.gd" id="4_hhy33"]
 [ext_resource type="Script" uid="uid://uotkkabbnbwq" path="res://Componentes/hurtbox.gd" id="5_5hhfp"]
-[ext_resource type="Texture2D" uid="uid://bxsagwil2qxqo" path="res://Recursos/Frogger/frogger_move.png" id="8_urfe6"]
+[ext_resource type="Texture2D" uid="uid://bxsagwil2qxqo" path="res://Recursos/Frogger - Admurin/frogger_move.png" id="8_urfe6"]
 [ext_resource type="Texture2D" uid="uid://dhmwf74lnuupy" path="res://Recursos/Derrick Death 3 Sheet-export.png" id="9_t27sq"]
 [ext_resource type="Texture2D" uid="uid://boovwfucg25ru" path="res://Recursos/Wizard/platformer_metroidvania asset pack v1.01/enemies sprites/goblin/goblin_run_anim_strip_6.png" id="10_3tm5s"]
 [ext_resource type="Script" uid="uid://771bdihks0j7" path="res://Scripts/camera_2d.gd" id="10_t27sq"]
+[ext_resource type="AudioStream" uid="uid://cmpsf7u5afwdl" path="res://Recursos/FreeSFX - kronbits/GameSFX/Bounce Jump/Retro Jump Classic 08.wav" id="11_gs42a"]
 [ext_resource type="Texture2D" uid="uid://njhs51us1xjd" path="res://Recursos/Heart.png" id="11_qoh2p"]
+[ext_resource type="AudioStream" uid="uid://qp4bj2oldwe7" path="res://Recursos/Sounds-Pack-0.0.1 - Semko/Sounds/hit0.mp3" id="12_f3cnb"]
+[ext_resource type="AudioStream" uid="uid://car1xni8ns5y7" path="res://Recursos/Free Sounds Pack - Place Holder/Water Splash 5-2.wav" id="13_8dcy0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e6cd0"]
 size = Vector2(22, 23)
@@ -290,6 +293,8 @@ _data = {
 &"Retry": SubResource("Animation_fqh67")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3tm5s"]
+
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 9
 collision_mask = 9
@@ -435,3 +440,25 @@ script = ExtResource("10_t27sq")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.2
+
+[node name="Jump" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_gs42a")
+volume_db = 24.0
+bus = &"Sfx"
+
+[node name="Daño" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_f3cnb")
+volume_db = 24.0
+bus = &"Sfx"
+
+[node name="Agua" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_8dcy0")
+volume_db = 24.0
+bus = &"Sfx"
+
+[node name="Colision_Fantasma" type="Area2D" parent="."]
+
+[node name="C_F" type="CollisionShape2D" parent="Colision_Fantasma"]
+shape = SubResource("RectangleShape2D_3tm5s")
+
+[connection signal="body_entered" from="Colision_Fantasma" to="." method="_on_colision_fantasma_body_entered"]

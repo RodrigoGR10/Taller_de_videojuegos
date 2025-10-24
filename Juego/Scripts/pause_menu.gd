@@ -13,6 +13,9 @@ func _ready() -> void:
 	
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("pause"):
+		continue_button.disabled = false
+		main_menu_button.disabled = false
+		quit_button.disabled = false
 		get_tree().paused = not get_tree().paused
 		visible = get_tree().paused
 		
@@ -33,7 +36,7 @@ func _on_MainMenu_pressed():
 	await botones.finished
 	visible = false
 	get_tree().paused = false
-	get_tree().change_scene_to_file("res://Escenasw/UI/main_menu.tscn")
+	get_tree().change_scene_to_file("res://Escenas/UI/main_menu.tscn")
 	
 func _on_quit_pressed():
 	continue_button.disabled = true

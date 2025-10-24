@@ -173,5 +173,7 @@ wait_time = 2.0
 [node name="Choque" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectangleShape2D_4ufbt")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("6_psm2m")
+volume_db = 24.0
+bus = &"Sfx"

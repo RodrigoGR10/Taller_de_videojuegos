@@ -4,7 +4,7 @@ extends CharacterBody2D
 signal muerte_ghost
 signal colisión_jugador
 
-@export var EnemyRun = 0
+@export var EnemyRun = 70
 @export var Gravedad = 98
 @export var count = 1
 

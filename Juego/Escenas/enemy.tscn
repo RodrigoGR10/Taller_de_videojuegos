@@ -158,6 +158,7 @@ shape = SubResource("RectangleShape2D_18e16")
 [node name="Timer" type="Timer" parent="."]
 wait_time = 2.0
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("5_18e16")
+volume_db = 24.0
 bus = &"Sfx"
