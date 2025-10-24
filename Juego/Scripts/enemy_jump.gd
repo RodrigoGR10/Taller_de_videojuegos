@@ -13,6 +13,7 @@ const Gravedad = 98
 @onready var hit: CollisionShape2D = $AnimatedSprite2D/Hitbox/hit
 @onready var hurt: CollisionShape2D = $AnimatedSprite2D/Hurtbox/hurt
 @onready var timer: Timer = $Timer
+@onready var audio_stream_player_2d: AudioStreamPlayer2D = $AudioStreamPlayer2D
 
 func _ready():
 	animated_sprite_2d.play("Idle_Enemy")
@@ -50,6 +51,7 @@ func _on_timer_timeout():
 		animated_sprite_2d.play("Idle_Enemy")
 		timer.start()
 
+
 func take_damage(damage):
 	Debug.log("Auch %d" % damage)
 	hit.queue_free()
@@ -60,5 +62,8 @@ func take_damage(damage):
 	set_collision_mask_value(5, true)
 	animated_sprite_2d.play("Death_Enemy")
 	muerte_jump.emit()
+	audio_stream_player_2d.play()
 	await get_tree().create_timer(0.2).timeout
+	animated_sprite_2d.visible = false
+	await audio_stream_player_2d.finished
 	queue_free()

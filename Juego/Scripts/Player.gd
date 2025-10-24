@@ -1,19 +1,19 @@
 class_name Player
 extends CharacterBody2D
 
-@export var max_speed = 150
-@export var jump_speed = 400
-@export var gravity = 600
-@export var acceleration = 300
+@export var max_speed:float = 150
+@export var jump_speed:float = 400
+@export var gravity:float = 600
+@export var acceleration:float = 300
 
-@export var heal = 3
-@export var run = false
-@export var run_count = 0
-@export var extra_jump = false
-@export var jump_count = 0
-@export var count_visible = 0
-@export var Visible = false
-@export var was_on_floor = true
+@export var heal:float = 3
+@export var run:bool = false
+@export var run_count:float = 0
+@export var extra_jump:bool = false
+@export var jump_count:float = 0
+@export var count_visible:float = 0
+@export var Visible:bool = false
+@export var was_on_floor:bool = true
 
 @onready var mage: Sprite2D = $Pivot/Mage
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
@@ -24,7 +24,6 @@ extends CharacterBody2D
 @onready var hitbox: Area2D = $Pivot/Mage/Hitbox
 @onready var muerte: AudioStreamPlayer2D = $Muerte
 @onready var collision_shape_player: CollisionShape2D = $CollisionShapePlayer
-@onready var enemy: Enemy = $"../Enemy"
 @onready var vida_jugador: Label = $Puntuacion/Vida_Jugador
 @onready var heart: Sprite2D = $Puntuacion/Heart
 @onready var heart_2: Sprite2D = $Puntuacion/Heart2
@@ -46,6 +45,7 @@ extends CharacterBody2D
 @onready var color_rect: ColorRect = $Puntuacion/Retry_Anim/ColorRect
 @onready var animation_r: AnimationPlayer = $Puntuacion/Retry_Anim/Animation_R
 @onready var camera_2d: Camera2D = $Camera2D
+@onready var enemy: Enemy = $"../Enemy"
 
 func _ready() -> void:
 	animation_r.play("Retry")
@@ -63,6 +63,9 @@ func _ready() -> void:
 	enemy_jump_3.muerte_jump.connect(_on_jump_enemy_contact)
 	enemy_ghost.muerte_ghost.connect(_on_body_ghost_contact)
 	enemy_ghost_2.muerte_ghost.connect(_on_body_ghost_contact)
+	
+	enemy_ghost.colisión_jugador.connect(_empuje)
+	enemy_ghost_2.colisión_jugador.connect(_empuje)
 	
 func _on_body_ghost_contact():
 	velocity.y = -jump_speed/3
@@ -219,9 +222,10 @@ func take_damage(damage):
 	if heal <= 0:
 		heart.visible = false
 		Engine.time_scale = 0.5
+		var tree = get_tree()
 		animation_r.play_backwards("Retry")
 		await animation_r.animation_finished
-		get_tree().change_scene_to_file("res://Escenas/game_over.tscn")
+		tree.change_scene_to_file("res://Escenas/game_over.tscn")
 		
 		
 func _on_timer_timeout():
@@ -230,6 +234,7 @@ func _on_timer_timeout():
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body is Player:
+		velocity.y -= 100
 		animation_r.play_backwards("Retry")
 		await animation_r.animation_finished
 		get_tree().reload_current_scene()
@@ -239,3 +244,7 @@ func _on_win_body_entered(body: Node2D) -> void:
 		animation_r.play_backwards("Retry")
 		await animation_r.animation_finished
 		get_tree().change_scene_to_file("res://Escenas/win.tscn")
+		
+func _empuje():
+	position.x -= 60
+	take_damage(1)

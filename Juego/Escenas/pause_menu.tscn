@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://0svh7x0kblg3"]
+[gd_scene load_steps=6 format=3 uid="uid://0svh7x0kblg3"]
 
 [ext_resource type="Script" uid="uid://t8eqld7bxdtw" path="res://Scripts/pause_menu.gd" id="1_cr0pj"]
 [ext_resource type="FontFile" uid="uid://qv1kfvhhvv01" path="res://Recursos/Crosterian.ttf" id="2_8i4rq"]
 [ext_resource type="StyleBox" uid="uid://bapimv1vjh0n5" path="res://Recursos/Botones.tres" id="3_inj7e"]
+[ext_resource type="AudioStream" uid="uid://cngbicpkum1xd" path="res://Recursos/FreeSFX - kronbits/GameSFX/Events/Retro Event UI 01.wav" id="4_hvfi7"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_inj7e"]
 bg_color = Color(0.6, 0.6, 0.6, 0.05490196)
@@ -56,8 +57,16 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_8i4rq")
 theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = ExtResource("3_inj7e")
+theme_override_styles/normal_mirrored = ExtResource("3_inj7e")
 theme_override_styles/pressed = ExtResource("3_inj7e")
+theme_override_styles/pressed_mirrored = ExtResource("3_inj7e")
 theme_override_styles/hover = ExtResource("3_inj7e")
+theme_override_styles/hover_mirrored = ExtResource("3_inj7e")
+theme_override_styles/hover_pressed = ExtResource("3_inj7e")
+theme_override_styles/hover_pressed_mirrored = ExtResource("3_inj7e")
+theme_override_styles/disabled = ExtResource("3_inj7e")
+theme_override_styles/disabled_mirrored = ExtResource("3_inj7e")
+theme_override_styles/focus = ExtResource("3_inj7e")
 text = "Continue"
 
 [node name="MainMenuButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
@@ -67,8 +76,16 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_8i4rq")
 theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = ExtResource("3_inj7e")
+theme_override_styles/normal_mirrored = ExtResource("3_inj7e")
 theme_override_styles/pressed = ExtResource("3_inj7e")
+theme_override_styles/pressed_mirrored = ExtResource("3_inj7e")
 theme_override_styles/hover = ExtResource("3_inj7e")
+theme_override_styles/hover_mirrored = ExtResource("3_inj7e")
+theme_override_styles/hover_pressed = ExtResource("3_inj7e")
+theme_override_styles/hover_pressed_mirrored = ExtResource("3_inj7e")
+theme_override_styles/disabled = ExtResource("3_inj7e")
+theme_override_styles/disabled_mirrored = ExtResource("3_inj7e")
+theme_override_styles/focus = ExtResource("3_inj7e")
 text = "Main Menu"
 icon_alignment = 1
 
@@ -79,7 +96,19 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_8i4rq")
 theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = ExtResource("3_inj7e")
+theme_override_styles/normal_mirrored = ExtResource("3_inj7e")
 theme_override_styles/pressed = ExtResource("3_inj7e")
+theme_override_styles/pressed_mirrored = ExtResource("3_inj7e")
 theme_override_styles/hover = ExtResource("3_inj7e")
+theme_override_styles/hover_mirrored = ExtResource("3_inj7e")
+theme_override_styles/hover_pressed = ExtResource("3_inj7e")
+theme_override_styles/hover_pressed_mirrored = ExtResource("3_inj7e")
+theme_override_styles/disabled = ExtResource("3_inj7e")
+theme_override_styles/disabled_mirrored = ExtResource("3_inj7e")
+theme_override_styles/focus = ExtResource("3_inj7e")
 text = "Quit"
 icon_alignment = 1
+
+[node name="Botones" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_hvfi7")
+bus = &"Sfx"

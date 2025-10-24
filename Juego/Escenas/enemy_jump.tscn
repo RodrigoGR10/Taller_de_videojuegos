@@ -1,11 +1,12 @@
-[gd_scene load_steps=28 format=3 uid="uid://dovbpdstd0h3c"]
+[gd_scene load_steps=29 format=3 uid="uid://dovbpdstd0h3c"]
 
 [ext_resource type="Script" uid="uid://n0rdakeuvc4f" path="res://Scripts/enemy_jump.gd" id="1_4f4vy"]
-[ext_resource type="Texture2D" uid="uid://d2vbsms5an466" path="res://Recursos/Frogger/frogger_hurt.png" id="2_wxjy8"]
-[ext_resource type="Texture2D" uid="uid://bxsagwil2qxqo" path="res://Recursos/Frogger/frogger_move.png" id="3_li1at"]
-[ext_resource type="Texture2D" uid="uid://bs0yp47dq3tjr" path="res://Recursos/Frogger/frogger_idle.png" id="3_wxjy8"]
+[ext_resource type="Texture2D" uid="uid://d2vbsms5an466" path="res://Recursos/Frogger - Admurin/frogger_hurt.png" id="2_wxjy8"]
+[ext_resource type="Texture2D" uid="uid://bxsagwil2qxqo" path="res://Recursos/Frogger - Admurin/frogger_move.png" id="3_li1at"]
+[ext_resource type="Texture2D" uid="uid://bs0yp47dq3tjr" path="res://Recursos/Frogger - Admurin/frogger_idle.png" id="3_wxjy8"]
 [ext_resource type="Script" uid="uid://uotkkabbnbwq" path="res://Componentes/hurtbox.gd" id="4_y8a2j"]
 [ext_resource type="Script" uid="uid://djlmfx8oq45aq" path="res://Componentes/hitbox.gd" id="5_ermjp"]
+[ext_resource type="AudioStream" uid="uid://yj4b3qbvbcls" path="res://Recursos/536759__egomassive__frog.ogg" id="7_li1at"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_m8px1"]
 atlas = ExtResource("2_wxjy8")
@@ -194,3 +195,7 @@ shape = SubResource("RectangleShape2D_5fxfy")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 1.4
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_li1at")
+bus = &"Sfx"

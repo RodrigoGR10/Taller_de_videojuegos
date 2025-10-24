@@ -1,0 +1,2 @@
+class_name Paredes_invisibles
+extends TileMapLayer

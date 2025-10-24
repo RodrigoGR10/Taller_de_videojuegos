@@ -1,10 +1,11 @@
-[gd_scene load_steps=23 format=3 uid="uid://dgu6gqtowh1yl"]
+[gd_scene load_steps=25 format=3 uid="uid://dgu6gqtowh1yl"]
 
 [ext_resource type="Script" uid="uid://blt86ubop5xks" path="res://Scripts/enemy_ghost.gd" id="1_4ufbt"]
 [ext_resource type="Texture2D" uid="uid://dhmwf74lnuupy" path="res://Recursos/Derrick Death 3 Sheet-export.png" id="2_psm2m"]
 [ext_resource type="Texture2D" uid="uid://c4cdol0l37lnl" path="res://Recursos/Derrick Death 2 Sheet-export.png" id="3_gehkk"]
 [ext_resource type="Script" uid="uid://uotkkabbnbwq" path="res://Componentes/hurtbox.gd" id="4_mo3ox"]
 [ext_resource type="Script" uid="uid://djlmfx8oq45aq" path="res://Componentes/hitbox.gd" id="5_omru3"]
+[ext_resource type="AudioStream" uid="uid://dhnmqlowumbwr" path="res://Recursos/639426__laurenponder__cartoony-ghost.wav" id="6_psm2m"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lwpho"]
 atlas = ExtResource("2_psm2m")
@@ -119,6 +120,8 @@ size = Vector2(68.391365, 77.66463)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7kldh"]
 size = Vector2(13, 21)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4ufbt"]
+
 [node name="Enemy_Ghost" type="CharacterBody2D"]
 collision_layer = 33
 collision_mask = 33
@@ -164,3 +167,11 @@ shape = SubResource("RectangleShape2D_7kldh")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 2.0
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="Choque" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_4ufbt")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_psm2m")

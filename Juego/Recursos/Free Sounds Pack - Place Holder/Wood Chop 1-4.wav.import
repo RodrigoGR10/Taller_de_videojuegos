@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cmw3srkqaw8fp"
+path="res://.godot/imported/Wood Chop 1-4.wav-4183695262069e00f4c9b76dadd829a9.sample"
+
+[deps]
+
+source_file="res://Recursos/Free Sounds Pack - Place Holder/Wood Chop 1-4.wav"
+dest_files=["res://.godot/imported/Wood Chop 1-4.wav-4183695262069e00f4c9b76dadd829a9.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

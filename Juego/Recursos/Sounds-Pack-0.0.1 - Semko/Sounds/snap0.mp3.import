@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bgkjq4r0rhhg3"
+path="res://.godot/imported/snap0.mp3-1ed5705d3015dfff99c1aa20fffafe0f.mp3str"
+
+[deps]
+
+source_file="res://Recursos/Sounds-Pack-0.0.1 - Semko/Sounds/snap0.mp3"
+dest_files=["res://.godot/imported/snap0.mp3-1ed5705d3015dfff99c1aa20fffafe0f.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

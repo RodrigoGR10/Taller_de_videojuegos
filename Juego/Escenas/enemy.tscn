@@ -1,9 +1,10 @@
-[gd_scene load_steps=22 format=3 uid="uid://0xtwyt7jfgkm"]
+[gd_scene load_steps=23 format=3 uid="uid://0xtwyt7jfgkm"]
 
 [ext_resource type="Script" uid="uid://b7lhmmhwnpngv" path="res://Scripts/enemy.gd" id="1_40vke"]
 [ext_resource type="Texture2D" uid="uid://0o8ruywsitpj" path="res://Recursos/Wizard/platformer_metroidvania asset pack v1.01/enemies sprites/goblin/goblin_spritesheet.png" id="2_40vke"]
 [ext_resource type="Script" uid="uid://uotkkabbnbwq" path="res://Componentes/hurtbox.gd" id="3_18e16"]
 [ext_resource type="Script" uid="uid://djlmfx8oq45aq" path="res://Componentes/hitbox.gd" id="4_tljeb"]
+[ext_resource type="AudioStream" uid="uid://c48412gvkm8ti" path="res://Recursos/Free Sounds Pack - Place Holder/Zombie 1 - Short 1-01.wav" id="5_18e16"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_d0v5c"]
 atlas = ExtResource("2_40vke")
@@ -156,3 +157,7 @@ shape = SubResource("RectangleShape2D_18e16")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 2.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_18e16")
+bus = &"Sfx"

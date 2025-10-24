@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://brdfam6kcbf1c"
+path="res://.godot/imported/drop1.mp3-06cc473000f1d8a43eff03a3d8153565.mp3str"
+
+[deps]
+
+source_file="res://Recursos/Sounds-Pack-0.0.1 - Semko/Sounds/drop1.mp3"
+dest_files=["res://.godot/imported/drop1.mp3-06cc473000f1d8a43eff03a3d8153565.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

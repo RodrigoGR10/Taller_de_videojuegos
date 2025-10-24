@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bcpfy028oowep"
+path="res://.godot/imported/Retro Descending Water 01.wav-39a2f2a81bc3f7d122a5cfcd1c87c2dd.sample"
+
+[deps]
+
+source_file="res://Recursos/FreeSFX - kronbits/GameSFX/Water/Retro Descending Water 01.wav"
+dest_files=["res://.godot/imported/Retro Descending Water 01.wav-39a2f2a81bc3f7d122a5cfcd1c87c2dd.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

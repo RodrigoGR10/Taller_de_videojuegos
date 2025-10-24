@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://caw03lrh3vaaq"
+path="res://.godot/imported/click1.mp3-ab72c8e1fd36a7982961e901ada5e275.mp3str"
+
+[deps]
+
+source_file="res://Recursos/Sounds-Pack-0.0.1 - Semko/Sounds/click1.mp3"
+dest_files=["res://.godot/imported/click1.mp3-ab72c8e1fd36a7982961e901ada5e275.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

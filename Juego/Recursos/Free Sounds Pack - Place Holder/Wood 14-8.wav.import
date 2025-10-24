@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://t86g1olfr52w"
+path="res://.godot/imported/Wood 14-8.wav-b75f9c38765412c83455e6838b73acc0.sample"
+
+[deps]
+
+source_file="res://Recursos/Free Sounds Pack - Place Holder/Wood 14-8.wav"
+dest_files=["res://.godot/imported/Wood 14-8.wav-b75f9c38765412c83455e6838b73acc0.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

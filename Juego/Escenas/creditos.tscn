@@ -1,84 +1,299 @@
-[gd_scene load_steps=4 format=3 uid="uid://d0e4bx2y818c8"]
+[gd_scene load_steps=13 format=3 uid="uid://d0e4bx2y818c8"]
 
 [ext_resource type="Script" uid="uid://3li4vg0fqtvt" path="res://Scripts/creditos.gd" id="1_1345a"]
 [ext_resource type="FontFile" uid="uid://qv1kfvhhvv01" path="res://Recursos/Crosterian.ttf" id="4_nloxq"]
+[ext_resource type="AudioStream" uid="uid://cngbicpkum1xd" path="res://Recursos/FreeSFX - kronbits/GameSFX/Events/Retro Event UI 01.wav" id="4_wyl42"]
 [ext_resource type="StyleBox" uid="uid://bapimv1vjh0n5" path="res://Recursos/Botones.tres" id="5_7rl0q"]
+[ext_resource type="AudioStream" uid="uid://c50td28at8qjb" path="res://Recursos/calm_theme.ogg" id="5_nloxq"]
+
+[sub_resource type="Animation" id="Animation_ottec"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_fqh67"]
+resource_name = "Retry"
+length = 0.6
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dmmkh"]
+_data = {
+&"RESET": SubResource("Animation_ottec"),
+&"Retry": SubResource("Animation_fqh67")
+}
+
+[sub_resource type="Animation" id="Animation_7rl0q"]
+resource_name = "Créditos"
+length = 14.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 14),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(141, 700), Vector2(141, -3600)]
+}
+
+[sub_resource type="Animation" id="Animation_0wx7t"]
+resource_name = "Letras"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Retry_Anim/Label:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": ["", "Absorb"]
+}
+
+[sub_resource type="Animation" id="Animation_nloxq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(154, 700)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Retry_Anim/Label:text")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [""]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0wx7t"]
+_data = {
+&"Créditos": SubResource("Animation_7rl0q"),
+&"Letras": SubResource("Animation_0wx7t"),
+&"RESET": SubResource("Animation_nloxq")
+}
 
 [node name="Creditos" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -64.0
-offset_top = 138.0
-offset_right = -64.0
-offset_bottom = 138.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_1345a")
 
-[node name="Label" type="Label" parent="."]
-layout_mode = 0
-offset_left = 168.0
-offset_top = 15.999999
-offset_right = 1856.0
-offset_bottom = 829.0
-scale = Vector2(0.426087, 0.489896)
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("4_nloxq")
-theme_override_font_sizes/font_size = 26
-text = "Developed by CTRL + Z
-Lucas Alarcón · Nicole Charun · Rodrigo Guerrero
+[node name="Retry_Anim" type="Node2D" parent="."]
+z_index = 1
 
-Assets
-Pixel Frog — https://pixelfrog-assets.itch.io/ 
-Eli Cuaycong  — https://hajileee.itch.io/
- o_lobster — https://o-lobster.itch.io/
-franuka — https://franuka.itch.io/
-Shlok Gupta —  https://gamedevshlok.itch.io/
-Monarch Games — https://monarchgames.itch.io/Creationr — https://creationr.itch.io/
-Admurin — https://admurin.itch.io/"
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="ColorRect" type="ColorRect" parent="Retry_Anim"]
+offset_right = 900.0
+offset_bottom = 700.0
+size_flags_stretch_ratio = 0.0
+color = Color(0, 0, 0, 1)
 
-[node name="Label2" type="Label" parent="."]
-layout_mode = 0
-offset_left = 272.0
-offset_top = -189.0
-offset_right = 1465.0
-offset_bottom = 624.0
-scale = Vector2(0.426087, 0.489896)
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("4_nloxq")
-theme_override_font_sizes/font_size = 44
-text = "Absorb"
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="Animation_R" type="AnimationPlayer" parent="Retry_Anim"]
+libraries = {
+&"": SubResource("AnimationLibrary_dmmkh")
+}
 
-[node name="Main Menu Return" type="Button" parent="."]
-layout_mode = 0
-offset_left = 81.0
-offset_top = 511.0
-offset_right = 189.0
-offset_bottom = 547.0
+[node name="Main Menu Return" type="Button" parent="Retry_Anim"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 24.0
+offset_top = 640.0
+offset_right = 132.0
+offset_bottom = 676.0
+grow_vertical = 0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("4_nloxq")
 theme_override_font_sizes/font_size = 12
 theme_override_styles/normal = ExtResource("5_7rl0q")
+theme_override_styles/normal_mirrored = ExtResource("5_7rl0q")
 theme_override_styles/pressed = ExtResource("5_7rl0q")
+theme_override_styles/pressed_mirrored = ExtResource("5_7rl0q")
 theme_override_styles/hover = ExtResource("5_7rl0q")
+theme_override_styles/hover_mirrored = ExtResource("5_7rl0q")
+theme_override_styles/hover_pressed = ExtResource("5_7rl0q")
+theme_override_styles/hover_pressed_mirrored = ExtResource("5_7rl0q")
+theme_override_styles/disabled = ExtResource("5_7rl0q")
+theme_override_styles/disabled_mirrored = ExtResource("5_7rl0q")
+theme_override_styles/focus = ExtResource("5_7rl0q")
 text = "Main Menu"
 
-[node name="Quit" type="Button" parent="."]
-layout_mode = 0
-offset_left = 860.0
-offset_top = 510.0
-offset_right = 946.0
-offset_bottom = 546.0
+[node name="Quit" type="Button" parent="Retry_Anim"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 790.0
+offset_top = 640.0
+offset_right = 876.0
+offset_bottom = 676.0
+grow_horizontal = 0
+grow_vertical = 0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("4_nloxq")
 theme_override_font_sizes/font_size = 12
 theme_override_styles/normal = ExtResource("5_7rl0q")
+theme_override_styles/normal_mirrored = ExtResource("5_7rl0q")
 theme_override_styles/pressed = ExtResource("5_7rl0q")
+theme_override_styles/pressed_mirrored = ExtResource("5_7rl0q")
 theme_override_styles/hover = ExtResource("5_7rl0q")
+theme_override_styles/hover_mirrored = ExtResource("5_7rl0q")
+theme_override_styles/hover_pressed = ExtResource("5_7rl0q")
+theme_override_styles/hover_pressed_mirrored = ExtResource("5_7rl0q")
+theme_override_styles/disabled = ExtResource("5_7rl0q")
+theme_override_styles/disabled_mirrored = ExtResource("5_7rl0q")
+theme_override_styles/focus = ExtResource("5_7rl0q")
 text = "Quit"
+
+[node name="Label" type="Label" parent="Retry_Anim"]
+offset_right = 900.0
+offset_bottom = 700.0
+theme_override_fonts/font = ExtResource("4_nloxq")
+theme_override_font_sizes/font_size = 80
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 154.0
+offset_top = 700.0
+offset_right = 1644.3059
+offset_bottom = 8828.0
+scale = Vector2(0.426087, 0.489896)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_nloxq")
+theme_override_font_sizes/font_size = 40
+text = "Absorb
+
+
+Developed by CTRL + Z
+Lucas Alarcón · Nicole Charun · Rodrigo Guerrero
+
+
+
+Assets
+Wizard — Eli Cuaycong  — https://hajileee.itch.io/hajileees-fantasy-characters-pack-magic-set
+
+Goblin — o_lobster — https://o-lobster.itch.io/platformmetroidvania-pixel-art-asset-pack
+
+Frog — Admurin — https://admurin.itch.io/bosses-frogger
+
+Ghost — Monarch Games — https://monarchgames.itch.io/free2dpixelartcharacterpack
+
+Flag — ankosse26 — https://ankousse26.itch.io/free-flag-with-animation
+
+Pixel Heart — Shlok Gupta —  https://gamedevshlok.itch.io/heartpack
+
+
+
+Tileset
+aamatniekss — aamatniekss.itch.io/free-pixelart-platformer-tileset
+
+Sea — Admurin — https://admurin.itch.io/parallax-backgrounds-dock
+
+Icons UI — Leo Red — https://leo-red.itch.io/lucid-icon-pack — License: CC0 1.0 Universal
+
+
+
+Music & Sfx
+Music — simon13666 —  https://simon13666.itch.io/5-free-chip-tune-tracks
+
+Credits Music — Pebonius — https://opengameart.org/content/calm-theme — License: Creative Commons 0
+
+Ghost — LaurenPonder — https://freesound.org/s/639426/ — License: Creative Commons 0
+
+Frog — egomassive — https://freesound.org/s/536759/ — License: Creative Commons 0
+
+Victory — Orchestral Victory Fanfare by Sheyvan — https://freesound.org/s/470083/ — License: Attribution 4.0
+
+Game Over — 3DPyramid — https://opengameart.org/content/game-over-8bit-music — License: Creative Commons 0
+
+Place Holder Assets  — https://placeholder-assets.itch.io/50-free-sounds-pack — License: Creative Commons 0
+
+semko — https://semkou.itch.io/sound-pack-free
+
+Others Sfx — kronbits — https://kronbits.itch.io/freesfx — License: Creative Commons 0
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Thank you for playing Absorb!!"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 1
+
+[node name="Botones" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_wyl42")
+bus = &"Sfx"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_nloxq")
+autoplay = true
+bus = &"Music"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_0wx7t")
+}

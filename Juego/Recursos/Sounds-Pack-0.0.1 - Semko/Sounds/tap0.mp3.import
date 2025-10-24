@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://ccn7nrrrp52xf"
+path="res://.godot/imported/tap0.mp3-3b646b61f189b04b0fc07044be51096b.mp3str"
+
+[deps]
+
+source_file="res://Recursos/Sounds-Pack-0.0.1 - Semko/Sounds/tap0.mp3"
+dest_files=["res://.godot/imported/tap0.mp3-3b646b61f189b04b0fc07044be51096b.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

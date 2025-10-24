@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://c1qm2t67b7y1d"
+path="res://.godot/imported/voice5.mp3-4508b34155cf4ab2cdf5c733b36244f7.mp3str"
+
+[deps]
+
+source_file="res://Recursos/Sounds-Pack-0.0.1 - Semko/Sounds/voice5.mp3"
+dest_files=["res://.godot/imported/voice5.mp3-4508b34155cf4ab2cdf5c733b36244f7.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
