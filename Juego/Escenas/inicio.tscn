@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://df1hcwbxr4bbu"]
 
-[ext_resource type="Script" path="res://Scripts/inicio.gd" id="1_gsuke"]
+[ext_resource type="Script" uid="uid://bgbroljcc7hjg" path="res://Scripts/inicio.gd" id="1_gsuke"]
 [ext_resource type="FontFile" uid="uid://f7v54jfda4gk" path="res://Recursos/RubikGlitch-Regular.ttf" id="2_1sq1t"]
 [ext_resource type="AudioStream" uid="uid://csfoqf0j22g23" path="res://Recursos/Special Collectible 26-1.wav" id="3_1sq1t"]
 
@@ -164,6 +164,7 @@ script = ExtResource("1_gsuke")
 z_index = 1
 
 [node name="ColorRect" type="ColorRect" parent="Retry_Anim"]
+visible = false
 offset_right = 900.0
 offset_bottom = 700.0
 size_flags_stretch_ratio = 0.0

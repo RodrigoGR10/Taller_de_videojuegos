@@ -82,6 +82,7 @@ z_index = 1
 position = Vector2(-59, -47)
 
 [node name="ColorRect" type="ColorRect" parent="Retry_Anim"]
+visible = false
 offset_left = -371.0
 offset_top = -283.0
 offset_right = 529.0
