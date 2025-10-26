@@ -17,7 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://6ywfpkw3m3r0" path="res://Recursos/flag animation.png" id="15_ytnso"]
 [ext_resource type="AudioStream" uid="uid://5kvqs3uccd1c" path="res://Recursos/Chiptune2.wav" id="16_la8is"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_i3j75"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_crmvv"]
 texture = ExtResource("2_i3j75")
 0:0/0 = 0
 1:0/0 = 0
@@ -36,7 +36,7 @@ texture = ExtResource("2_i3j75")
 2:3/0 = 0
 3:3/0 = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_irylq"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_la8is"]
 texture = ExtResource("3_irylq")
 0:0/0 = 0
 1:0/0 = 0
@@ -201,7 +201,7 @@ texture = ExtResource("3_irylq")
 19:10/0 = 0
 20:10/0 = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ytnso"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dx2h7"]
 texture = ExtResource("5_o0erx")
 1:13/0 = 0
 4:13/0 = 0
@@ -404,9 +404,9 @@ texture = ExtResource("5_o0erx")
 
 [sub_resource type="TileSet" id="TileSet_va84l"]
 physics_layer_0/collision_layer = 1
-sources/0 = SubResource("TileSetAtlasSource_i3j75")
-sources/1 = SubResource("TileSetAtlasSource_irylq")
-sources/2 = SubResource("TileSetAtlasSource_ytnso")
+sources/0 = SubResource("TileSetAtlasSource_crmvv")
+sources/1 = SubResource("TileSetAtlasSource_la8is")
+sources/2 = SubResource("TileSetAtlasSource_dx2h7")
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_irylq"]
 vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
@@ -426,7 +426,7 @@ polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)])
 agent_radius = 0.0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_crmvv"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nobe6"]
 texture = ExtResource("4_va84l")
 0:0/0 = 0
 0:0/0/terrain_set = 1
@@ -685,9 +685,9 @@ terrain_set_2/terrain_0/name = "Cueva"
 terrain_set_2/terrain_0/color = Color(0, 0.4628204, 0.26545033, 1)
 navigation_layer_0/layers = 1
 navigation_layer_1/layers = 2
-sources/0 = SubResource("TileSetAtlasSource_crmvv")
+sources/0 = SubResource("TileSetAtlasSource_nobe6")
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dx2h7"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_n1ln3"]
 texture = ExtResource("4_va84l")
 0:0/0 = 0
 0:0/0/terrain_set = 0
@@ -814,9 +814,9 @@ physics_layer_0/collision_mask = 33
 terrain_set_0/mode = 0
 terrain_set_0/terrain_0/name = "ParedInv"
 terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
-sources/0 = SubResource("TileSetAtlasSource_dx2h7")
+sources/0 = SubResource("TileSetAtlasSource_n1ln3")
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_va84l"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rkv30"]
 texture = ExtResource("4_va84l")
 0:0/0 = 0
 0:0/0/terrain_set = 1
@@ -1075,7 +1075,7 @@ terrain_set_2/terrain_0/name = "Cueva"
 terrain_set_2/terrain_0/color = Color(0, 0.4628204, 0.26545033, 1)
 navigation_layer_0/layers = 1
 navigation_layer_1/layers = 2
-sources/0 = SubResource("TileSetAtlasSource_va84l")
+sources/0 = SubResource("TileSetAtlasSource_rkv30")
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_spkme"]
 
@@ -1310,7 +1310,7 @@ tile_map_data = PackedByteArray("AAAfACQAAAAIAAIAAAAeACQAAAAHAAIAAAAdACQAAAAIAAI
 tile_set = SubResource("TileSet_wqotv")
 
 [node name="Player" parent="." instance=ExtResource("1_d3d2o")]
-position = Vector2(-89, 492)
+position = Vector2(-79, 463)
 scale = Vector2(1.5, 1.5)
 
 [node name="PauseMenu" parent="." instance=ExtResource("3_spkme")]

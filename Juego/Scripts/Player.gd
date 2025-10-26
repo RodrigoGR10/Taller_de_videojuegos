@@ -48,7 +48,6 @@ extends CharacterBody2D
 @onready var enemy: Enemy = $"../Enemy"
 @onready var jump: AudioStreamPlayer = $Jump
 @onready var daño: AudioStreamPlayer = $Daño
-@onready var agua: AudioStreamPlayer = $Agua
 @onready var c_f: CollisionShape2D = $Colision_Fantasma/C_F
 
 func _ready() -> void:
@@ -247,7 +246,6 @@ func _on_timer_timeout():
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body is Player:
 		velocity.y -= 100
-		agua.play()
 		animation_r.play_backwards("Retry")
 		await animation_r.animation_finished
 		get_tree().reload_current_scene()

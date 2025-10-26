@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://er8vijr0f56b"]
+[gd_scene load_steps=19 format=3 uid="uid://er8vijr0f56b"]
 
 [ext_resource type="Script" uid="uid://c7er4cqs0rsm7" path="res://Escenas/UI/main_menu.gd" id="1_p8ccj"]
 [ext_resource type="FontFile" uid="uid://qv1kfvhhvv01" path="res://Recursos/Crosterian.ttf" id="2_f02rb"]
@@ -6,6 +6,13 @@
 [ext_resource type="StyleBox" uid="uid://bapimv1vjh0n5" path="res://Recursos/Botones.tres" id="3_gplya"]
 [ext_resource type="AudioStream" uid="uid://cngbicpkum1xd" path="res://Recursos/FreeSFX - kronbits/GameSFX/Events/Retro Event UI 01.wav" id="5_m7m47"]
 [ext_resource type="AudioStream" uid="uid://3g5yaod3qmgu" path="res://Recursos/Chiptune595.wav" id="6_grecs"]
+[ext_resource type="Texture2D" uid="uid://8v3k7gl27sxt" path="res://Recursos/Pixel Keys x16/Tiles White/pxkw_w.png" id="7_j35u7"]
+[ext_resource type="Texture2D" uid="uid://rme2mwohlvm7" path="res://Recursos/Pixel Keys x16/Tiles White/pxkw_a.png" id="8_tic74"]
+[ext_resource type="Texture2D" uid="uid://bqc2fjvsjqa2r" path="res://Recursos/Pixel Keys x16/Tiles White/pxkw_s.png" id="9_r7tei"]
+[ext_resource type="Texture2D" uid="uid://cf5a3raau3a6t" path="res://Recursos/Pixel Keys x16/Tiles White/pxkw_d.png" id="10_yjhih"]
+[ext_resource type="Texture2D" uid="uid://cpbyp8adv0gtt" path="res://Recursos/Pixel Keys x16/Tiles White/pxkw_r.png" id="11_e1ns3"]
+[ext_resource type="Texture2D" uid="uid://bq70l5vo4xwkh" path="res://Recursos/Pixel Keys x16/Tiles White/pxkw_p.png" id="12_sim1c"]
+[ext_resource type="Texture2D" uid="uid://ct6kpwhh6djhf" path="res://Recursos/Pixel Keys x16/Tiles White/pxkw_space_2.png" id="13_8rryh"]
 
 [sub_resource type="Animation" id="Animation_ottec"]
 length = 0.001
@@ -47,6 +54,13 @@ _data = {
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m7m47"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hto3m"]
+bg_color = Color(0.103743516, 0.103743546, 0.10374347, 0.5411765)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -119,6 +133,8 @@ size_flags_vertical = 4
 [node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_f02rb")
 theme_override_font_sizes/font_size = 40
 text = "Absorb"
@@ -142,6 +158,26 @@ theme_override_styles/disabled = ExtResource("3_gplya")
 theme_override_styles/disabled_mirrored = ExtResource("3_gplya")
 theme_override_styles/focus = ExtResource("3_gplya")
 text = "Start"
+expand_icon = true
+
+[node name="Controls" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_f02rb")
+theme_override_font_sizes/font_size = 36
+theme_override_styles/normal = ExtResource("3_gplya")
+theme_override_styles/normal_mirrored = ExtResource("3_gplya")
+theme_override_styles/pressed = ExtResource("3_gplya")
+theme_override_styles/pressed_mirrored = ExtResource("3_gplya")
+theme_override_styles/hover = ExtResource("3_gplya")
+theme_override_styles/hover_mirrored = ExtResource("3_gplya")
+theme_override_styles/hover_pressed = ExtResource("3_gplya")
+theme_override_styles/hover_pressed_mirrored = ExtResource("3_gplya")
+theme_override_styles/disabled = ExtResource("3_gplya")
+theme_override_styles/disabled_mirrored = ExtResource("3_gplya")
+theme_override_styles/focus = ExtResource("3_gplya")
+text = "Controls"
 expand_icon = true
 
 [node name="CreditsButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
@@ -184,9 +220,124 @@ text = "Quit"
 
 [node name="Botones" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_m7m47")
-bus = &"Sfx"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_grecs")
 autoplay = true
-bus = &"Music"
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -291.0
+offset_top = -289.0
+offset_right = 308.0
+offset_bottom = 310.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_hto3m")
+
+[node name="PxkwW" type="Sprite2D" parent="Panel"]
+position = Vector2(473.00006, 93.00006)
+scale = Vector2(2.75, 2.75)
+texture = ExtResource("7_j35u7")
+
+[node name="PxkwA" type="Sprite2D" parent="Panel"]
+position = Vector2(473.00006, 170.00003)
+scale = Vector2(2.75, 2.75)
+texture = ExtResource("8_tic74")
+
+[node name="PxkwS" type="Sprite2D" parent="Panel"]
+position = Vector2(473.00006, 247.00009)
+scale = Vector2(2.75, 2.75)
+texture = ExtResource("9_r7tei")
+
+[node name="PxkwD" type="Sprite2D" parent="Panel"]
+position = Vector2(473.00006, 324)
+scale = Vector2(2.75, 2.75)
+texture = ExtResource("10_yjhih")
+
+[node name="PxkwR" type="Sprite2D" parent="Panel"]
+position = Vector2(473.00006, 400.99997)
+scale = Vector2(2.75, 2.75)
+texture = ExtResource("11_e1ns3")
+
+[node name="PxkwP" type="Sprite2D" parent="Panel"]
+position = Vector2(473.00006, 478)
+scale = Vector2(2.75, 2.75)
+texture = ExtResource("12_sim1c")
+
+[node name="PxkwSpace2" type="Sprite2D" parent="Panel"]
+position = Vector2(473.00006, 555)
+scale = Vector2(2.75, 2.75)
+texture = ExtResource("13_8rryh")
+
+[node name="Label2" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -215.5
+offset_top = 70.0
+offset_right = -29.5
+offset_bottom = 587.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_f02rb")
+theme_override_font_sizes/font_size = 32
+text = "Jump
+
+Left
+
+Down
+
+Right
+
+Retry
+
+Pause
+
+Jump"
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -151.5
+offset_top = 8.0
+offset_right = 134.5
+offset_bottom = 52.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_f02rb")
+theme_override_font_sizes/font_size = 40
+text = "Controls"
+
+[node name="ReturnButton" type="Button" parent="Panel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -54.0
+offset_top = -56.0
+offset_right = 54.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_f02rb")
+theme_override_font_sizes/font_size = 12
+theme_override_styles/normal = ExtResource("3_gplya")
+theme_override_styles/normal_mirrored = ExtResource("3_gplya")
+theme_override_styles/pressed = ExtResource("3_gplya")
+theme_override_styles/pressed_mirrored = ExtResource("3_gplya")
+theme_override_styles/hover = ExtResource("3_gplya")
+theme_override_styles/hover_mirrored = ExtResource("3_gplya")
+theme_override_styles/hover_pressed = ExtResource("3_gplya")
+theme_override_styles/hover_pressed_mirrored = ExtResource("3_gplya")
+theme_override_styles/disabled = ExtResource("3_gplya")
+theme_override_styles/disabled_mirrored = ExtResource("3_gplya")
+theme_override_styles/focus = ExtResource("3_gplya")
+text = "Return"
