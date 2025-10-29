@@ -1,8 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://df1hcwbxr4bbu"]
+[gd_scene load_steps=9 format=3 uid="uid://dd7no8podlpmv"]
 
-[ext_resource type="Script" uid="uid://bgbroljcc7hjg" path="res://Scripts/inicio.gd" id="1_gsuke"]
-[ext_resource type="FontFile" uid="uid://f7v54jfda4gk" path="res://Recursos/RubikGlitch-Regular.ttf" id="2_1sq1t"]
-[ext_resource type="AudioStream" uid="uid://csfoqf0j22g23" path="res://Recursos/Special Collectible 26-1.wav" id="3_1sq1t"]
+[ext_resource type="FontFile" uid="uid://f7v54jfda4gk" path="res://Recursos/RubikGlitch-Regular.ttf" id="1_kllkb"]
+[ext_resource type="AudioStream" uid="uid://csfoqf0j22g23" path="res://Recursos/Special Collectible 26-1.wav" id="2_ruidu"]
 
 [sub_resource type="Animation" id="Animation_ottec"]
 length = 0.001
@@ -151,14 +150,13 @@ _data = {
 &"RESET": SubResource("Animation_og5bw")
 }
 
-[node name="Inicio" type="Control"]
+[node name="Control" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_gsuke")
 
 [node name="Retry_Anim" type="Node2D" parent="."]
 z_index = 1
@@ -198,7 +196,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0, 0, 0, 0)
 theme_override_colors/font_shadow_color = Color(1, 1, 1, 0)
-theme_override_fonts/font = ExtResource("2_1sq1t")
+theme_override_fonts/font = ExtResource("1_kllkb")
 theme_override_font_sizes/font_size = 100
 text = "CTRL    Z"
 horizontal_alignment = 1
@@ -219,7 +217,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0, 0, 0, 0)
 theme_override_colors/font_shadow_color = Color(1, 1, 1, 0)
-theme_override_fonts/font = ExtResource("2_1sq1t")
+theme_override_fonts/font = ExtResource("1_kllkb")
 theme_override_font_sizes/font_size = 100
 text = "+"
 horizontal_alignment = 1
@@ -232,4 +230,4 @@ libraries = {
 autoplay = "Inicio"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_1sq1t")
+stream = ExtResource("2_ruidu")

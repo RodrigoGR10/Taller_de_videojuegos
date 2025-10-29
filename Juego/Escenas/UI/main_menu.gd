@@ -35,7 +35,8 @@ func _on_start_pressed():
 	await get_tree().create_timer(0.6).timeout
 	animation_r.play_backwards("Retry")
 	await animation_r.animation_finished
-	get_tree().change_scene_to_file("res://Escenas/juego.tscn")
+	LevelManager.current_level = -1
+	LevelManager.go_to_next_level()
 	
 func _on_controls_pressed():
 	panel.visible = true
@@ -59,7 +60,7 @@ func _on_credits_pressed():
 	await get_tree().create_timer(0.6).timeout
 	animation_r.play_backwards("Retry")
 	await animation_r.animation_finished
-	get_tree().change_scene_to_file("res://Escenas/creditos.tscn")
+	LevelManager.go_to_credits()
 
 func _on_quit_pressed():
 	start_button.disabled = true

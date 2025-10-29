@@ -23,6 +23,7 @@ buses/default_bus_layout=""
 [autoload]
 
 Debug="*res://Componentes/Debug.gd"
+LevelManager="*res://Escenas/level_manager.tscn"
 
 [display]
 

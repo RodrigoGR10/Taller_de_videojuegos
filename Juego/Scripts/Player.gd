@@ -14,6 +14,10 @@ extends CharacterBody2D
 @export var count_visible:float = 0
 @export var Visible:bool = false
 @export var was_on_floor:bool = true
+@export var floor:bool = false
+
+
+@export var dust_particles_scene: PackedScene
 
 @onready var mage: Sprite2D = $Pivot/Mage
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
@@ -28,27 +32,24 @@ extends CharacterBody2D
 @onready var heart: Sprite2D = $Puntuacion/Heart
 @onready var heart_2: Sprite2D = $Puntuacion/Heart2
 @onready var heart_3: Sprite2D = $Puntuacion/Heart3
-@onready var enemy_ghost: Enemy_Ghost = $"../Enemy_Ghost"
 @onready var hit: CollisionShape2D = $Pivot/Mage/Hitbox/hit
 @onready var hurt: CollisionShape2D = $Pivot/Mage/Hurtbox/hurt
 @onready var static_body_2d: StaticBody2D = $"../StaticBody2D"
-@onready var enemy_jump: Enemy_Jump = $"../Enemy_Jump"
-@onready var enemy_jump_2: Enemy_Jump = $"../Enemy_Jump2"
-@onready var enemy_ghost_2: Enemy_Ghost = $"../Enemy_Ghost2"
-@onready var enemy_jump_3: Enemy_Jump = $"../Enemy_Jump3"
-@onready var jump_hud: Sprite2D = $Puntuacion/MarginContainer/PanelContainer/Jump_hud
-@onready var invisibility_hub: Sprite2D = $Puntuacion/MarginContainer/PanelContainer/invisibility_hub
-@onready var run_hud: Sprite2D = $Puntuacion/MarginContainer/PanelContainer/run_hud
 @onready var timer: Timer = $Timer
 @onready var progress_bar: ProgressBar = $Puntuacion/ProgressBar
 @onready var retry_anim: Node2D = $Camera2D/Retry_Anim
 @onready var color_rect: ColorRect = $Puntuacion/Retry_Anim/ColorRect
 @onready var animation_r: AnimationPlayer = $Puntuacion/Retry_Anim/Animation_R
 @onready var camera_2d: Camera2D = $Camera2D
-@onready var enemy: Enemy = $"../Enemy"
 @onready var jump: AudioStreamPlayer = $Jump
 @onready var daño: AudioStreamPlayer = $Daño
 @onready var c_f: CollisionShape2D = $Colision_Fantasma/C_F
+@onready var dust_spawn: Marker2D = $DustSpawn
+@onready var jump_hud: Sprite2D = $Puntuacion/MarginContainer/PanelContainer/Jump_hud
+@onready var invisibility_hub: Sprite2D = $Puntuacion/MarginContainer/PanelContainer/invisibility_hub
+@onready var run_hud: Sprite2D = $Puntuacion/MarginContainer/PanelContainer/run_hud
+@onready var enemy_ghost: Enemy_Ghost = $"../Enemy_Ghost"
+@onready var enemy_ghost_2: Enemy_Ghost = $"../Enemy_Ghost2"
 
 func _ready() -> void:
 	animation_r.play("Retry")
@@ -60,77 +61,14 @@ func _ready() -> void:
 	invisibility_hub.visible = false
 	run_hud.visible = false
 	timer.timeout.connect(_on_timer_timeout)
-	
-	enemy.muerte.connect(_on_body_contact)
-	enemy_jump.muerte_jump.connect(_on_jump_enemy_contact)
-	enemy_jump_2.muerte_jump.connect(_on_jump_enemy_contact)
-	enemy_jump_3.muerte_jump.connect(_on_jump_enemy_contact)
-	enemy_ghost.muerte_ghost.connect(_on_body_ghost_contact)
-	enemy_ghost_2.muerte_ghost.connect(_on_body_ghost_contact)
-	
 	enemy_ghost.colisión_jugador.connect(_empuje)
 	enemy_ghost_2.colisión_jugador.connect(_empuje)
-	
-func _on_body_ghost_contact():
-	velocity.y = -jump_speed/3
-	Visible = true
-	invisibility_hub.visible = true
-	
-	
-	run = false
-	run_hud.visible = false
-	
-	extra_jump = false
-	jump_hud.visible = false
-	count_visible += 1
-	Debug.log("Visible:" + str(visible))
-	Debug.log("Visible:" + str(count_visible))
-	if run_count != 0:
-		run_count = 0
-	if jump_count != 0:
-		jump_count = 0
-	
-func _on_body_contact():
-	velocity.y = -jump_speed/3
-	run = true
-	run_hud.visible = true
-	
-	Visible = false
-	invisibility_hub.visible = false
-	
-	extra_jump = false
-	jump_hud.visible = false
-	run_count += 1
-	Debug.log("Run:" + str(run))
-	Debug.log("Extra runs:" + str(run_count))
-	if jump_count != 0:
-		jump_count = 0
-	if count_visible != 0:
-		count_visible = 0
-	
-func _on_jump_enemy_contact():
-	velocity.y = -jump_speed/3
-	extra_jump = true
-	jump_hud.visible = true
-	
-	run = false
-	run_hud.visible = false
-	
-	Visible = false
-	invisibility_hub.visible = false
-	jump_count += 1
-	Debug.log("Double jump:" + str(extra_jump))
-	Debug.log("Extra jump:" + str(jump_count))
-	if count_visible != 0:
-		count_visible = 0
-	if run_count != 0:
-		run_count = 0
 	
 func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("Retry"):
 		animation_r.play_backwards("Retry")
 		await animation_r.animation_finished
-		get_tree().change_scene_to_file("res://Escenas/juego.tscn")
+		get_tree().reload_current_scene()
 	if not is_on_floor():
 		velocity.y += gravity * delta
 		if was_on_floor == true and jump_count != 0 and extra_jump == true and Input.is_action_just_pressed("saltar"):
@@ -203,6 +141,11 @@ func _physics_process(delta: float) -> void:
 	velocity.x = move_toward(velocity.x, move_input * max_speed, acceleration * delta)
 	move_and_slide()
 	
+	if is_on_floor() and not floor:
+		spawn_dust()
+	
+	floor = is_on_floor()
+	
 	if move_input:
 		pivot.scale.x = sign(move_input)
 	if is_on_floor():
@@ -264,3 +207,10 @@ func _on_colision_fantasma_body_entered(body: Node2D) -> void:
 	if body is Enemy or body is Enemy_Ghost or body is Enemy_Jump or body is Paredes_invisibles:
 		position.x -= 60
 		take_damage(1)
+		
+func spawn_dust():
+	if not dust_particles_scene:
+		return
+	var dust_particles_inst = dust_particles_scene.instantiate()
+	add_child(dust_particles_inst)
+	dust_particles_inst.global_position = dust_spawn.global_position

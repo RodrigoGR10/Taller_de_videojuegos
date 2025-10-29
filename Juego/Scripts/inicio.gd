@@ -13,4 +13,4 @@ func _ready() -> void:
 	await animation_player.animation_finished
 	animation_r.play_backwards("Retry")
 	await animation_r.animation_finished
-	get_tree().change_scene_to_file("res://Escenas/UI/main_menu.tscn")
+	LevelManager.go_to_main_menu()
