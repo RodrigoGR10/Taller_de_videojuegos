@@ -4,44 +4,43 @@ extends CharacterBody2D
 signal muerte_ghost
 signal colisión_jugador
 
-@export var EnemyRun = 70
-@export var Gravedad = 98
 @export var count = 1
+@export var max_speed:float = 80
+@export var jump_speed:float = 400
+@export var gravity:float = 600
+@export var acceleration:float = 300
 
 var dead = false
 
-@onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
+@export var DeathSound: AudioStream
+
+@onready var animated_sprite_2d: AnimatedSprite2D = $Pivot/AnimatedSprite2D
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
-@onready var hit: CollisionShape2D = $AnimatedSprite2D/Hitbox/hit
-@onready var hurt: CollisionShape2D = $AnimatedSprite2D/Hurtbox/hurt
+@onready var hit: CollisionShape2D = $Pivot/AnimatedSprite2D/Hitbox/hit
+@onready var hurt: CollisionShape2D = $Pivot/AnimatedSprite2D/Hurtbox/hurt
 @onready var timer: Timer = $Timer
-@onready var audio_stream_player_2d: AudioStreamPlayer2D = $AudioStreamPlayer2D
-@onready var choque: CollisionShape2D = $Area2D/Choque
+@onready var area_2d: Area2D = $Pivot/Area2D
+@onready var pivot: Node2D = $Pivot
+@onready var ray_cast_2d: RayCast2D = $Pivot/RayCast2D
+@onready var choque: CollisionShape2D = $Pivot/Area2D/Choque
 
 func _ready():
-	velocity.x = EnemyRun
 	choque.disabled = true
 	animated_sprite_2d.play("Run_Enemy")
 	timer.timeout.connect(_on_timer_timeout)
 	timer.start()
-
-func _physics_process(delta):
+	
+func _physics_process(delta: float) -> void:
 	if dead:
 		return
-	velocity.y += Gravedad
-	
-	if is_on_wall():
-		if animated_sprite_2d.flip_h:
-			velocity.x = EnemyRun
-		else:
-			velocity.x = -EnemyRun
-		
-		if velocity.x < 0:
-			animated_sprite_2d.flip_h = true
-		elif velocity.x > 0:
-			animated_sprite_2d.flip_h = false 
-		
+	if not is_on_floor():
+		velocity.y += gravity * delta
+	var move_input = pivot.scale.x
+	velocity.x = move_toward(velocity.x, move_input * max_speed, acceleration * delta)
 	move_and_slide()
+	
+	if ray_cast_2d.is_colliding():
+		pivot.scale.x *= -1
 
 func _on_timer_timeout():
 	if dead:
@@ -55,6 +54,7 @@ func _on_timer_timeout():
 		hurt.disabled = true
 		set_collision_layer_value(6, true)
 		set_collision_mask_value(6, true)
+		ray_cast_2d.set_collision_mask_value(6, true)
 		choque.disabled = true
 		timer.start()
 	else:
@@ -68,6 +68,7 @@ func _on_timer_timeout():
 			hurt.disabled = false
 		set_collision_layer_value(1, true)
 		set_collision_mask_value(1, true)
+		ray_cast_2d.set_collision_mask_value(1, true)
 		choque.disabled = false
 		timer.start()
 
@@ -102,10 +103,8 @@ func take_damage(damage):
 	collision_mask = 0
 	set_collision_layer_value(5, true)
 	set_collision_mask_value(5, true)
-	audio_stream_player_2d.play()
+	AudioManager.play_sfx(DeathSound)
 	await animated_sprite_2d.animation_finished
-	animated_sprite_2d.visible = false
-	await get_tree().create_timer(1.2).timeout
 	queue_free()
 
 func _on_area_2d_body_entered(body: Node2D) -> void:

@@ -3,59 +3,56 @@ extends CharacterBody2D
 
 signal muerte
 
-const Gravedad = 98
 @export var count = 1
-@export var EnemyRun = 70
+@export var max_speed:float = 80
+@export var jump_speed:float = 400
+@export var gravity:float = 600
+@export var acceleration:float = 300
 
-@onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
+@export var DeathSound: AudioStream
+
+@onready var pivot: Node2D = $Pivot
+@onready var ray_cast_2d: RayCast2D = $Pivot/RayCast2D
+@onready var animated_sprite_2d: AnimatedSprite2D = $Pivot/AnimatedSprite2D
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
-@onready var hit: CollisionShape2D = $AnimatedSprite2D/Hitbox/hit
-@onready var hurt: CollisionShape2D = $AnimatedSprite2D/Hurtbox/hurt
+@onready var hit: CollisionShape2D = $Pivot/AnimatedSprite2D/Hitbox/hit
+@onready var hurt: CollisionShape2D = $Pivot/AnimatedSprite2D/Hurtbox/hurt
 @onready var timer: Timer = $Timer
-@onready var audio_stream_player_2d: AudioStreamPlayer2D = $AudioStreamPlayer2D
+
+var is_boost: bool = false
 
 func _ready():
-	velocity.x = EnemyRun
 	animated_sprite_2d.play("Run_Enemy")
 	timer.timeout.connect(_on_timer_timeout)
 	timer.start()
 
 func _physics_process(delta):
-	velocity.y += Gravedad
-	
-	if is_on_wall():
-		if animated_sprite_2d.flip_h:
-			velocity.x = EnemyRun
-		else:
-			velocity.x = -EnemyRun
-		
-		if velocity.x < 0:
-			animated_sprite_2d.flip_h = true
-		elif velocity.x > 0:
-			animated_sprite_2d.flip_h = false 
-			
+	if not is_on_floor():
+		velocity.y += gravity * delta
+	var move_input = pivot.scale.x
+	var effective_speed: float
+	if is_boost:
+		effective_speed = max_speed * 3.4
+	else:
+		effective_speed = max_speed
+	velocity.x = move_toward(velocity.x, move_input * effective_speed, acceleration * delta)
+	if ray_cast_2d.is_colliding():
+		pivot.scale.x *= -1
 	move_and_slide()
 	
 func _on_timer_timeout():
 	if count % 2 == 0:
+		is_boost = true
 		count += 1
-		if velocity.x < 0:
-			velocity.x = -200
-		elif velocity.x > 0:
-			velocity.x = 200
-		timer.start()
 	else:
+		is_boost = false
 		count += 1
-		if velocity.x < 0:
-			velocity.x = -70
-		elif velocity.x > 0:
-			velocity.x = 70
-		timer.start()
+	timer.start()
 
 func take_damage(damage):
 	Debug.log("Auch %d" % damage)
 	animated_sprite_2d.play("Death_Enemy")
-	audio_stream_player_2d.play()
+	AudioManager.play_sfx(DeathSound)
 	muerte.emit()
 	hit.queue_free()
 	hurt.queue_free()

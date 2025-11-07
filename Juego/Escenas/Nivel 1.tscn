@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=4 uid="uid://bxexks2uxxwkv"]
+[gd_scene load_steps=32 format=4 uid="uid://bxexks2uxxwkv"]
 
 [ext_resource type="Script" uid="uid://fj1up30kgnv" path="res://Scripts/nivel_1.gd" id="1_4up6v"]
 [ext_resource type="Texture2D" uid="uid://djihl1lktimu7" path="res://Recursos/FreePlatformerNA - aamatniekss/Background/CloudsBack.png" id="2_385iw"]
@@ -13,7 +13,6 @@
 [ext_resource type="PackedScene" uid="uid://dovbpdstd0h3c" path="res://Escenas/enemy_jump.tscn" id="11_7c7rb"]
 [ext_resource type="PackedScene" uid="uid://0xtwyt7jfgkm" path="res://Escenas/enemy.tscn" id="12_n81dc"]
 [ext_resource type="Texture2D" uid="uid://6ywfpkw3m3r0" path="res://Recursos/flag animation.png" id="13_788mi"]
-[ext_resource type="AudioStream" uid="uid://5kvqs3uccd1c" path="res://Recursos/Chiptune2.wav" id="14_gdqat"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_irylq"]
 vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
@@ -810,7 +809,7 @@ tile_map_data = PackedByteArray("AAAfACQAAAAIAAIAAAAeACQAAAAHAAIAAAAdACQAAAAIAAI
 tile_set = SubResource("TileSet_wqotv")
 
 [node name="Player" parent="." instance=ExtResource("8_g7emt")]
-position = Vector2(-79, 463)
+position = Vector2(60, 499)
 scale = Vector2(1.5, 1.5)
 
 [node name="PauseMenu" parent="." instance=ExtResource("9_ocxq6")]
@@ -832,20 +831,20 @@ shape = SubResource("WorldBoundaryShape2D_spkme")
 [node name="Enemy_Ghost" parent="." instance=ExtResource("10_d4pw5")]
 position = Vector2(2511, 547)
 
+[node name="Enemy_Ghost2" parent="." instance=ExtResource("10_d4pw5")]
+position = Vector2(3275, 544)
+
 [node name="Enemy_Jump" parent="." instance=ExtResource("11_7c7rb")]
 position = Vector2(1603, 501)
+
+[node name="Enemy_Jump2" parent="." instance=ExtResource("11_7c7rb")]
+position = Vector2(1736, 535)
 
 [node name="Enemy_Jump3" parent="." instance=ExtResource("11_7c7rb")]
 position = Vector2(3763, 552)
 
 [node name="Enemy" parent="." instance=ExtResource("12_n81dc")]
 position = Vector2(248, 557)
-
-[node name="Enemy_Ghost2" parent="." instance=ExtResource("10_d4pw5")]
-position = Vector2(3291, 554)
-
-[node name="Enemy_Jump2" parent="." instance=ExtResource("11_7c7rb")]
-position = Vector2(1736, 535)
 
 [node name="Area2D" type="Area2D" parent="."]
 
@@ -865,10 +864,6 @@ scale = Vector2(1.5333338, 1.5333338)
 sprite_frames = SubResource("SpriteFrames_rkv30")
 animation = &"Flag"
 autoplay = "Flag"
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("14_gdqat")
-autoplay = true
 
 [connection signal="body_entered" from="Area2D" to="Player" method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="Win" to="Player" method="_on_win_body_entered"]

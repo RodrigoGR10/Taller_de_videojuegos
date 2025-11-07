@@ -1,20 +1,25 @@
+class_name Level_1
 extends Node2D
 
 @onready var player: Player = $Player
 @onready var enemy_ghost: Enemy_Ghost = $Enemy_Ghost
+@onready var enemy_ghost_2: Enemy_Ghost = $Enemy_Ghost2
 @onready var enemy_jump: Enemy_Jump = $Enemy_Jump
+@onready var enemy_jump_2: Enemy_Jump = $Enemy_Jump2
 @onready var enemy_jump_3: Enemy_Jump = $Enemy_Jump3
 @onready var enemy: Enemy = $Enemy
-@onready var enemy_ghost_2: Enemy_Ghost = $Enemy_Ghost2
-@onready var enemy_jump_2: Enemy_Jump = $Enemy_Jump2
 
 func _ready() -> void:
+	Debug.log(LevelManager.current_level)
+	AudioManager.start_music()
 	enemy.muerte.connect(_on_body_contact)
 	enemy_jump.muerte_jump.connect(_on_jump_enemy_contact)
 	enemy_jump_2.muerte_jump.connect(_on_jump_enemy_contact)
 	enemy_jump_3.muerte_jump.connect(_on_jump_enemy_contact)
 	enemy_ghost.muerte_ghost.connect(_on_body_ghost_contact)
 	enemy_ghost_2.muerte_ghost.connect(_on_body_ghost_contact)
+	enemy_ghost.colisión_jugador.connect(_empuje)
+	enemy_ghost_2.colisión_jugador.connect(_empuje)
 
 func _on_body_ghost_contact():
 	player.velocity.y = -player.jump_speed/3
@@ -70,3 +75,7 @@ func _on_jump_enemy_contact():
 		player.count_visible = 0
 	if player.run_count != 0:
 		player.run_count = 0
+
+func _empuje():
+	player.position.x -= 60
+	player.take_damage(1)

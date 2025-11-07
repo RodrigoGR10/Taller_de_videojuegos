@@ -4,7 +4,7 @@ extends Node
 @export var credits: PackedScene
 @export var levels: Array[PackedScene] = []
 
-var current_level = -1
+var current_level = 0
 
 func go_to_next_level():
 	current_level += 1
@@ -12,6 +12,10 @@ func go_to_next_level():
 		get_tree().change_scene_to_packed(levels[current_level])
 	else:
 		go_to_credits()
+		
+func retry_level():
+	Debug.log(current_level)
+	get_tree().change_scene_to_packed(levels[current_level])
 
 func go_to_main_menu():
 	if main_menu:

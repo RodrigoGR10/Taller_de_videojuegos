@@ -1,11 +1,10 @@
-[gd_scene load_steps=19 format=3 uid="uid://er8vijr0f56b"]
+[gd_scene load_steps=23 format=3 uid="uid://er8vijr0f56b"]
 
 [ext_resource type="Script" uid="uid://c7er4cqs0rsm7" path="res://Escenas/UI/main_menu.gd" id="1_p8ccj"]
 [ext_resource type="FontFile" uid="uid://qv1kfvhhvv01" path="res://Recursos/Crosterian.ttf" id="2_f02rb"]
 [ext_resource type="Texture2D" uid="uid://x4pdf1v6ftth" path="res://Recursos/FreePlatformerNA - aamatniekss/Mockup.png" id="2_yrk5d"]
 [ext_resource type="StyleBox" uid="uid://bapimv1vjh0n5" path="res://Recursos/Botones.tres" id="3_gplya"]
 [ext_resource type="AudioStream" uid="uid://cngbicpkum1xd" path="res://Recursos/FreeSFX - kronbits/GameSFX/Events/Retro Event UI 01.wav" id="5_m7m47"]
-[ext_resource type="AudioStream" uid="uid://3g5yaod3qmgu" path="res://Recursos/Chiptune595.wav" id="6_grecs"]
 [ext_resource type="Texture2D" uid="uid://8v3k7gl27sxt" path="res://Recursos/Pixel Keys x16/Tiles White/pxkw_w.png" id="7_j35u7"]
 [ext_resource type="Texture2D" uid="uid://rme2mwohlvm7" path="res://Recursos/Pixel Keys x16/Tiles White/pxkw_a.png" id="8_tic74"]
 [ext_resource type="Texture2D" uid="uid://bqc2fjvsjqa2r" path="res://Recursos/Pixel Keys x16/Tiles White/pxkw_s.png" id="9_r7tei"]
@@ -13,6 +12,8 @@
 [ext_resource type="Texture2D" uid="uid://cpbyp8adv0gtt" path="res://Recursos/Pixel Keys x16/Tiles White/pxkw_r.png" id="11_e1ns3"]
 [ext_resource type="Texture2D" uid="uid://bq70l5vo4xwkh" path="res://Recursos/Pixel Keys x16/Tiles White/pxkw_p.png" id="12_sim1c"]
 [ext_resource type="Texture2D" uid="uid://ct6kpwhh6djhf" path="res://Recursos/Pixel Keys x16/Tiles White/pxkw_space_2.png" id="13_8rryh"]
+[ext_resource type="Texture2D" uid="uid://cn4u215xg7jop" path="res://Recursos/Lucid V1.2/SVG/Flat/Speaker-0.svg" id="13_tic74"]
+[ext_resource type="Texture2D" uid="uid://b1k8xbm84tlu4" path="res://Recursos/Lucid V1.2/SVG/Flat/Music-0.svg" id="14_r7tei"]
 
 [sub_resource type="Animation" id="Animation_ottec"]
 length = 0.001
@@ -55,37 +56,47 @@ _data = {
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m7m47"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hto3m"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tic74"]
 bg_color = Color(0.103743516, 0.103743546, 0.10374347, 0.5411765)
 corner_radius_top_left = 20
 corner_radius_top_right = 20
 corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r7tei"]
+bg_color = Color(0.103743516, 0.103743546, 0.10374347, 0.5411765)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_yjhih"]
+color = Color(0.34117648, 0.13725491, 0.39215687, 1)
+thickness = 6
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_e1ns3"]
+color = Color(0.34117648, 0.13725491, 0.39215687, 1)
+thickness = 6
+
 [node name="MainMenu" type="Control"]
 layout_mode = 3
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_p8ccj")
+ButtonSound = ExtResource("5_m7m47")
 
 [node name="Retry_Anim" type="Node2D" parent="."]
 z_index = 1
-position = Vector2(-59, -47)
+position = Vector2(-57, -55)
 
 [node name="ColorRect" type="ColorRect" parent="Retry_Anim"]
-offset_left = -371.0
-offset_top = -283.0
-offset_right = 529.0
-offset_bottom = 417.0
+offset_left = 57.0
+offset_top = 55.0
+offset_right = 957.0
+offset_bottom = 755.0
 size_flags_stretch_ratio = 0.0
 color = Color(0, 0, 0, 1)
 
@@ -98,7 +109,7 @@ libraries = {
 position = Vector2(-288, -180)
 
 [node name="Mockup" type="Sprite2D" parent="Fondo"]
-position = Vector2(368.60004, 201.00006)
+position = Vector2(782, 532)
 scale = Vector2(2.2250004, 2.2250004)
 texture = ExtResource("2_yrk5d")
 
@@ -180,6 +191,26 @@ theme_override_styles/focus = ExtResource("3_gplya")
 text = "Controls"
 expand_icon = true
 
+[node name="AudioSettings" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_f02rb")
+theme_override_font_sizes/font_size = 36
+theme_override_styles/normal = ExtResource("3_gplya")
+theme_override_styles/normal_mirrored = ExtResource("3_gplya")
+theme_override_styles/pressed = ExtResource("3_gplya")
+theme_override_styles/pressed_mirrored = ExtResource("3_gplya")
+theme_override_styles/hover = ExtResource("3_gplya")
+theme_override_styles/hover_mirrored = ExtResource("3_gplya")
+theme_override_styles/hover_pressed = ExtResource("3_gplya")
+theme_override_styles/hover_pressed_mirrored = ExtResource("3_gplya")
+theme_override_styles/disabled = ExtResource("3_gplya")
+theme_override_styles/disabled_mirrored = ExtResource("3_gplya")
+theme_override_styles/focus = ExtResource("3_gplya")
+text = "Audio Settings"
+expand_icon = true
+
 [node name="CreditsButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
@@ -218,73 +249,66 @@ theme_override_styles/disabled_mirrored = ExtResource("3_gplya")
 theme_override_styles/focus = ExtResource("3_gplya")
 text = "Quit"
 
-[node name="Botones" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("5_m7m47")
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("6_grecs")
-autoplay = true
-
-[node name="Panel" type="Panel" parent="."]
+[node name="Controls_Panel" type="Panel" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -291.0
-offset_top = -289.0
-offset_right = 308.0
-offset_bottom = 310.0
+offset_left = 73.0
+offset_top = 64.0
+offset_right = -80.0
+offset_bottom = -55.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_hto3m")
+theme_override_styles/panel = SubResource("StyleBoxFlat_tic74")
 
-[node name="PxkwW" type="Sprite2D" parent="Panel"]
-position = Vector2(473.00006, 93.00006)
+[node name="PxkwW" type="Sprite2D" parent="Controls_Panel"]
+position = Vector2(507.00012, 104.00006)
 scale = Vector2(2.75, 2.75)
 texture = ExtResource("7_j35u7")
 
-[node name="PxkwA" type="Sprite2D" parent="Panel"]
-position = Vector2(473.00006, 170.00003)
+[node name="PxkwA" type="Sprite2D" parent="Controls_Panel"]
+position = Vector2(507.00012, 168.00003)
 scale = Vector2(2.75, 2.75)
 texture = ExtResource("8_tic74")
 
-[node name="PxkwS" type="Sprite2D" parent="Panel"]
-position = Vector2(473.00006, 247.00009)
+[node name="PxkwS" type="Sprite2D" parent="Controls_Panel"]
+position = Vector2(507.00012, 229.00012)
 scale = Vector2(2.75, 2.75)
 texture = ExtResource("9_r7tei")
 
-[node name="PxkwD" type="Sprite2D" parent="Panel"]
-position = Vector2(473.00006, 324)
+[node name="PxkwD" type="Sprite2D" parent="Controls_Panel"]
+position = Vector2(507.00012, 287.99997)
 scale = Vector2(2.75, 2.75)
 texture = ExtResource("10_yjhih")
 
-[node name="PxkwR" type="Sprite2D" parent="Panel"]
-position = Vector2(473.00006, 400.99997)
+[node name="PxkwR" type="Sprite2D" parent="Controls_Panel"]
+position = Vector2(507.00012, 345.99994)
 scale = Vector2(2.75, 2.75)
 texture = ExtResource("11_e1ns3")
 
-[node name="PxkwP" type="Sprite2D" parent="Panel"]
-position = Vector2(473.00006, 478)
+[node name="PxkwP" type="Sprite2D" parent="Controls_Panel"]
+position = Vector2(507.00012, 405.00006)
 scale = Vector2(2.75, 2.75)
 texture = ExtResource("12_sim1c")
 
-[node name="PxkwSpace2" type="Sprite2D" parent="Panel"]
-position = Vector2(473.00006, 555)
+[node name="PxkwSpace2" type="Sprite2D" parent="Controls_Panel"]
+position = Vector2(507.00012, 467.99997)
 scale = Vector2(2.75, 2.75)
 texture = ExtResource("13_8rryh")
 
-[node name="Label2" type="Label" parent="Panel"]
+[node name="Label2" type="Label" parent="Controls_Panel"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -215.5
-offset_top = 70.0
-offset_right = -29.5
-offset_bottom = 587.0
+offset_left = -181.5
+offset_top = 86.0
+offset_right = 4.5
+offset_bottom = 603.0
 grow_horizontal = 2
 theme_override_fonts/font = ExtResource("2_f02rb")
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 25
 text = "Jump
 
 Left
@@ -299,21 +323,137 @@ Pause
 
 Jump"
 
-[node name="Label" type="Label" parent="Panel"]
+[node name="Label" type="Label" parent="Controls_Panel"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -151.5
-offset_top = 8.0
-offset_right = 134.5
-offset_bottom = 52.0
+offset_left = -143.0
+offset_top = 16.0
+offset_right = 143.0
+offset_bottom = 60.0
 grow_horizontal = 2
 theme_override_fonts/font = ExtResource("2_f02rb")
-theme_override_font_sizes/font_size = 40
+theme_override_font_sizes/font_size = 28
 text = "Controls"
+horizontal_alignment = 1
 
-[node name="ReturnButton" type="Button" parent="Panel"]
+[node name="ReturnButton" type="Button" parent="Controls_Panel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -54.0
+offset_top = -56.0
+offset_right = 54.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_f02rb")
+theme_override_font_sizes/font_size = 12
+theme_override_styles/normal = ExtResource("3_gplya")
+theme_override_styles/normal_mirrored = ExtResource("3_gplya")
+theme_override_styles/pressed = ExtResource("3_gplya")
+theme_override_styles/pressed_mirrored = ExtResource("3_gplya")
+theme_override_styles/hover = ExtResource("3_gplya")
+theme_override_styles/hover_mirrored = ExtResource("3_gplya")
+theme_override_styles/hover_pressed = ExtResource("3_gplya")
+theme_override_styles/hover_pressed_mirrored = ExtResource("3_gplya")
+theme_override_styles/disabled = ExtResource("3_gplya")
+theme_override_styles/disabled_mirrored = ExtResource("3_gplya")
+theme_override_styles/focus = ExtResource("3_gplya")
+text = "Return"
+
+[node name="Audio_Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 73.0
+offset_top = 64.0
+offset_right = -80.0
+offset_bottom = -55.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_r7tei")
+
+[node name="Label" type="Label" parent="Audio_Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -143.0
+offset_top = 16.0
+offset_right = 143.0
+offset_bottom = 60.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_f02rb")
+theme_override_font_sizes/font_size = 28
+text = "Audio Settings"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="Audio_Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -160.5
+offset_top = 112.0
+offset_right = 160.5
+offset_bottom = 156.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_f02rb")
+theme_override_font_sizes/font_size = 28
+text = "Music"
+horizontal_alignment = 1
+
+[node name="Speaker0" type="Sprite2D" parent="Audio_Panel"]
+position = Vector2(164, 183.99985)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("13_tic74")
+
+[node name="Music" type="HSlider" parent="Audio_Panel"]
+layout_mode = 0
+offset_left = 204.0
+offset_top = 175.0
+offset_right = 582.0
+offset_bottom = 191.0
+theme_override_styles/grabber_area = SubResource("StyleBoxLine_yjhih")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxLine_yjhih")
+
+[node name="Label3" type="Label" parent="Audio_Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -160.5
+offset_top = 299.0
+offset_right = 160.5
+offset_bottom = 343.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_f02rb")
+theme_override_font_sizes/font_size = 28
+text = "Sfx"
+horizontal_alignment = 1
+
+[node name="Music0" type="Sprite2D" parent="Audio_Panel"]
+position = Vector2(164, 362)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("14_r7tei")
+
+[node name="Sfx" type="HSlider" parent="Audio_Panel"]
+layout_mode = 0
+offset_left = 204.0
+offset_top = 353.0
+offset_right = 582.0
+offset_bottom = 369.0
+theme_override_styles/grabber_area = SubResource("StyleBoxLine_e1ns3")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxLine_e1ns3")
+
+[node name="ReturnButton_2" type="Button" parent="Audio_Panel"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5

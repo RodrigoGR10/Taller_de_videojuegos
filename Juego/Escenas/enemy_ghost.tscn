@@ -7,6 +7,9 @@
 [ext_resource type="Script" uid="uid://djlmfx8oq45aq" path="res://Componentes/hitbox.gd" id="5_omru3"]
 [ext_resource type="AudioStream" uid="uid://dhnmqlowumbwr" path="res://Recursos/639426__laurenponder__cartoony-ghost.wav" id="6_psm2m"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7kldh"]
+size = Vector2(14, 18)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_lwpho"]
 atlas = ExtResource("2_psm2m")
 region = Rect2(0, 0, 160, 160)
@@ -112,70 +115,71 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vux58"]
-size = Vector2(49.393745, 7.5990334)
+size = Vector2(64.59183, 7.5990334)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5a4xh"]
-size = Vector2(68.391365, 77.66463)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_7kldh"]
-size = Vector2(13, 21)
+size = Vector2(60.79232, 70.0656)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4ufbt"]
+size = Vector2(12, 14)
 
 [node name="Enemy_Ghost" type="CharacterBody2D"]
-collision_layer = 33
-collision_mask = 33
+collision_layer = 96
+collision_mask = 96
 script = ExtResource("1_4ufbt")
+DeathSound = ExtResource("6_psm2m")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(3.0000002, -1)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, -1)
+shape = SubResource("RectangleShape2D_7kldh")
+
+[node name="Pivot" type="Node2D" parent="."]
+
+[node name="RayCast2D" type="RayCast2D" parent="Pivot"]
+target_position = Vector2(17, 0)
+collision_mask = 97
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Pivot"]
+position = Vector2(1, -1)
 scale = Vector2(0.15117188, 0.15117188)
 sprite_frames = SubResource("SpriteFrames_326j0")
 animation = &"Run_Enemy"
 autoplay = "Run_Enemy"
 frame_progress = 0.4929422
 
-[node name="Hurtbox" type="Area2D" parent="AnimatedSprite2D"]
-position = Vector2(18.417265, -25.323738)
+[node name="Hurtbox" type="Area2D" parent="Pivot/AnimatedSprite2D"]
+position = Vector2(31.647243, -25.323738)
 scale = Vector2(1.7410071, 1.7410071)
 collision_layer = 16
 collision_mask = 8
 script = ExtResource("4_mo3ox")
 metadata/_custom_type_script = "uid://uotkkabbnbwq"
 
-[node name="hurt" type="CollisionShape2D" parent="AnimatedSprite2D/Hurtbox"]
-position = Vector2(-27.67635, -27.249239)
+[node name="hurt" type="CollisionShape2D" parent="Pivot/AnimatedSprite2D/Hurtbox"]
+position = Vector2(-20.077309, -27.249239)
 scale = Vector2(0.9999997, 0.9999997)
 shape = SubResource("RectangleShape2D_vux58")
 
-[node name="Hitbox" type="Area2D" parent="AnimatedSprite2D"]
-position = Vector2(18.417265, -25.323738)
+[node name="Hitbox" type="Area2D" parent="Pivot/AnimatedSprite2D"]
+position = Vector2(31.647243, -25.323738)
 scale = Vector2(1.7410071, 1.7410071)
 collision_layer = 4
 collision_mask = 2
 script = ExtResource("5_omru3")
 metadata/_custom_type_script = "uid://djlmfx8oq45aq"
 
-[node name="hit" type="CollisionShape2D" parent="AnimatedSprite2D/Hitbox"]
-position = Vector2(-29.576109, 15.382574)
+[node name="hit" type="CollisionShape2D" parent="Pivot/AnimatedSprite2D/Hitbox"]
+position = Vector2(-18.177551, 14.545454)
 scale = Vector2(0.99999934, 0.99999934)
 shape = SubResource("RectangleShape2D_5a4xh")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1.5, -1.5)
-shape = SubResource("RectangleShape2D_7kldh")
+[node name="Area2D" type="Area2D" parent="Pivot"]
+
+[node name="Choque" type="CollisionShape2D" parent="Pivot/Area2D"]
+position = Vector2(1, -1)
+shape = SubResource("RectangleShape2D_4ufbt")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 2.0
 
-[node name="Area2D" type="Area2D" parent="."]
-
-[node name="Choque" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("RectangleShape2D_4ufbt")
-
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("6_psm2m")
-volume_db = 24.0
-bus = &"Sfx"
-
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Pivot/Area2D" to="." method="_on_area_2d_body_entered"]

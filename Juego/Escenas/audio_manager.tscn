@@ -1,0 +1,31 @@
+[gd_scene load_steps=7 format=3 uid="uid://bfp1ol25ybhsg"]
+
+[ext_resource type="Script" uid="uid://dlx4481fvnfrf" path="res://Scripts/audio_manager.gd" id="1_88f8n"]
+[ext_resource type="AudioStream" uid="uid://5kvqs3uccd1c" path="res://Recursos/Chiptune2.wav" id="2_a6102"]
+[ext_resource type="AudioStream" uid="uid://3g5yaod3qmgu" path="res://Recursos/Chiptune595.wav" id="3_a6102"]
+[ext_resource type="AudioStream" uid="uid://c50td28at8qjb" path="res://Recursos/calm_theme.ogg" id="4_3qq0w"]
+[ext_resource type="AudioStream" uid="uid://24npg2tkupfs" path="res://Recursos/470083__sheyvan__music-orchestral-victory-fanfare.wav" id="4_fswfj"]
+[ext_resource type="AudioStream" uid="uid://bf25jq3c4gqta" path="res://Recursos/game_over.mp3" id="5_bduxh"]
+
+[node name="AudioManager" type="Node"]
+script = ExtResource("1_88f8n")
+
+[node name="MainMenu" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_a6102")
+bus = &"Music"
+
+[node name="Levels" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_a6102")
+bus = &"Music"
+
+[node name="Win" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_fswfj")
+bus = &"Music"
+
+[node name="GameOver" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_bduxh")
+bus = &"Music"
+
+[node name="Creditos" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_3qq0w")
+bus = &"Music"

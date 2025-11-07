@@ -1,10 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://dqf7xwpmy24uv"]
+[gd_scene load_steps=6 format=3 uid="uid://dqf7xwpmy24uv"]
 
 [ext_resource type="FontFile" uid="uid://qv1kfvhhvv01" path="res://Recursos/Crosterian.ttf" id="1_37yi2"]
 [ext_resource type="Script" uid="uid://h8n4fyuravem" path="res://Scripts/game_over.gd" id="1_b2ges"]
 [ext_resource type="StyleBox" uid="uid://bapimv1vjh0n5" path="res://Recursos/Botones.tres" id="2_b2ges"]
 [ext_resource type="AudioStream" uid="uid://cngbicpkum1xd" path="res://Recursos/FreeSFX - kronbits/GameSFX/Events/Retro Event UI 01.wav" id="4_wv832"]
-[ext_resource type="AudioStream" uid="uid://bf25jq3c4gqta" path="res://Recursos/game_over.mp3" id="5_rtfuk"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b2ges"]
 bg_color = Color(0.6, 0.6, 0.6, 0.05490196)
@@ -21,6 +20,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_b2ges")
+ButtonSound = ExtResource("4_wv832")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -119,12 +119,3 @@ theme_override_styles/disabled = ExtResource("2_b2ges")
 theme_override_styles/disabled_mirrored = ExtResource("2_b2ges")
 theme_override_styles/focus = ExtResource("2_b2ges")
 text = "Quit"
-
-[node name="Botones" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("4_wv832")
-bus = &"Sfx"
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("5_rtfuk")
-autoplay = true
-bus = &"Music"

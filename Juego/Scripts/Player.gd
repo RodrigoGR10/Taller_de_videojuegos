@@ -16,6 +16,10 @@ extends CharacterBody2D
 @export var was_on_floor:bool = true
 @export var floor:bool = false
 
+var special_active: bool = false
+
+@export var JumpSound: AudioStream
+@export var DañoSound: AudioStream
 
 @export var dust_particles_scene: PackedScene
 
@@ -26,7 +30,6 @@ extends CharacterBody2D
 @onready var pivot: Node2D = $Pivot
 @onready var collision_shape_2d: CollisionShape2D = $Pivot/Mage/Hitbox/CollisionShape2D
 @onready var hitbox: Area2D = $Pivot/Mage/Hitbox
-@onready var muerte: AudioStreamPlayer2D = $Muerte
 @onready var collision_shape_player: CollisionShape2D = $CollisionShapePlayer
 @onready var vida_jugador: Label = $Puntuacion/Vida_Jugador
 @onready var heart: Sprite2D = $Puntuacion/Heart
@@ -41,15 +44,11 @@ extends CharacterBody2D
 @onready var color_rect: ColorRect = $Puntuacion/Retry_Anim/ColorRect
 @onready var animation_r: AnimationPlayer = $Puntuacion/Retry_Anim/Animation_R
 @onready var camera_2d: Camera2D = $Camera2D
-@onready var jump: AudioStreamPlayer = $Jump
-@onready var daño: AudioStreamPlayer = $Daño
 @onready var c_f: CollisionShape2D = $Colision_Fantasma/C_F
 @onready var dust_spawn: Marker2D = $DustSpawn
 @onready var jump_hud: Sprite2D = $Puntuacion/MarginContainer/PanelContainer/Jump_hud
 @onready var invisibility_hub: Sprite2D = $Puntuacion/MarginContainer/PanelContainer/invisibility_hub
 @onready var run_hud: Sprite2D = $Puntuacion/MarginContainer/PanelContainer/run_hud
-@onready var enemy_ghost: Enemy_Ghost = $"../Enemy_Ghost"
-@onready var enemy_ghost_2: Enemy_Ghost = $"../Enemy_Ghost2"
 
 func _ready() -> void:
 	animation_r.play("Retry")
@@ -61,8 +60,6 @@ func _ready() -> void:
 	invisibility_hub.visible = false
 	run_hud.visible = false
 	timer.timeout.connect(_on_timer_timeout)
-	enemy_ghost.colisión_jugador.connect(_empuje)
-	enemy_ghost_2.colisión_jugador.connect(_empuje)
 	
 func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("Retry"):
@@ -77,7 +74,7 @@ func _physics_process(delta: float) -> void:
 			await get_tree().create_timer(0.01).timeout
 			velocity.y = -jump_speed
 			jump_count -= 1
-			jump.play()
+			AudioManager.play_sfx(JumpSound)
 			if jump_count == 0:
 				extra_jump = false
 				jump_hud.visible = false
@@ -89,7 +86,8 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("bajar"):
 		velocity.y = +jump_speed/4
 		
-	if Visible == true and Input.is_action_just_pressed("Especial") and count_visible != 0:
+	if Visible == true and Input.is_action_just_pressed("Especial") and count_visible != 0 and not special_active:
+		special_active = true
 		mage.modulate.a = 0.4
 		collision_layer = 0
 		collision_mask  = 0
@@ -117,8 +115,10 @@ func _physics_process(delta: float) -> void:
 		if count_visible == 0:
 			Visible = false
 			invisibility_hub.visible = false
+		special_active = false
 		
-	if is_on_floor() and run == true and run_count != 0 and Input.is_action_just_pressed("Especial"):
+	if is_on_floor() and run == true and run_count != 0 and Input.is_action_just_pressed("Especial") and not special_active:
+		special_active = true
 		max_speed = 400
 		progress_bar.value = 100
 		progress_bar.visible = true
@@ -132,10 +132,11 @@ func _physics_process(delta: float) -> void:
 			Debug.log("No more runs")
 		max_speed = 150
 		Debug.log(run_count)
+		special_active = false
 		
 	if is_on_floor() and Input.is_action_just_pressed("saltar"):
 		velocity.y = -jump_speed
-		jump.play()
+		AudioManager.play_sfx(JumpSound)
 		
 	var move_input = Input.get_axis("mover_izquierda","mover_derecha")
 	velocity.x = move_toward(velocity.x, move_input * max_speed, acceleration * delta)
@@ -165,7 +166,7 @@ func _physics_process(delta: float) -> void:
 		
 func take_damage(damage):
 	camera_2d.apply_shake()
-	daño.play()
+	AudioManager.play_sfx(DañoSound)
 	velocity.x = -max_speed/2
 	velocity.y = -jump_speed/3
 	heal -= damage
@@ -197,11 +198,10 @@ func _on_win_body_entered(body: Node2D) -> void:
 	if body is Player:
 		animation_r.play_backwards("Retry")
 		await animation_r.animation_finished
-		get_tree().change_scene_to_file("res://Escenas/win.tscn")
-		
-func _empuje():
-	position.x -= 60
-	take_damage(1)
+		if LevelManager.levels.size() > LevelManager.current_level + 1:
+			get_tree().change_scene_to_file("res://Escenas/win.tscn")
+		else:
+			LevelManager.go_to_credits()
 
 func _on_colision_fantasma_body_entered(body: Node2D) -> void:
 	if body is Enemy or body is Enemy_Ghost or body is Enemy_Jump or body is Paredes_invisibles:

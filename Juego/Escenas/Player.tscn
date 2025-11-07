@@ -15,7 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://374do6xr7ua1" path="res://Escenas/Dust_particles.tscn" id="13_gs42a"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e6cd0"]
-size = Vector2(22, 23)
+size = Vector2(18, 23)
 
 [sub_resource type="Animation" id="Animation_hhy33"]
 resource_name = "Attack"
@@ -211,7 +211,7 @@ nodes/movement/position = Vector2(-293.333, 133.333)
 node_connections = [&"output", 0, &"Attack", &"Attack", 0, &"movement", &"Attack", 1, &"Animation"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hhy33"]
-size = Vector2(20, 4)
+size = Vector2(22, 5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kwdw2"]
 size = Vector2(22, 24)
@@ -299,10 +299,12 @@ _data = {
 collision_layer = 9
 collision_mask = 9
 script = ExtResource("1_e6cd0")
+JumpSound = ExtResource("11_gs42a")
+"DañoSound" = ExtResource("12_f3cnb")
 dust_particles_scene = ExtResource("13_gs42a")
 
 [node name="CollisionShapePlayer" type="CollisionShape2D" parent="."]
-position = Vector2(0, 0.5)
+position = Vector2(1, 0.5)
 shape = SubResource("RectangleShape2D_e6cd0")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -334,7 +336,7 @@ script = ExtResource("4_hhy33")
 metadata/_custom_type_script = "uid://djlmfx8oq45aq"
 
 [node name="hit" type="CollisionShape2D" parent="Pivot/Mage/Hitbox"]
-position = Vector2(-25, 18)
+position = Vector2(-25, 18.5)
 shape = SubResource("RectangleShape2D_hhy33")
 
 [node name="Hurtbox" type="Area2D" parent="Pivot/Mage"]
@@ -441,14 +443,6 @@ script = ExtResource("10_t27sq")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.2
-
-[node name="Jump" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("11_gs42a")
-volume_db = 24.0
-
-[node name="Daño" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("12_f3cnb")
-volume_db = 24.0
 
 [node name="Colision_Fantasma" type="Area2D" parent="."]
 

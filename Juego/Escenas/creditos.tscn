@@ -1,10 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://d0e4bx2y818c8"]
+[gd_scene load_steps=12 format=3 uid="uid://d0e4bx2y818c8"]
 
 [ext_resource type="Script" uid="uid://3li4vg0fqtvt" path="res://Scripts/creditos.gd" id="1_1345a"]
 [ext_resource type="FontFile" uid="uid://qv1kfvhhvv01" path="res://Recursos/Crosterian.ttf" id="4_nloxq"]
 [ext_resource type="AudioStream" uid="uid://cngbicpkum1xd" path="res://Recursos/FreeSFX - kronbits/GameSFX/Events/Retro Event UI 01.wav" id="4_wyl42"]
 [ext_resource type="StyleBox" uid="uid://bapimv1vjh0n5" path="res://Recursos/Botones.tres" id="5_7rl0q"]
-[ext_resource type="AudioStream" uid="uid://c50td28at8qjb" path="res://Recursos/calm_theme.ogg" id="5_nloxq"]
 
 [sub_resource type="Animation" id="Animation_ottec"]
 length = 0.001
@@ -118,6 +117,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_1345a")
+ButtonSound = ExtResource("4_wyl42")
 
 [node name="ColorRect2" type="ColorRect" parent="."]
 layout_mode = 0
@@ -287,13 +287,6 @@ Thank you for playing Absorb!!"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 1
-
-[node name="Botones" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("4_wyl42")
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("5_nloxq")
-autoplay = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
