@@ -50,6 +50,11 @@ var special_active: bool = false
 @onready var invisibility_hub: Sprite2D = $Puntuacion/MarginContainer/PanelContainer/invisibility_hub
 @onready var run_hud: Sprite2D = $Puntuacion/MarginContainer/PanelContainer/run_hud
 
+@onready var poder_acum_1: MarginContainer = $Puntuacion/PoderAcum1
+@onready var poder_acum_2: MarginContainer = $Puntuacion/PoderAcum2
+@onready var poder_acum_3: MarginContainer = $Puntuacion/PoderAcum3
+
+
 func _ready() -> void:
 	animation_r.play("Retry")
 	c_f.disabled = true
@@ -78,8 +83,15 @@ func _physics_process(delta: float) -> void:
 			if jump_count == 0:
 				extra_jump = false
 				jump_hud.visible = false
+				poder_acum_1.modulate = Color.WHITE
+				poder_acum_2.modulate = Color.WHITE
+				poder_acum_3.modulate = Color.WHITE
 				Debug.log("No more jumps")
-			Debug.log(jump_count)
+			
+			if jump_count == 1:
+				poder_acum_2.modulate = Color.WHITE
+			if jump_count == 2:
+				poder_acum_3.modulate = Color.WHITE
 	else:
 		was_on_floor = true
 		
@@ -115,6 +127,14 @@ func _physics_process(delta: float) -> void:
 		if count_visible == 0:
 			Visible = false
 			invisibility_hub.visible = false
+			poder_acum_1.modulate = Color.WHITE
+			poder_acum_2.modulate = Color.WHITE
+			poder_acum_3.modulate = Color.WHITE
+		
+		if count_visible == 1:
+			poder_acum_2.modulate = Color.WHITE
+		if count_visible == 2:
+			poder_acum_3.modulate = Color.WHITE
 		special_active = false
 		
 	if is_on_floor() and run == true and run_count != 0 and Input.is_action_just_pressed("Especial") and not special_active:
@@ -129,7 +149,14 @@ func _physics_process(delta: float) -> void:
 		if run_count == 0:
 			run = false
 			run_hud.visible = false
+			poder_acum_1.modulate = Color.WHITE
+			poder_acum_2.modulate = Color.WHITE
+			poder_acum_3.modulate = Color.WHITE
 			Debug.log("No more runs")
+		if run_count == 1:
+			poder_acum_2.modulate = Color.WHITE
+		if run_count == 2:
+			poder_acum_3.modulate = Color.WHITE
 		max_speed = 150
 		Debug.log(run_count)
 		special_active = false

@@ -67,6 +67,13 @@ func _on_body_ghost_contact():
 		player.run_count = 0
 	if player.jump_count != 0:
 		player.jump_count = 0
+		
+	if player.count_visible == 1:
+		player.poder_acum_1.modulate = Color(3.39, 10.431, 0.0)
+	if player.count_visible == 2:
+		player.poder_acum_2.modulate = Color(3.39, 10.431, 0.0)
+	if player.count_visible == 3:
+		player.poder_acum_3.modulate = Color(3.39, 10.431, 0.0)
 	
 func _on_body_contact():
 	player.velocity.y = -player.jump_speed/3
@@ -85,6 +92,13 @@ func _on_body_contact():
 		player.jump_count = 0
 	if player.count_visible != 0:
 		player.count_visible = 0
+
+	if player.run_count == 1:
+		player.poder_acum_1.modulate = Color(3.39, 10.431, 0.0)
+	if player.run_count == 2:
+		player.poder_acum_2.modulate = Color(3.39, 10.431, 0.0)
+	if player.run_count == 3:
+		player.poder_acum_3.modulate = Color(3.39, 10.431, 0.0)
 	
 func _on_jump_enemy_contact():
 	player.velocity.y = -player.jump_speed/3
@@ -103,6 +117,13 @@ func _on_jump_enemy_contact():
 		player.count_visible = 0
 	if player.run_count != 0:
 		player.run_count = 0
+	
+	if player.jump_count == 1:
+		player.poder_acum_1.modulate = Color(3.39, 10.431, 0.0)
+	if player.jump_count == 2:
+		player.poder_acum_2.modulate = Color(3.39, 10.431, 0.0)
+	if player.jump_count == 3:
+		player.poder_acum_3.modulate = Color(3.39, 10.431, 0.0)
 		
 func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("Palanca"):

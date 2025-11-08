@@ -422,7 +422,35 @@ texture = ExtResource("10_3tm5s")
 hframes = 6
 frame = 2
 
+[node name="PoderAcum1" type="MarginContainer" parent="Puntuacion"]
+offset_left = 882.0
+offset_top = 650.0
+offset_right = 897.0
+offset_bottom = 665.0
+
+[node name="PanelContainer" type="PanelContainer" parent="Puntuacion/PoderAcum1"]
+layout_mode = 2
+
+[node name="PoderAcum2" type="MarginContainer" parent="Puntuacion"]
+offset_left = 882.0
+offset_top = 630.0
+offset_right = 897.0
+offset_bottom = 645.0
+
+[node name="PanelContainer" type="PanelContainer" parent="Puntuacion/PoderAcum2"]
+layout_mode = 2
+
+[node name="PoderAcum3" type="MarginContainer" parent="Puntuacion"]
+offset_left = 882.0
+offset_top = 610.0
+offset_right = 897.0
+offset_bottom = 625.0
+
+[node name="PanelContainer" type="PanelContainer" parent="Puntuacion/PoderAcum3"]
+layout_mode = 2
+
 [node name="Retry_Anim" type="Node2D" parent="Puntuacion"]
+visible = false
 z_index = 1
 
 [node name="ColorRect" type="ColorRect" parent="Puntuacion/Retry_Anim"]
