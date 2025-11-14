@@ -80,6 +80,7 @@ func _physics_process(delta: float) -> void:
 			velocity.y = -jump_speed
 			jump_count -= 1
 			AudioManager.play_sfx(JumpSound)
+			
 			if jump_count == 0:
 				extra_jump = false
 				jump_hud.visible = false
