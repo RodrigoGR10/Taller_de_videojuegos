@@ -25,11 +25,13 @@ buses/default_bus_layout="uid://sqrph0xqe8c5"
 Debug="*res://Componentes/Debug.gd"
 LevelManager="*res://Escenas/level_manager.tscn"
 AudioManager="*res://Escenas/audio_manager.tscn"
+Global="*res://Scripts/Global.gd"
 
 [display]
 
 window/size/viewport_width=900
 window/size/viewport_height=700
+window/size/mode=3
 window/stretch/mode="canvas_items"
 
 [input]

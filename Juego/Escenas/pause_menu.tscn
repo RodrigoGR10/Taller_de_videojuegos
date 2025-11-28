@@ -212,14 +212,15 @@ scale = Vector2(2.75, 2.75)
 texture = ExtResource("11_nmau3")
 
 [node name="Label2" type="Label" parent="Controls_Panel"]
+z_index = 2
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -181.5
 offset_top = 86.0
-offset_right = 4.5
-offset_bottom = 603.0
+offset_right = 21.5
+offset_bottom = 683.0
 grow_horizontal = 2
 theme_override_fonts/font = ExtResource("2_8i4rq")
 theme_override_font_sizes/font_size = 25

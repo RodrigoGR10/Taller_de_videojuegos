@@ -4,6 +4,7 @@ extends Control
 @export var ButtonSound: AudioStream
 
 @onready var start_button: Button = %StartButton
+@onready var continue_button: Button = %ContinueButton
 @onready var credits_button: Button = %CreditsButton
 @onready var quit_button: Button = %QuitButton
 @onready var controls: Button = %Controls
@@ -21,6 +22,7 @@ func _ready() -> void:
 	controls_panel.visible = false
 	audio_panel.visible = false
 	start_button.disabled = false
+	continue_button.disabled = false
 	controls.disabled = false
 	audio_settings.disabled = false
 	credits_button.disabled = false
@@ -28,6 +30,7 @@ func _ready() -> void:
 	animation_r.play("Retry")
 	return_button.pressed.connect(_on_return_button_pressed)
 	start_button.pressed.connect(_on_start_pressed)
+	continue_button.pressed.connect(_on_continue_pressed)
 	controls.pressed.connect(_on_controls_pressed)
 	audio_settings.pressed.connect(_on_audio_settings_pressed)
 	credits_button.pressed.connect(_on_credits_pressed)
@@ -49,7 +52,10 @@ func _on_return_button_pressed():
 	audio_panel.visible = false
 	
 func _on_start_pressed():
+	Global.game_data.level = -1
+	Global.guardar()
 	start_button.disabled = true
+	continue_button.disabled = true
 	controls.disabled = true
 	audio_settings.disabled = true
 	credits_button.disabled = true
@@ -57,11 +63,27 @@ func _on_start_pressed():
 	AudioManager.play_sfx(ButtonSound)
 	animation_r.play_backwards("Retry")
 	await animation_r.animation_finished
-	LevelManager.current_level = -1
+	LevelManager.current_level = Global.game_data.level
+	Debug.log(LevelManager.current_level)
+	LevelManager.go_to_next_level()
+	
+func _on_continue_pressed():
+	Debug.log(LevelManager.current_level)
+	start_button.disabled = true
+	continue_button.disabled = true
+	controls.disabled = true
+	audio_settings.disabled = true
+	credits_button.disabled = true
+	quit_button.disabled = true
+	AudioManager.play_sfx(ButtonSound)
+	animation_r.play_backwards("Retry")
+	await animation_r.animation_finished
+	LevelManager.current_level = Global.game_data.level - 1
 	LevelManager.go_to_next_level()
 	
 func _on_controls_pressed():
 	controls_panel.visible = true
+	continue_button.disabled = true
 	start_button.disabled = true
 	controls.disabled = true
 	audio_settings.disabled = true
@@ -70,6 +92,7 @@ func _on_controls_pressed():
 	AudioManager.play_sfx(ButtonSound)
 	get_tree().create_timer(0.4).timeout
 	start_button.disabled = false
+	continue_button.disabled = false
 	controls.disabled = false
 	audio_settings.disabled = false
 	credits_button.disabled = false
@@ -78,6 +101,7 @@ func _on_controls_pressed():
 func _on_audio_settings_pressed():
 	audio_panel.visible = true
 	start_button.disabled = true
+	continue_button.disabled = true
 	controls.disabled = true
 	audio_settings.disabled = true
 	credits_button.disabled = true
@@ -85,6 +109,7 @@ func _on_audio_settings_pressed():
 	AudioManager.play_sfx(ButtonSound)
 	get_tree().create_timer(0.4).timeout
 	start_button.disabled = false
+	continue_button.disabled = false
 	controls.disabled = false
 	audio_settings.disabled = false
 	credits_button.disabled = false
@@ -92,6 +117,7 @@ func _on_audio_settings_pressed():
 
 func _on_credits_pressed():
 	start_button.disabled = true
+	continue_button.disabled = true
 	controls.disabled = true
 	audio_settings.disabled = true
 	credits_button.disabled = true
@@ -103,6 +129,7 @@ func _on_credits_pressed():
 
 func _on_quit_pressed():
 	start_button.disabled = true
+	continue_button.disabled = true
 	controls.disabled = true
 	audio_settings.disabled = true
 	credits_button.disabled = true

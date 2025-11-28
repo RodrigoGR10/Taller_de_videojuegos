@@ -9,6 +9,8 @@ var current_level = 0
 func go_to_next_level():
 	current_level += 1
 	if levels.size() > current_level:
+		Global.game_data.level = current_level
+		Global.guardar()
 		get_tree().change_scene_to_packed(levels[current_level])
 	else:
 		go_to_credits()

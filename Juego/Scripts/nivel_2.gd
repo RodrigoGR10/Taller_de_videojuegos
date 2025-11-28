@@ -1,7 +1,7 @@
 class_name Level_2
 extends Node2D
 
-var Palanca = false
+var P_Salto = false
 
 @onready var player: Player = $Player
 @onready var enemy: Enemy = $Enemy
@@ -21,11 +21,12 @@ var Palanca = false
 @onready var enemy_ghost_3: Enemy_Ghost = $Enemy_Ghost3
 @onready var enemy_ghost_4: Enemy_Ghost = $Enemy_Ghost4
 @onready var enemy_ghost_5: Enemy_Ghost = $Enemy_Ghost5
-@onready var anim_palanca: AnimatedSprite2D = $Palanca/Anim_Palanca
-@onready var suelo: AnimationPlayer = $Suelo
-@onready var plataforma: AnimationPlayer = $Plataforma
+@onready var plataforma: AnimatedSprite2D = $Plataforma_Salto/Plataforma
+
+@onready var jump_sound: AudioStreamPlayer2D = $Plataforma_Salto/Jump_Sound
 
 func _ready() -> void:
+	LevelManager.current_level = 1
 	Debug.log(LevelManager.current_level)
 	plataforma.play("Mover_Plataforma")
 	AudioManager.start_music()
@@ -125,26 +126,15 @@ func _on_jump_enemy_contact():
 	if player.jump_count == 3:
 		player.poder_acum_3.modulate = Color(3.39, 10.431, 0.0)
 		
-func _physics_process(delta: float) -> void:
-	if Input.is_action_just_pressed("Palanca"):
-		Debug.log("Palanca activada")
-		anim_palanca.play()
-		
-func _on_palanca_body_entered(body: Node2D) -> void:
-	if body is Player:
-		player.velocity.y = -player.jump_speed*2.5
+
 		
 func _empuje():
 	player.position.x -= 60
 	player.take_damage(1)
 
 
-func _on_bloques_body_entered(body: Node2D) -> void:
+func _on_plataforma_salto_body_entered(body: Node2D) -> void:
 	if body is Player:
-		suelo.play("Caida Suelo1")
-		await suelo.animation_finished
-		suelo.play("Caida Suelo2")
-		await suelo.animation_finished
-		suelo.play("Caida Suelo3")
-		await suelo.animation_finished
-		suelo.play("Caida Suelo4")
+		plataforma.play()
+		jump_sound.play()
+		player.velocity.y = -player.jump_speed*2.5

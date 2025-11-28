@@ -450,7 +450,6 @@ offset_bottom = 625.0
 layout_mode = 2
 
 [node name="Retry_Anim" type="Node2D" parent="Puntuacion"]
-visible = false
 z_index = 1
 
 [node name="ColorRect" type="ColorRect" parent="Puntuacion/Retry_Anim"]

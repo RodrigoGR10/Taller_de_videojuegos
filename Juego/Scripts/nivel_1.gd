@@ -10,6 +10,7 @@ extends Node2D
 @onready var enemy: Enemy = $Enemy
 
 func _ready() -> void:
+	LevelManager.current_level = 0
 	Debug.log(LevelManager.current_level)
 	AudioManager.start_music()
 	enemy.muerte.connect(_on_body_contact)

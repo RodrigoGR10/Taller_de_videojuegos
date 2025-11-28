@@ -140,7 +140,7 @@ func _physics_process(delta: float) -> void:
 		
 	if is_on_floor() and run == true and run_count != 0 and Input.is_action_just_pressed("Especial") and not special_active:
 		special_active = true
-		max_speed = 400
+		max_speed = 450
 		progress_bar.value = 100
 		progress_bar.visible = true
 		timer.start()
