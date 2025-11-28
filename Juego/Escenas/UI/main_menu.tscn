@@ -89,6 +89,7 @@ script = ExtResource("1_p8ccj")
 ButtonSound = ExtResource("5_m7m47")
 
 [node name="Retry_Anim" type="Node2D" parent="."]
+visible = false
 z_index = 1
 position = Vector2(-57, -55)
 
@@ -283,9 +284,14 @@ grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_tic74")
 
 [node name="PxkwW" type="Sprite2D" parent="Controls_Panel"]
-position = Vector2(507.00012, 104.00006)
+position = Vector2(470, 104)
 scale = Vector2(2.75, 2.75)
 texture = ExtResource("7_j35u7")
+
+[node name="PxkwSpace2" type="Sprite2D" parent="Controls_Panel"]
+position = Vector2(550, 104)
+scale = Vector2(2.75, 2.75)
+texture = ExtResource("13_8rryh")
 
 [node name="PxkwA" type="Sprite2D" parent="Controls_Panel"]
 position = Vector2(507.00012, 168.00003)
@@ -312,11 +318,6 @@ position = Vector2(507.00012, 405.00006)
 scale = Vector2(2.75, 2.75)
 texture = ExtResource("12_sim1c")
 
-[node name="PxkwSpace2" type="Sprite2D" parent="Controls_Panel"]
-position = Vector2(507.00012, 467.99997)
-scale = Vector2(2.75, 2.75)
-texture = ExtResource("13_8rryh")
-
 [node name="Label2" type="Label" parent="Controls_Panel"]
 layout_mode = 1
 anchors_preset = 5
@@ -341,7 +342,7 @@ Retry
 
 Pause
 
-Jump"
+"
 
 [node name="Label" type="Label" parent="Controls_Panel"]
 layout_mode = 1
@@ -388,14 +389,15 @@ theme_override_styles/focus = ExtResource("3_gplya")
 text = "Return"
 
 [node name="Audio_Panel" type="Panel" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 73.0
-offset_top = 64.0
-offset_right = -80.0
-offset_bottom = -55.0
+offset_left = 123.0
+offset_top = 43.0
+offset_right = -30.0
+offset_bottom = -76.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_r7tei")
