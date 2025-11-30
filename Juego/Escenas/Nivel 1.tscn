@@ -820,7 +820,7 @@ tile_map_data = PackedByteArray("AAAfACQAAAAIAAIAAAAeACQAAAAHAAIAAAAdACQAAAAIAAI
 tile_set = SubResource("TileSet_wqotv")
 
 [node name="Player" parent="." instance=ExtResource("8_g7emt")]
-position = Vector2(-86, 508)
+position = Vector2(4382, 418.00003)
 scale = Vector2(1.5, 1.5)
 
 [node name="PauseMenu" parent="." instance=ExtResource("9_ocxq6")]

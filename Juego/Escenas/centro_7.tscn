@@ -283,7 +283,7 @@ navigation_layer_1/layers = 2
 sources/0 = SubResource("TileSetAtlasSource_lbyu8")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w8nmi"]
-size = Vector2(285.12207, 678)
+size = Vector2(285.12207, 377)
 
 [sub_resource type="Animation" id="Animation_6p3vo"]
 resource_name = "Caida"
@@ -330,7 +330,7 @@ script = ExtResource("2_6p3vo")
 position = Vector2(308.1632, 225.01036)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Bloques"]
-position = Vector2(-322.72424, 22.98964)
+position = Vector2(-322.72424, -127.51036)
 shape = SubResource("RectangleShape2D_w8nmi")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -340,5 +340,6 @@ libraries = {
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 position = Vector2(0, 20)
+target_position = Vector2(0, 191)
 
 [connection signal="body_entered" from="Bloques" to="." method="_on_bloques_body_entered"]

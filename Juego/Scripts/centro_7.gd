@@ -1,7 +1,7 @@
 extends TileMapLayer
 
 @export var start_delay: float = 0.5
-@export var gravity: float = 1200.0
+@export var gravity: float = 800
 @export var fade_after: float = 1.0
 
 @onready var bloques: Area2D = $Bloques
@@ -24,7 +24,7 @@ func _physics_process(delta: float) -> void:
 			velocity.y = 0
 			started = false
 			blinking = true
-			await get_tree().create_timer(0.6).timeout
+			await get_tree().create_timer(1).timeout
 			var base_color := Color(modulate.r, modulate.g, modulate.b, modulate.a)
 			var t := create_tween()
 			t.tween_property(self, "modulate", Color(base_color.r, base_color.g, base_color.b, 0.0), 0.2)

@@ -140,6 +140,8 @@ func _on_plataforma_salto_body_entered(body: Node2D) -> void:
 func _on_daño_body_entered(body: Node2D) -> void:
 	var A = get_tree()
 	if body is Player:
+		player.collision_layer = 0
+		player.collision_mask = 0
 		player.animation_r.play_backwards("Retry")
 		await player.animation_r.animation_finished
 		LevelManager.retry_level()

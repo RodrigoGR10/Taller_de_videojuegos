@@ -54,7 +54,6 @@ var special_active: bool = false
 @onready var poder_acum_2: MarginContainer = $Puntuacion/PoderAcum2
 @onready var poder_acum_3: MarginContainer = $Puntuacion/PoderAcum3
 
-
 func _ready() -> void:
 	animation_r.play("Retry")
 	c_f.disabled = true
@@ -210,10 +209,8 @@ func take_damage(damage):
 		await animation_r.animation_finished
 		tree.change_scene_to_file("res://Escenas/game_over.tscn")
 		
-		
 func _on_timer_timeout():
 	progress_bar.value -= 10
-
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body is Player:

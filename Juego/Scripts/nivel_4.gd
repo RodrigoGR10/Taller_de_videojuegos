@@ -1,4 +1,4 @@
-class_name Level_5
+class_name Level_4
 extends Node2D
 
 var Palanca = false
@@ -8,47 +8,57 @@ var Palanca = false
 @onready var enemy_2: Enemy = $Enemy2
 @onready var enemy_3: Enemy = $Enemy3
 @onready var enemy_4: Enemy = $Enemy4
-@onready var enemy_5: Enemy = $Enemy5
-@onready var enemy_6: Enemy = $Enemy6
 @onready var enemy_jump: Enemy_Jump = $Enemy_Jump
 @onready var enemy_jump_2: Enemy_Jump = $Enemy_Jump2
 @onready var enemy_jump_3: Enemy_Jump = $Enemy_Jump3
 @onready var enemy_jump_4: Enemy_Jump = $Enemy_Jump4
-
+@onready var enemy_jump_5: Enemy_Jump = $Enemy_Jump5
 @onready var enemy_ghost: Enemy_Ghost = $Enemy_Ghost
 @onready var enemy_ghost_2: Enemy_Ghost = $Enemy_Ghost2
+@onready var enemy_ghost_3: Enemy_Ghost = $Enemy_Ghost3
+@onready var enemy_ghost_4: Enemy_Ghost = $Enemy_Ghost4
+@onready var enemy_ghost_5: Enemy_Ghost = $Enemy_Ghost5
+
 @onready var plataforma: AnimatedSprite2D = $Plataforma_Salto/Plataforma
 
 @onready var centro_7: TileMapLayer = $Centro7
 @onready var centro_8: TileMapLayer = $Centro8
 @onready var centro_9: TileMapLayer = $Centro9
 @onready var centro_10: TileMapLayer = $Centro10
+@onready var centro_11: TileMapLayer = $Centro11
+@onready var centro_12: TileMapLayer = $Centro12
 
 @onready var collision_7: CollisionShape2D = $Centro7/Daño/Collision7
 @onready var collision_8: CollisionShape2D = $Centro8/Daño/Collision8
 @onready var collision_9: CollisionShape2D = $Centro9/Daño/Collision9
 @onready var collision_10: CollisionShape2D = $Centro10/Daño/Collision10
+@onready var collision_11: CollisionShape2D = $Centro11/Daño/Collision11
+@onready var collision_12: CollisionShape2D = $Centro12/Daño/Collision12
 
 @onready var jump_sound: AudioStreamPlayer2D = $Plataforma_Salto/Jump_Sound
 
 func _ready() -> void:
-	LevelManager.current_level = 4
+	LevelManager.current_level = 3
 	Debug.log(LevelManager.current_level)
 	AudioManager.start_music()
 	enemy.muerte.connect(_on_body_contact)
 	enemy_2.muerte.connect(_on_body_contact)
 	enemy_3.muerte.connect(_on_body_contact)
 	enemy_4.muerte.connect(_on_body_contact)
-	enemy_5.muerte.connect(_on_body_contact)
-	enemy_6.muerte.connect(_on_body_contact)
 	enemy_jump.muerte_jump.connect(_on_jump_enemy_contact)
 	enemy_jump_2.muerte_jump.connect(_on_jump_enemy_contact)
 	enemy_jump_3.muerte_jump.connect(_on_jump_enemy_contact)
 	enemy_jump_4.muerte_jump.connect(_on_jump_enemy_contact)
+	enemy_jump_5.muerte_jump.connect(_on_jump_enemy_contact)
 	enemy_ghost.muerte_ghost.connect(_on_body_ghost_contact)
 	enemy_ghost_2.muerte_ghost.connect(_on_body_ghost_contact)
+	enemy_ghost_3.muerte_ghost.connect(_on_body_ghost_contact)
+	enemy_ghost_4.muerte_ghost.connect(_on_body_ghost_contact)
 	enemy_ghost.colisión_jugador.connect(_empuje)
 	enemy_ghost_2.colisión_jugador.connect(_empuje)
+	enemy_ghost_3.colisión_jugador.connect(_empuje)
+	enemy_ghost_4.colisión_jugador.connect(_empuje)
+	enemy_ghost_5.colisión_jugador.connect(_empuje)
 
 func _on_body_ghost_contact():
 	player.velocity.y = -player.jump_speed/3
@@ -155,3 +165,9 @@ func _on_daño_body_entered(body: Node2D) -> void:
 		if centro_10:
 			collision_10.disabled = true
 			centro_10.queue_free()
+		if centro_11:
+			collision_11.disabled = true
+			centro_11.queue_free()
+		if centro_12:
+			collision_12.disabled = true
+			centro_12.queue_free()

@@ -21,7 +21,7 @@ func start_music():
 		game_over.stop()
 		Debug.log("Credits")
 		creditos.play()
-	if get_tree().current_scene is Level_1 or get_tree().current_scene is Level_2 or get_tree().current_scene is Level_3:
+	if get_tree().current_scene is Level_1 or get_tree().current_scene is Level_2 or get_tree().current_scene is Level_3 or get_tree().current_scene is Level_4:
 		main_menu.stop()
 		win.stop()
 		game_over.stop()
