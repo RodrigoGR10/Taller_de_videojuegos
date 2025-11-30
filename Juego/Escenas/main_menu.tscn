@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://er8vijr0f56b"]
+[gd_scene load_steps=23 format=3 uid="uid://bj5q5ltlheg2v"]
 
 [ext_resource type="Script" uid="uid://c7er4cqs0rsm7" path="res://Escenas/UI/main_menu.gd" id="1_p8ccj"]
 [ext_resource type="FontFile" uid="uid://qv1kfvhhvv01" path="res://Recursos/Crosterian.ttf" id="2_f02rb"]

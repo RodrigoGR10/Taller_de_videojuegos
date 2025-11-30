@@ -54,6 +54,7 @@ func _ready() -> void:
 	enemy_ghost_2.muerte_ghost.connect(_on_body_ghost_contact)
 	enemy_ghost_3.muerte_ghost.connect(_on_body_ghost_contact)
 	enemy_ghost_4.muerte_ghost.connect(_on_body_ghost_contact)
+	enemy_ghost_5.muerte_ghost.connect(_on_body_ghost_contact)
 	enemy_ghost.colisión_jugador.connect(_empuje)
 	enemy_ghost_2.colisión_jugador.connect(_empuje)
 	enemy_ghost_3.colisión_jugador.connect(_empuje)

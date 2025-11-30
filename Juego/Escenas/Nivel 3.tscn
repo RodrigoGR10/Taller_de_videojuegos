@@ -970,6 +970,7 @@ sources/0 = SubResource("TileSetAtlasSource_h0ybp")
 size = Vector2(241, 111)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_hkbjv"]
+distance = -15.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8jn0f"]
 size = Vector2(48.75, 77.15625)
@@ -1307,7 +1308,7 @@ rotation = 1.5707964
 shape = SubResource("WorldBoundaryShape2D_hkbjv")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(4831, 461)
+position = Vector2(4825, 1251)
 rotation = -1.5707964
 shape = SubResource("WorldBoundaryShape2D_hkbjv")
 
