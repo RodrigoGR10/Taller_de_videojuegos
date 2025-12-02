@@ -136,7 +136,7 @@ shape = SubResource("RectangleShape2D_7kldh")
 [node name="Pivot" type="Node2D" parent="."]
 
 [node name="RayCast2D" type="RayCast2D" parent="Pivot"]
-target_position = Vector2(17, 0)
+target_position = Vector2(16, 0)
 collision_mask = 97
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Pivot"]

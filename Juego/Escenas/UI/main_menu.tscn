@@ -89,7 +89,6 @@ script = ExtResource("1_p8ccj")
 ButtonSound = ExtResource("5_m7m47")
 
 [node name="Retry_Anim" type="Node2D" parent="."]
-visible = false
 z_index = 1
 position = Vector2(-57, -55)
 

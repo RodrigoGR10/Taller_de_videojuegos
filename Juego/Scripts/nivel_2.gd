@@ -132,7 +132,6 @@ func _empuje():
 	player.position.x -= 60
 	player.take_damage(1)
 
-
 func _on_plataforma_salto_body_entered(body: Node2D) -> void:
 	if body is Player:
 		plataforma.play()

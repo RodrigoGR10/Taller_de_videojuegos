@@ -19,16 +19,6 @@ var Palanca = false
 @onready var enemy_ghost_2: Enemy_Ghost = $Enemy_Ghost2
 @onready var plataforma: AnimatedSprite2D = $Plataforma_Salto/Plataforma
 
-@onready var centro_7: TileMapLayer = $Centro7
-@onready var centro_8: TileMapLayer = $Centro8
-@onready var centro_9: TileMapLayer = $Centro9
-@onready var centro_10: TileMapLayer = $Centro10
-
-@onready var collision_7: CollisionShape2D = $Centro7/Daño/Collision7
-@onready var collision_8: CollisionShape2D = $Centro8/Daño/Collision8
-@onready var collision_9: CollisionShape2D = $Centro9/Daño/Collision9
-@onready var collision_10: CollisionShape2D = $Centro10/Daño/Collision10
-
 @onready var jump_sound: AudioStreamPlayer2D = $Plataforma_Salto/Jump_Sound
 
 func _ready() -> void:
@@ -54,7 +44,6 @@ func _on_body_ghost_contact():
 	player.velocity.y = -player.jump_speed/3
 	player.Visible = true
 	player.invisibility_hub.visible = true
-	
 	
 	player.run = false
 	player.run_hud.visible = false
@@ -126,7 +115,6 @@ func _on_jump_enemy_contact():
 	if player.jump_count == 3:
 		player.poder_acum_3.modulate = Color(3.39, 10.431, 0.0)
 		
-		
 func _empuje():
 	player.position.x -= 60
 	player.take_damage(1)
@@ -144,16 +132,4 @@ func _on_daño_body_entered(body: Node2D) -> void:
 		player.collision_mask = 0
 		player.animation_r.play_backwards("Retry")
 		await player.animation_r.animation_finished
-		LevelManager.retry_level()
-		if centro_7:
-			collision_7.disabled = true
-			centro_7.queue_free()
-		if centro_8:
-			collision_8.disabled = true
-			centro_8.queue_free()
-		if centro_9:
-			collision_9.disabled = true
-			centro_9.queue_free()
-		if centro_10:
-			collision_10.disabled = true
-			centro_10.queue_free()
+		A.change_scene_to_file("res://Escenas/game_over.tscn")

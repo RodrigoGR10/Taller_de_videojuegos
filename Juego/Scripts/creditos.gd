@@ -5,6 +5,7 @@ extends Control
 @onready var quit: Button = $Retry_Anim/Quit
 @onready var animation_r: AnimationPlayer = $Retry_Anim/Animation_R
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var label_credits: Label = $"Label credits"
 
 @export var ButtonSound: AudioStream
 
@@ -18,9 +19,12 @@ func _ready() -> void:
 	main_menu_return.pressed.connect(_on_main_menu_return_pressed)
 	quit.pressed.connect(_on_quit_pressed)
 	await animation_player.animation_finished
-	await get_tree().create_timer(0.8).timeout
+	await get_tree().create_timer(0.6).timeout
 	animation_r.play_backwards("Retry")
 	animation_player.play("Letras")
+	await get_tree().create_timer(0.1).timeout
+	label_credits.visible = false
+	
 
 func _on_main_menu_return_pressed() -> void:
 	main_menu_return.disabled = true

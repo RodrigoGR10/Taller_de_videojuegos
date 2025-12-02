@@ -39,7 +39,7 @@ func _physics_process(delta: float) -> void:
 	velocity.x = move_toward(velocity.x, move_input * max_speed, acceleration * delta)
 	move_and_slide()
 	
-	if ray_cast_2d.is_colliding():
+	if ray_cast_2d.is_colliding() and ray_cast_2d.enabled:
 		pivot.scale.x *= -1
 
 func _on_timer_timeout():

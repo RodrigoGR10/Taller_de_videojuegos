@@ -139,7 +139,8 @@ func _physics_process(delta: float) -> void:
 		
 	if is_on_floor() and run == true and run_count != 0 and Input.is_action_just_pressed("Especial") and not special_active:
 		special_active = true
-		max_speed = 450
+		max_speed = 600
+		acceleration = 600
 		progress_bar.value = 100
 		progress_bar.visible = true
 		timer.start()
@@ -157,6 +158,7 @@ func _physics_process(delta: float) -> void:
 			poder_acum_2.modulate = Color.WHITE
 		if run_count == 2:
 			poder_acum_3.modulate = Color.WHITE
+		acceleration = 300
 		max_speed = 150
 		Debug.log(run_count)
 		special_active = false
@@ -217,7 +219,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		velocity.y -= 100
 		animation_r.play_backwards("Retry")
 		await animation_r.animation_finished
-		get_tree().reload_current_scene()
+		get_tree().change_scene_to_file("res://Escenas/game_over.tscn")
 
 func _on_win_body_entered(body: Node2D) -> void:
 	if body is Player:

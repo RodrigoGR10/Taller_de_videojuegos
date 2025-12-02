@@ -18,6 +18,7 @@ var Palanca = false
 @onready var enemy_ghost_3: Enemy_Ghost = $Enemy_Ghost3
 @onready var enemy_ghost_4: Enemy_Ghost = $Enemy_Ghost4
 @onready var enemy_ghost_5: Enemy_Ghost = $Enemy_Ghost5
+@onready var enemy_ghost_6: Enemy_Ghost = $Enemy_Ghost5
 
 @onready var plataforma: AnimatedSprite2D = $Plataforma_Salto/Plataforma
 
@@ -55,11 +56,13 @@ func _ready() -> void:
 	enemy_ghost_3.muerte_ghost.connect(_on_body_ghost_contact)
 	enemy_ghost_4.muerte_ghost.connect(_on_body_ghost_contact)
 	enemy_ghost_5.muerte_ghost.connect(_on_body_ghost_contact)
+	enemy_ghost_6.muerte_ghost.connect(_on_body_ghost_contact)
 	enemy_ghost.colisión_jugador.connect(_empuje)
 	enemy_ghost_2.colisión_jugador.connect(_empuje)
 	enemy_ghost_3.colisión_jugador.connect(_empuje)
 	enemy_ghost_4.colisión_jugador.connect(_empuje)
 	enemy_ghost_5.colisión_jugador.connect(_empuje)
+	enemy_ghost_6.colisión_jugador.connect(_empuje)
 
 func _on_body_ghost_contact():
 	player.velocity.y = -player.jump_speed/3
@@ -153,7 +156,7 @@ func _on_daño_body_entered(body: Node2D) -> void:
 	if body is Player:
 		player.animation_r.play_backwards("Retry")
 		await player.animation_r.animation_finished
-		LevelManager.retry_level()
+		A.change_scene_to_file("res://Escenas/game_over.tscn")
 		if centro_7:
 			collision_7.disabled = true
 			centro_7.queue_free()
